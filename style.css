@@ -278,3 +278,59 @@ border-radius:10px;
 font-size:18px;
 cursor:pointer;
 }
+.reviews,
+.gallery,
+.faq,
+.contact{
+padding:80px 8%;
+background:#fff;
+}
+
+.review-grid,
+.gallery-grid,
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.review-card,
+.faq-box{
+background:#f7fbff;
+padding:30px;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.review-card:hover,
+.faq-box:hover{
+transform:translateY(-8px);
+}
+
+.gallery-grid img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:20px;
+transition:.4s;
+}
+
+.gallery-grid img:hover{
+transform:scale(1.05);
+}
+
+.faq-box{
+margin-bottom:20px;
+}
+
+footer{
+background:#003366;
+color:white;
+text-align:center;
+padding:50px 20px;
+}
+
+footer h2{
+margin-bottom:20px;
+}
