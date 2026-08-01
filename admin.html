@@ -141,7 +141,21 @@
   <button id="logoutButton" class="logout">
     Logout
   </button>
-
+<div style="max-width:1100px; margin:20px auto;">
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search Patient Name / Mobile Number"
+    style="
+      width:100%;
+      box-sizing:border-box;
+      padding:13px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:16px;
+    "
+  >
+</div>
   <div class="dashboard">
 
     <div id="loading" class="loading">
@@ -171,7 +185,36 @@
 
 
 <script type="module">
+document
+.getElementById("searchInput")
+.addEventListener("input", function () {
 
+  const searchValue =
+    this.value.toLowerCase().trim();
+
+  const rows =
+    document.querySelectorAll("#appointmentList tr");
+
+  rows.forEach(row => {
+
+    const patientName =
+      row.cells[0]?.textContent.toLowerCase() || "";
+
+    const mobileNumber =
+      row.cells[1]?.textContent.toLowerCase() || "";
+
+    if (
+      patientName.includes(searchValue) ||
+      mobileNumber.includes(searchValue)
+    ) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+
+  });
+
+});
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
