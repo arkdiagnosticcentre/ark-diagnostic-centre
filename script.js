@@ -63,12 +63,10 @@ if (appointmentForm) {
         `Preferred Date: ${date}\n\n` +
         `Please confirm my appointment.`;
 
-      window.open(
-        `https://wa.me/919398908582?text=${encodeURIComponent(message)}`,
-        "_blank"
-      );
+      const whatsappURL =
+  https://wa.me/919398908582?text=${encodeURIComponent(message)};
 
-      appointmentForm.reset();
+window.location.href = whatsappURL;
 
     } catch (error) {
       console.error(error);
