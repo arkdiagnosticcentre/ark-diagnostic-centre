@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARK Diagnostic Centre - Appointments</title>
+  <title>ARK Diagnostic Centre - Admin</title>
 
   <style>
     body {
@@ -16,6 +16,56 @@
     h1 {
       text-align: center;
       color: #1565c0;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .login-box {
+      max-width: 400px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .login-box input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 13px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #1565c0;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .login-button {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .logout {
+      display: block;
+      margin: 10px auto 20px;
+      background: #d32f2f;
+    }
+
+    #loginMessage {
+      text-align: center;
+      color: red;
+      margin-top: 15px;
     }
 
     .dashboard {
@@ -48,117 +98,136 @@
       text-align: center;
       padding: 20px;
     }
+
+    #dashboardSection {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
 
 <h1>ARK Diagnostic Centre</h1>
-<h2 style="text-align:center;">Appointment Dashboard</h2>
 
-<div class="dashboard">
+<div id="loginSection" class="login-box">
 
-  <div id="loading" class="loading">
-    Loading appointments...
-  </div>
+  <h2>Admin Login</h2>
 
-  <table id="appointmentTable" style="display:none;">
-    <thead>
-      <tr>
-        <th>Patient Name</th>
-        <th>Mobile Number</th>
-        <th>Test / Package</th>
-        <th>Appointment Date</th>
-        <th>Booked Time</th>
-      </tr>
-    </thead>
+  <input
+    type="email"
+    id="adminEmail"
+    placeholder="Admin Email"
+  >
 
-    <tbody id="appointmentList"></tbody>
-  </table>
+  <input
+    type="password"
+    id="adminPassword"
+    placeholder="Password"
+  >
+
+  <button id="loginButton" class="login-button">
+    Login
+  </button>
+
+  <div id="loginMessage"></div>
 
 </div>
 
-<script>
-async function loadAppointments() {
 
-  const url =
-    "https://firestore.googleapis.com/v1/projects/ark-diagnostic-centre/databases/(default)/documents/appointments";
+<div id="dashboardSection">
 
-  try {
+  <h2>Appointment Dashboard</h2>
 
-    const response = await fetch(url);
+  <button id="logoutButton" class="logout">
+    Logout
+  </button>
 
-    if (!response.ok) {
-      throw new Error("Unable to load appointments");
-    }
+  <div class="dashboard">
 
-    const data = await response.json();
+    <div id="loading" class="loading">
+      Loading appointments...
+    </div>
 
-    const appointmentList =
-      document.getElementById("appointmentList");
+    <table id="appointmentTable" style="display:none;">
 
-    appointmentList.innerHTML = "";
+      <thead>
+        <tr>
+          <th>Patient Name</th>
+          <th>Mobile Number</th>
+          <th>Test / Package</th>
+          <th>Appointment Date</th>
+          <th>Booked Time</th>
+        </tr>
+      </thead>
 
-    if (!data.documents || data.documents.length === 0) {
-      document.getElementById("loading").innerText =
-        "No appointments found.";
-      return;
-    }
+      <tbody id="appointmentList"></tbody>
 
-    data.documents.forEach(doc => {
+    </table>
 
-      const fields = doc.fields || {};
+  </div>
 
-      const name =
-        fields.name?.stringValue || "-";
+</div>
 
-      const phone =
-        fields.phone?.stringValue || "-";
 
-      const test =
-        fields.test?.stringValue || "-";
+<script type="module">
 
-      const date =
-        fields.date?.stringValue || "-";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-      let createdAt = "-";
-
-      if (fields.createdAt?.timestampValue) {
-        createdAt = new Date(
-          fields.createdAt.timestampValue
-        ).toLocaleString("en-IN");
-      }
-
-      const row = document.createElement("tr");
-
-      row.innerHTML = `
-        <td>${name}</td>
-        <td>${phone}</td>
-        <td>${test}</td>
-        <td>${date}</td>
-        <td>${createdAt}</td>
-      `;
-
-      appointmentList.appendChild(row);
-    });
-
-    document.getElementById("loading").style.display = "none";
-
-    document.getElementById("appointmentTable").style.display =
-      "table";
-
-  } catch (error) {
-
-    console.error(error);
-
-    document.getElementById("loading").innerText =
-      "Appointments could not be loaded.";
-
-  }
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-loadAppointments();
-</script>
 
-</body>
-</html>
+const firebaseConfig = {
+
+  apiKey: "AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
+
+  authDomain:
+    "ark-diagnostic-centre.firebaseapp.com",
+
+  projectId:
+    "ark-diagnostic-centre",
+
+  storageBucket:
+    "ark-diagnostic-centre.firebasestorage.app",
+
+  messagingSenderId:
+    "238286336140",
+
+  appId:
+    "1:238286336140:web:26210cbdcaf290f3a00ba9",
+
+  measurementId:
+    "G-0BQ292SWKD"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+const loginSection =
+  document.getElementById("loginSection");
+
+const dashboardSection =
+  document.getElementById("dashboardSection");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+
+document
+.getElementById("loginButton")
+.addEventListener("click", async () => {
+
+  const email =
+    document.getElementById("adminEmail").value.trim();
+
+  const password =
+    document.getElementById("adminPassword").value;
