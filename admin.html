@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARK Diagnostic Centre - Appointments</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fc;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1565c0;
+    }
+
+    .dashboard {
+      max-width: 1100px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #1565c0;
+      color: white;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>ARK Diagnostic Centre</h1>
+<h2 style="text-align:center;">Appointment Dashboard</h2>
+
+<div class="dashboard">
+
+  <div id="loading" class="loading">
+    Loading appointments...
+  </div>
+
+  <table id="appointmentTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Mobile Number</th>
+        <th>Test / Package</th>
+        <th>Appointment Date</th>
+        <th>Booked Time</th>
+      </tr>
+    </thead>
+
+    <tbody id="appointmentList"></tbody>
+  </table>
+
+</div>
+
+<script>
+async function loadAppointments() {
+
+  const url =
+    "https://firestore.googleapis.com/v1/projects/ark-diagnostic-centre/databases/(default)/documents/appointments";
+
+  try {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Unable to load appointments");
+    }
+
+    const data = await response.json();
+
+    const appointmentList =
+      document.getElementById("appointmentList");
+
+    appointmentList.innerHTML = "";
+
+    if (!data.documents || data.documents.length === 0) {
+      document.getElementById("loading").innerText =
+        "No appointments found.";
+      return;
+    }
+
+    data.documents.forEach(doc => {
+
+      const fields = doc.fields || {};
+
+      const name =
+        fields.name?.stringValue || "-";
+
+      const phone =
+        fields.phone?.stringValue || "-";
+
+      const test =
+        fields.test?.stringValue || "-";
+
+      const date =
+        fields.date?.stringValue || "-";
+
+      let createdAt = "-";
+
+      if (fields.createdAt?.timestampValue) {
+        createdAt = new Date(
+          fields.createdAt.timestampValue
+        ).toLocaleString("en-IN");
+      }
+
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${phone}</td>
+        <td>${test}</td>
+        <td>${date}</td>
+        <td>${createdAt}</td>
+      `;
+
+      appointmentList.appendChild(row);
+    });
+
+    document.getElementById("loading").style.display = "none";
+
+    document.getElementById("appointmentTable").style.display =
+      "table";
+
+  } catch (error) {
+
+    console.error(error);
+
+    document.getElementById("loading").innerText =
+      "Appointments could not be loaded.";
+
+  }
+}
+
+loadAppointments();
+</script>
+
+</body>
+</html>
