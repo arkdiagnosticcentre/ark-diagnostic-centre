@@ -324,7 +324,7 @@ async function loadAppointments() {
       const phone = fields.phone?.stringValue || "-";
       const test = fields.test?.stringValue || "-";
       const date = fields.date?.stringValue || "-";
-
+const status = fields.status?.stringValue || "Pending";
       let createdAt = "-";
 
       if (fields.createdAt?.timestampValue) {
