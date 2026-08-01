@@ -336,12 +336,19 @@ async function loadAppointments() {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${name}</td>
-        <td>${phone}</td>
-        <td>${test}</td>
-        <td>${date}</td>
-        <td>${createdAt}</td>
-      `;
+  <td>${name}</td>
+  <td>${phone}</td>
+  <td>${test}</td>
+  <td>${date}</td>
+  <td>${createdAt}</td>
+  <td>
+    <select class="status-select">
+      <option value="Pending">Pending</option>
+      <option value="Confirmed">Confirmed</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </td>
+`;
 
       appointmentList.appendChild(row);
 
