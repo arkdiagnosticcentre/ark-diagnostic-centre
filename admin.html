@@ -231,3 +231,135 @@ document
 
   const password =
     document.getElementById("adminPassword").value;
+if (!email || !password) {
+    loginMessage.textContent = "Please enter email and password.";
+    return;
+  }
+
+  loginMessage.textContent = "Logging in...";
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    loginMessage.textContent = "";
+  } catch (error) {
+    console.error("Login error:", error);
+    loginMessage.textContent = "Invalid email or password.";
+  }
+
+});
+
+
+document
+.getElementById("logoutButton")
+.addEventListener("click", async () => {
+  await signOut(auth);
+});
+
+
+onAuthStateChanged(auth, (user) => {
+
+  if (user) {
+
+    loginSection.style.display = "none";
+    dashboardSection.style.display = "block";
+
+    loadAppointments();
+
+  } else {
+
+    loginSection.style.display = "block";
+    dashboardSection.style.display = "none";
+
+  }
+
+});
+
+
+async function loadAppointments() {
+
+  const url =
+    "https://firestore.googleapis.com/v1/projects/ark-diagnostic-centre/databases/(default)/documents/appointments";
+
+  const loading =
+    document.getElementById("loading");
+
+  const table =
+    document.getElementById("appointmentTable");
+
+  const appointmentList =
+    document.getElementById("appointmentList");
+
+  loading.style.display = "block";
+  loading.textContent = "Loading appointments...";
+  table.style.display = "none";
+  appointmentList.innerHTML = "";
+
+  try {
+
+    const token = await auth.currentUser.getIdToken();
+
+    const response = await fetch(url, {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Unable to load appointments");
+    }
+
+    const data = await response.json();
+
+    if (!data.documents || data.documents.length === 0) {
+      loading.textContent = "No appointments found.";
+      return;
+    }
+
+    data.documents.forEach(doc => {
+
+      const fields = doc.fields || {};
+
+      const name = fields.name?.stringValue || "-";
+      const phone = fields.phone?.stringValue || "-";
+      const test = fields.test?.stringValue || "-";
+      const date = fields.date?.stringValue || "-";
+
+      let createdAt = "-";
+
+      if (fields.createdAt?.timestampValue) {
+        createdAt = new Date(
+          fields.createdAt.timestampValue
+        ).toLocaleString("en-IN");
+      }
+
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${phone}</td>
+        <td>${test}</td>
+        <td>${date}</td>
+        <td>${createdAt}</td>
+      `;
+
+      appointmentList.appendChild(row);
+
+    });
+
+    loading.style.display = "none";
+    table.style.display = "table";
+
+  } catch (error) {
+
+    console.error("Appointment loading error:", error);
+
+    loading.textContent =
+      "Appointments could not be loaded.";
+
+  }
+}
+
+</script>
+
+</body>
+</html>
