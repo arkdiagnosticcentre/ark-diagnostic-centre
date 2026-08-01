@@ -84,7 +84,23 @@ Blood Tests, Thyroid, Diabetes, LFT, KFT, Lipid Profile and Home Sample Collecti
 </a>
 
 <script src="script.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
+  authDomain: "ark-diagnostic-centre.firebaseapp.com",
+  projectId: "ark-diagnostic-centre",
+  storageBucket: "ark-diagnostic-centre.firebasestorage.app",
+  messagingSenderId: "238286336140",
+  appId: "1:238286336140:web:26210cbdcaf290f3a00ba9",
+  measurementId: "G-0BQ292SWKD"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
 
