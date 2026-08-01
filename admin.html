@@ -342,16 +342,61 @@ const status = fields.status?.stringValue || "Pending";
   <td>${date}</td>
   <td>${createdAt}</td>
   <td>
-    <select class="status-select">
-      <option value="Pending">Pending</option>
-      <option value="Confirmed">Confirmed</option>
-      <option value="Completed">Completed</option>
-    </select>
+    <select class="status-select" data-doc="${doc.name}">
+  <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
+  <option value="Confirmed" ${status === "Confirmed" ? "selected" : ""}>Confirmed</option>
+  <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
+</select>
   </td>
 `;
 
       appointmentList.appendChild(row);
 
+      const statusSelect = row.querySelector(".status-select");
+
+statusSelect.addEventListener("change", async function () {
+
+  const newStatus = this.value;
+  const documentPath = this.dataset.doc;
+
+  try {
+
+    const token = await auth.currentUser.getIdToken();
+
+    const updateURL =
+      "https://firestore.googleapis.com/v1/" +
+      documentPath +
+      "?updateMask.fieldPaths=status";
+
+    const response = await fetch(updateURL, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      },
+      body: JSON.stringify({
+        fields: {
+          status: {
+            stringValue: newStatus
+          }
+        }
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("Status update failed");
+    }
+
+    alert("Status updated successfully.");
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Status could not be updated.");
+
+  }
+
+});
     });
 
     loading.style.display = "none";
