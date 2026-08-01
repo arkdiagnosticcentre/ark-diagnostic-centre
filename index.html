@@ -304,11 +304,34 @@ onkeyup="searchTests()">
 
 <h2 class="section-title">Book Appointment</h2>
 
-<form class="appointment-form">
+<form class="appointment-form" id="appointmentForm">
 
-<input type="text" placeholder="Full Name" required>
+<input type="text" id="patientName" placeholder="Full Name" required>
 
-<input
+<input type="tel" id="patientPhone" placeholder="Mobile Number" required>
+
+<select id="patientTest" required>
+<option value="">Select Test / Package</option>
+<option>Blood Test</option>
+<option>Diabetes Profile</option>
+<option>Thyroid Profile</option>
+<option>Lipid Profile</option>
+<option>Liver Function Test (LFT)</option>
+<option>Kidney Function Test (KFT)</option>
+<option>ARK Health Profile 1</option>
+<option>ARK Health Profile 2</option>
+<option>Home Sample Collection</option>
+</select>
+
+<input type="date" id="appointmentDate" required>
+
+<button type="submit" class="btn whatsapp">
+Book Appointment on WhatsApp
+</button>
+
+</form>
+
+</section>
 <!-- ================= PATIENT REVIEWS ================= -->
 
 <section class="reviews">
