@@ -43,9 +43,11 @@ async function bookAppointment() {
     );
 
     if (!response.ok) {
-      throw new Error("Firestore save failed");
-    }
-
+  const errorText = await response.text();
+  console.error("Firestore Error:", errorText);
+  alert("Firestore Error: " + errorText);
+  return;
+}
     // WhatsApp Message
     const message =
       `Hello ARK Diagnostic Centre,\n\n` +
