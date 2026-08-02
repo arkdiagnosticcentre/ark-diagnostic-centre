@@ -224,7 +224,11 @@ import {
   onAuthStateChanged
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
+import {
+  getFirestore,
+  doc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
 
@@ -251,7 +255,7 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
-
+const db = getFirestore(app);
 const auth = getAuth(app);
 
 
@@ -398,7 +402,24 @@ const status = fields.status?.stringValue || "Pending";
 </td>
   `;
       appointmentList.appendChild(row);
+const deleteButton = row.querySelector(".delete-btn");
 
+deleteButton.addEventListener("click", async function () {
+  const documentId = this.dataset.doc;
+
+  if (!confirm("Are you sure you want to delete this appointment?")) {
+    return;
+  }
+
+  try {
+    await deleteDoc(doc(db, "appointments", documentId));
+    row.remove();
+    alert("Appointment deleted successfully.");
+  } catch (error) {
+    console.error("Delete error:", error);
+    alert("Could not delete appointment.");
+  }
+});
       const statusSelect = row.querySelector(".status-select");
 
 statusSelect.addEventListener("change", async function () {
