@@ -427,13 +427,13 @@ whatsappButton.addEventListener("click", function () {
   const date = this.dataset.date;
 
   const message =
-    `Hello ${name}, your appointment at ARK Diagnostic Centre for ${test} on ${date} is confirmed. Thank you.`;
+  `Hello ${name}, your appointment at ARK Diagnostic Centre has been confirmed.\n\nTest / Package: ${test}\nAppointment Date: ${date}\n\nThank you for choosing ARK Diagnostic Centre.`;
 
-  const whatsappURL =
-    "https://wa.me/" + phone +
-    "?text=" + encodeURIComponent(message);
+const whatsappURL =
+  "https://wa.me/" + phone +
+  "?text=" + encodeURIComponent(message);
 
-  window.open(whatsappURL, "_blank");
+window.open(whatsappURL, "_blank");
 
 });
 const deleteButton = row.querySelector(".delete-btn");
