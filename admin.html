@@ -389,14 +389,15 @@ const status = fields.status?.stringValue || "Pending";
   <td>${createdAt}</td>
   <td>
   
-    <select class="status-select" data-doc="${appointmentDoc.name}"
+    <select class="status-select" data-doc="${appointmentDoc.name}">
   <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
   <option value="Confirmed" ${status === "Confirmed" ? "selected" : ""}>Confirmed</option>
   <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
 </select>
-  </td>
- <td>
-  <button class="delete-btn" data-doc="${appointmentDoc.name}"
+</td>
+
+<td>
+  <button class="delete-btn" data-doc="${appointmentDoc.name}">
     Delete
   </button>
 </td>
