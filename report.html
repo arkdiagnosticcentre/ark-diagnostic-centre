@@ -1,374 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Patient Reports | ARK Diagnostic Centre</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f8fc;
-      color: #1f2937;
-    }
-
-    .header {
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
-      color: white;
-      text-align: center;
-      padding: 30px 15px;
-    }
-
-    .header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-    }
-
-    .header p {
-      margin: 0;
-      opacity: 0.95;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 35px auto;
-      padding: 0 15px;
-    }
-
-    .search-box {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-    }
-
-    .search-box h2 {
-      text-align: center;
-      margin-top: 0;
-      color: #1565c0;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      margin-bottom: 12px;
-    }
-
-    .search-button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      background: #1565c0;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .search-button:hover {
-      background: #0d47a1;
-    }
-
-    #message {
-      text-align: center;
-      margin: 20px 0;
-      font-weight: bold;
-    }
-
-    .report-card {
-      background: white;
-      margin-top: 18px;
-      padding: 20px;
-      border-radius: 14px;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.08);
-    }
-
-    .report-card h3 {
-      color: #1565c0;
-      margin-top: 0;
-    }
-
-    .report-card p {
-      margin: 8px 0;
-      line-height: 1.5;
-    }
-
-    .buttons {
-      margin-top: 18px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .report-btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 11px 18px;
-      border-radius: 7px;
-      color: white;
-      font-weight: bold;
-    }
-
-    .view-btn {
-      background: #1565c0;
-    }
-
-    .download-btn {
-      background: #00897b;
-    }
-
-    .footer {
-      text-align: center;
-      color: #666;
-      padding: 30px 15px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      .header h1 {
-        font-size: 24px;
-      }
-
-      .buttons {
-        flex-direction: column;
-      }
-
-      .report-btn {
-        text-align: center;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="header">
-    <h1>ARK Diagnostic Centre</h1>
-    <p>Patient Report Portal</p>
-  </div>
-
-  <div class="container">
-
-    <div class="search-box">
-
-      <h2>View Your Laboratory Reports</h2>
-
-      <input
-        type="tel"
-        id="mobileNumber"
-        placeholder="Enter your 10-digit mobile number"
-        maxlength="10"
-      >
-
-      <button
-        id="searchButton"
-        class="search-button">
-        Search Reports
-      </button>
-
-    </div>
-
-    <div id="message"></div>
-
-    <div id="reportsList"></div>
-
-  </div>
-
-  <div class="footer">
-    ARK Diagnostic Centre, Kalwakurthy
-  </div>
-
-
 <script>
-
-const PROJECT_ID = "ark-diagnostic-centre";
-
-const mobileInput =
-  document.getElementById("mobileNumber");
-
-const searchButton =
-  document.getElementById("searchButton");
-
-const message =
-  document.getElementById("message");
-
-const reportsList =
-  document.getElementById("reportsList");
-
+const mobileInput = document.getElementById("mobileNumber");
+const searchButton = document.getElementById("searchButton");
+const message = document.getElementById("message");
+const reportsList = document.getElementById("reportsList");
 
 searchButton.addEventListener("click", searchReports);
 
-mobileInput.addEventListener("keydown", function(event) {
+mobileInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     searchReports();
   }
 });
 
-
 async function searchReports() {
-
-  const phone =
-    mobileInput.value.replace(/\D/g, "");
+  const phone = mobileInput.value.replace(/\D/g, "");
 
   reportsList.innerHTML = "";
   message.style.color = "#333";
 
   if (phone.length !== 10) {
-    message.style.color = "red";
-    message.textContent =
-      "Please enter a valid 10-digit mobile number.";
+    message.style.color = "#d32f2f";
+    message.textContent = "Please enter a valid 10-digit mobile number.";
     return;
   }
 
   message.textContent = "Searching reports...";
-
-  const url =
-    `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/appointments`;
+  searchButton.disabled = true;
+  searchButton.textContent = "Searching...";
 
   try {
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(
-        "Unable to access reports."
-      );
-    }
+    // Uses your secure Vercel API
+    const response = await fetch(
+      `/api/reports?phone=${encodeURIComponent(phone)}`
+    );
 
     const data = await response.json();
 
-    const documents =
-      data.documents || [];
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || "Unable to load reports.");
+    }
 
-    const matchedReports =
-      documents.filter(doc => {
+    const reports = data.reports || [];
 
-        const fields = doc.fields || {};
-
-        const savedPhone =
-          fields.phone?.stringValue || "";
-
-        const reportURL =
-          fields.reportURL?.stringValue || "";
-
-        return (
-          savedPhone.replace(/\D/g, "") === phone &&
-          reportURL
-        );
-
-      });
-
-
-    if (matchedReports.length === 0) {
-
+    if (reports.length === 0) {
       message.style.color = "#d32f2f";
-
-      message.textContent =
-        "No reports found for this mobile number.";
-
+      message.textContent = "No reports found for this mobile number.";
       return;
     }
 
-
     message.style.color = "#00897b";
+    message.textContent = `${reports.length} report(s) found.`;
 
-    message.textContent =
-      `${matchedReports.length} report(s) found.`;
-
-
-    matchedReports.forEach(doc => {
-
-      const fields = doc.fields || {};
-
-      const patientName =
-        fields.name?.stringValue || "Patient";
-
-      const test =
-        fields.test?.stringValue || "-";
-
-      const appointmentDate =
-        fields.date?.stringValue || "-";
-
-      const reportURL =
-        fields.reportURL?.stringValue || "";
-
-
-      const card =
-        document.createElement("div");
-
+    reports.forEach(report => {
+      const card = document.createElement("div");
       card.className = "report-card";
 
+      const title = document.createElement("h3");
+      title.textContent = report.name || "Patient";
 
-      const title =
-        document.createElement("h3");
-
-      title.textContent = patientName;
-
-
-      const testText =
-        document.createElement("p");
-
+      const testText = document.createElement("p");
       testText.textContent =
-        "Test / Package: " + test;
+        "Test / Package: " + (report.test || "-");
 
-
-      const dateText =
-        document.createElement("p");
-
+      const dateText = document.createElement("p");
       dateText.textContent =
-        "Appointment Date: " + appointmentDate;
+        "Appointment Date: " + (report.date || "-");
 
-
-      const buttons =
-        document.createElement("div");
-
+      const buttons = document.createElement("div");
       buttons.className = "buttons";
 
+      if (report.reportURL) {
+        const viewButton = document.createElement("a");
+        viewButton.className = "report-btn view-btn";
+        viewButton.textContent = "View Report";
+        viewButton.href = report.reportURL;
+        viewButton.target = "_blank";
+        viewButton.rel = "noopener noreferrer";
 
-      const viewButton =
-        document.createElement("a");
+        const downloadButton = document.createElement("a");
+        downloadButton.className = "report-btn download-btn";
+        downloadButton.textContent = "Download Report";
+        downloadButton.href = report.reportURL;
+        downloadButton.target = "_blank";
+        downloadButton.rel = "noopener noreferrer";
 
-      viewButton.className =
-        "report-btn view-btn";
-
-      viewButton.textContent =
-        "View Report";
-
-      viewButton.href = reportURL;
-
-      viewButton.target = "_blank";
-
-      viewButton.rel = "noopener noreferrer";
-
-
-      const downloadButton =
-        document.createElement("a");
-
-      downloadButton.className =
-        "report-btn download-btn";
-
-      downloadButton.textContent =
-        "Download Report";
-
-      downloadButton.href = reportURL;
-
-      downloadButton.target = "_blank";
-
-      downloadButton.rel = "noopener noreferrer";
-
-
-      buttons.appendChild(viewButton);
-      buttons.appendChild(downloadButton);
+        buttons.appendChild(viewButton);
+        buttons.appendChild(downloadButton);
+      }
 
       card.appendChild(title);
       card.appendChild(testText);
@@ -376,24 +94,18 @@ async function searchReports() {
       card.appendChild(buttons);
 
       reportsList.appendChild(card);
-
     });
 
-
   } catch (error) {
+    console.error("Report Error:", error);
 
-    console.error(error);
-
-    message.style.color = "red";
-
+    message.style.color = "#d32f2f";
     message.textContent =
       "Reports could not be loaded. Please contact ARK Diagnostic Centre.";
 
+  } finally {
+    searchButton.disabled = false;
+    searchButton.textContent = "Search Reports";
   }
-
 }
-
 </script>
-
-</body>
-</html>
