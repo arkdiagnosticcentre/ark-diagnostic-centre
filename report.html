@@ -1,111 +1,135 @@
-<script>
-const mobileInput = document.getElementById("mobileNumber");
-const searchButton = document.getElementById("searchButton");
-const message = document.getElementById("message");
-const reportsList = document.getElementById("reportsList");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-searchButton.addEventListener("click", searchReports);
+  <title>Patient Reports | ARK Diagnostic Centre</title>
 
-mobileInput.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    searchReports();
-  }
-});
-
-async function searchReports() {
-  const phone = mobileInput.value.replace(/\D/g, "");
-
-  reportsList.innerHTML = "";
-  message.style.color = "#333";
-
-  if (phone.length !== 10) {
-    message.style.color = "#d32f2f";
-    message.textContent = "Please enter a valid 10-digit mobile number.";
-    return;
-  }
-
-  message.textContent = "Searching reports...";
-  searchButton.disabled = true;
-  searchButton.textContent = "Searching...";
-
-  try {
-    // Uses your secure Vercel API
-    const response = await fetch(
-      `/api/reports?phone=${encodeURIComponent(phone)}`
-    );
-
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      throw new Error(data.error || "Unable to load reports.");
+  <style>
+    * {
+      box-sizing: border-box;
     }
 
-    const reports = data.reports || [];
-
-    if (reports.length === 0) {
-      message.style.color = "#d32f2f";
-      message.textContent = "No reports found for this mobile number.";
-      return;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f8fc;
+      color: #1f2937;
     }
 
-    message.style.color = "#00897b";
-    message.textContent = `${reports.length} report(s) found.`;
+    .header {
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
 
-    reports.forEach(report => {
-      const card = document.createElement("div");
-      card.className = "report-card";
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
 
-      const title = document.createElement("h3");
-      title.textContent = report.name || "Patient";
+    .header p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.95;
+    }
 
-      const testText = document.createElement("p");
-      testText.textContent =
-        "Test / Package: " + (report.test || "-");
+    .container {
+      max-width: 800px;
+      margin: 35px auto;
+      padding: 0 15px;
+    }
 
-      const dateText = document.createElement("p");
-      dateText.textContent =
-        "Appointment Date: " + (report.date || "-");
+    .search-box {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
 
-      const buttons = document.createElement("div");
-      buttons.className = "buttons";
+    .search-box h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #1565c0;
+    }
 
-      if (report.reportURL) {
-        const viewButton = document.createElement("a");
-        viewButton.className = "report-btn view-btn";
-        viewButton.textContent = "View Report";
-        viewButton.href = report.reportURL;
-        viewButton.target = "_blank";
-        viewButton.rel = "noopener noreferrer";
+    .search-box p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+    }
 
-        const downloadButton = document.createElement("a");
-        downloadButton.className = "report-btn download-btn";
-        downloadButton.textContent = "Download Report";
-        downloadButton.href = report.reportURL;
-        downloadButton.target = "_blank";
-        downloadButton.rel = "noopener noreferrer";
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 12px;
+      outline: none;
+    }
 
-        buttons.appendChild(viewButton);
-        buttons.appendChild(downloadButton);
-      }
+    input:focus {
+      border-color: #1565c0;
+    }
 
-      card.appendChild(title);
-      card.appendChild(testText);
-      card.appendChild(dateText);
-      card.appendChild(buttons);
+    .search-button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #1565c0;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-      reportsList.appendChild(card);
-    });
+    .search-button:hover {
+      background: #0d47a1;
+    }
 
-  } catch (error) {
-    console.error("Report Error:", error);
+    .search-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
 
-    message.style.color = "#d32f2f";
-    message.textContent =
-      "Reports could not be loaded. Please contact ARK Diagnostic Centre.";
+    #message {
+      text-align: center;
+      margin: 20px 0;
+      font-weight: bold;
+    }
 
-  } finally {
-    searchButton.disabled = false;
-    searchButton.textContent = "Search Reports";
-  }
-}
-</script>
+    .report-card {
+      background: white;
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .report-card h3 {
+      color: #1565c0;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .report-card p {
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+
+    .buttons {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .report-btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 11px 18px;
+      border-radius
