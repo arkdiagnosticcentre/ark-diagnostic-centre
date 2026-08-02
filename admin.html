@@ -170,6 +170,7 @@
           <th>Appointment Date</th>
           <th>Booked Time</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
 
@@ -383,14 +384,19 @@ const status = fields.status?.stringValue || "Pending";
   <td>${date}</td>
   <td>${createdAt}</td>
   <td>
+  
     <select class="status-select" data-doc="${doc.name}">
   <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
   <option value="Confirmed" ${status === "Confirmed" ? "selected" : ""}>Confirmed</option>
   <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
 </select>
   </td>
-`;
-
+ <td>
+  <button class="delete-btn" data-doc="${doc.name}">
+    Delete
+  </button>
+</td>
+  `;
       appointmentList.appendChild(row);
 
       const statusSelect = row.querySelector(".status-select");
