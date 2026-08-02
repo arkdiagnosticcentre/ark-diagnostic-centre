@@ -1,108 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARK Diagnostic Centre - Admin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f8fc;
-      margin: 0;
-      padding: 20px;
-    }
+<title>ARK Diagnostic Centre - Admin</title>
 
-    h1 {
-      text-align: center;
-      color: #1565c0;
-    }
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f8fc;
+  margin:0;
+  padding:20px;
+}
 
-    h2 {
-      text-align: center;
-    }
+h1{
+  text-align:center;
+  color:#1565c0;
+}
 
-    .login-box {
-      max-width: 400px;
-      margin: 60px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+h2{text-align:center;}
 
-    .login-box input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 13px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+.login-box{
+  max-width:400px;
+  margin:60px auto;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
 
-    button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #1565c0;
-      color: white;
-      cursor: pointer;
-      font-size: 15px;
-    }
+.login-box input{
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
 
-    .login-button {
-      width: 100%;
-      margin-top: 10px;
-    }
+button{
+  padding:10px 14px;
+  border:none;
+  border-radius:8px;
+  background:#1565c0;
+  color:white;
+  cursor:pointer;
+  margin:2px;
+}
 
-    .logout {
-      display: block;
-      margin: 10px auto 20px;
-      background: #d32f2f;
-    }
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 
-    #loginMessage {
-      text-align: center;
-      color: red;
-      margin-top: 15px;
-    }
+.login-button{
+  width:100%;
+  margin-top:10px;
+}
 
-    .dashboard {
-      max-width: 1100px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      overflow-x: auto;
-    }
+.logout{
+  display:block;
+  margin:10px auto 20px;
+  background:#d32f2f;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+#loginMessage{
+  text-align:center;
+  color:red;
+  margin-top:15px;
+}
 
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
+.dashboard{
+  max-width:1250px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
+  overflow-x:auto;
+}
 
-    th {
-      background: #1565c0;
-      color: white;
-    }
+table{
+  width:100%;
+  border-collapse:collapse;
+}
 
-    .loading {
-      text-align: center;
-      padding: 20px;
-    }
+th,td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  text-align:left;
+  vertical-align:middle;
+}
 
-    #dashboardSection {
-      display: none;
-    }
-  </style>
+th{
+  background:#1565c0;
+  color:white;
+}
+
+.loading{
+  text-align:center;
+  padding:20px;
+}
+
+#dashboardSection{
+  display:none;
+}
+
+.search-box{
+  max-width:1250px;
+  margin:20px auto;
+}
+
+.search-box input{
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
+
+.filters{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.status-select{
+  padding:7px;
+  border-radius:6px;
+}
+
+.delete-btn{
+  background:#d32f2f;
+}
+
+.upload-btn{
+  background:#6a1b9a;
+}
+
+.view-btn{
+  background:#00897b;
+}
+
+.report-whatsapp-btn{
+  background:#25D366;
+}
+
+.action-cell{
+  min-width:230px;
+}
+
+.report-status{
+  font-size:12px;
+  margin-top:5px;
+}
+</style>
 </head>
 
 <body>
@@ -111,497 +165,970 @@
 
 <div id="loginSection" class="login-box">
 
-  <h2>Admin Login</h2>
+<h2>Admin Login</h2>
 
-  <input
-    type="email"
-    id="adminEmail"
-    placeholder="Admin Email"
-  >
+<input
+ type="email"
+ id="adminEmail"
+ placeholder="Admin Email">
 
-  <input
-    type="password"
-    id="adminPassword"
-    placeholder="Password"
-  >
+<input
+ type="password"
+ id="adminPassword"
+ placeholder="Password">
 
-  <button id="loginButton" class="login-button">
-    Login
-  </button>
+<button id="loginButton" class="login-button">
+Login
+</button>
 
-  <div id="loginMessage"></div>
+<div id="loginMessage"></div>
 
 </div>
 
 
 <div id="dashboardSection">
 
-  <h2>Appointment Dashboard</h2>
+<h2>Appointment Dashboard</h2>
 
-  <button id="logoutButton" class="logout">
-    Logout
-  </button>
-<div style="max-width:1100px; margin:20px auto;">
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search Patient Name / Mobile Number"
-    style="width:100%; box-sizing:border-box; padding:13px; border:1px solid #ccc; border-radius:8px; font-size:16px;"
-  >
+<button id="logoutButton" class="logout">
+Logout
+</button>
+
+<div class="search-box">
+
+<input
+ type="text"
+ id="searchInput"
+ placeholder="Search Patient Name / Mobile Number">
+
 </div>
 
-<div style="text-align:center; margin-bottom:20px;">
-  <button id="todayButton">Today Appointments</button>
-  <button id="allButton">Show All</button>
+<div class="filters">
+
+<button id="todayButton">
+Today Appointments
+</button>
+
+<button id="allButton">
+Show All
+</button>
+
 </div>
-  <div class="dashboard">
 
-    <div id="loading" class="loading">
-      Loading appointments...
-    </div>
 
-    <table id="appointmentTable" style="display:none;">
+<div class="dashboard">
 
-      <thead>
-        <tr>
-          <th>Patient Name</th>
-          <th>Mobile Number</th>
-          <th>Test / Package</th>
-          <th>Appointment Date</th>
-          <th>Booked Time</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
+<div id="loading" class="loading">
+Loading appointments...
+</div>
 
-      <tbody id="appointmentList"></tbody>
+<table id="appointmentTable" style="display:none;">
 
-    </table>
+<thead>
+<tr>
+<th>Patient Name</th>
+<th>Mobile Number</th>
+<th>Test / Package</th>
+<th>Appointment Date</th>
+<th>Booked Time</th>
+<th>Status</th>
+<th>Action / Report</th>
+</tr>
+</thead>
 
-  </div>
+<tbody id="appointmentList"></tbody>
 
+</table>
+
+</div>
 </div>
 
 
 <script type="module">
-document
-.getElementById("searchInput")
-.addEventListener("input", function () {
 
-  const searchValue =
-    this.value.toLowerCase().trim();
-
-  const rows =
-    document.querySelectorAll("#appointmentList tr");
-
-  rows.forEach(row => {
-
-    const patientName =
-      row.cells[0]?.textContent.toLowerCase() || "";
-
-    const mobileNumber =
-      row.cells[1]?.textContent.toLowerCase() || "";
-
-    if (
-      patientName.includes(searchValue) ||
-      mobileNumber.includes(searchValue)
-    ) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-
-  });
-
-});
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-  getAuth,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
+ getAuth,
+ signInWithEmailAndPassword,
+ signOut,
+ onAuthStateChanged
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import {
-  getFirestore,
-  doc,
-  deleteDoc
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
+ apiKey:"AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
 
-  authDomain:
-    "ark-diagnostic-centre.firebaseapp.com",
+ authDomain:"ark-diagnostic-centre.firebaseapp.com",
 
-  projectId:
-    "ark-diagnostic-centre",
+ projectId:"ark-diagnostic-centre",
 
-  storageBucket:
-    "ark-diagnostic-centre.firebasestorage.app",
+ storageBucket:"ark-diagnostic-centre.firebasestorage.app",
 
-  messagingSenderId:
-    "238286336140",
+ messagingSenderId:"238286336140",
 
-  appId:
-    "1:238286336140:web:26210cbdcaf290f3a00ba9",
+ appId:"1:238286336140:web:26210cbdcaf290f3a00ba9",
 
-  measurementId:
-    "G-0BQ292SWKD"
+ measurementId:"G-0BQ292SWKD"
 };
 
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const auth = getAuth(app);
 
 
+/* CLOUDINARY */
+
+const CLOUDINARY_CLOUD_NAME = "kqk3dluj";
+
+const CLOUDINARY_UPLOAD_PRESET =
+"ark_patient_reports";
+
+
 const loginSection =
-  document.getElementById("loginSection");
+document.getElementById("loginSection");
 
 const dashboardSection =
-  document.getElementById("dashboardSection");
+document.getElementById("dashboardSection");
 
 const loginMessage =
-  document.getElementById("loginMessage");
+document.getElementById("loginMessage");
 
+
+/* LOGIN */
 
 document
 .getElementById("loginButton")
-.addEventListener("click", async () => {
+.addEventListener("click",async()=>{
 
-  const email =
-    document.getElementById("adminEmail").value.trim();
+ const email =
+ document.getElementById("adminEmail").value.trim();
 
-  const password =
-    document.getElementById("adminPassword").value;
-if (!email || !password) {
-    loginMessage.textContent = "Please enter email and password.";
-    return;
-  }
+ const password =
+ document.getElementById("adminPassword").value;
 
-  loginMessage.textContent = "Logging in...";
+ if(!email || !password){
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    loginMessage.textContent = "";
-  } catch (error) {
-    console.error("Login error:", error);
-    loginMessage.textContent = "Invalid email or password.";
-  }
+  loginMessage.textContent =
+  "Please enter email and password.";
+
+  return;
+ }
+
+ loginMessage.textContent="Logging in...";
+
+ try{
+
+  await signInWithEmailAndPassword(
+   auth,email,password
+  );
+
+  loginMessage.textContent="";
+
+ }catch(error){
+
+  console.error(error);
+
+  loginMessage.textContent =
+  "Invalid email or password.";
+ }
 
 });
 
+
+/* LOGOUT */
 
 document
 .getElementById("logoutButton")
-.addEventListener("click", async () => {
-  await signOut(auth);
+.addEventListener("click",async()=>{
+
+ await signOut(auth);
+
 });
 
 
-onAuthStateChanged(auth, (user) => {
+/* AUTH STATE */
 
-  if (user) {
+onAuthStateChanged(auth,user=>{
 
-    loginSection.style.display = "none";
-    dashboardSection.style.display = "block";
+ if(user){
 
-    loadAppointments();
+  loginSection.style.display="none";
 
-  } else {
+  dashboardSection.style.display="block";
 
-    loginSection.style.display = "block";
-    dashboardSection.style.display = "none";
+  loadAppointments();
 
+ }else{
+
+  loginSection.style.display="block";
+
+  dashboardSection.style.display="none";
+
+ }
+
+});
+
+
+/* LOAD APPOINTMENTS */
+
+async function loadAppointments(){
+
+ const url =
+ "https://firestore.googleapis.com/v1/projects/ark-diagnostic-centre/databases/(default)/documents/appointments";
+
+ const loading =
+ document.getElementById("loading");
+
+ const table =
+ document.getElementById("appointmentTable");
+
+ const list =
+ document.getElementById("appointmentList");
+
+ loading.style.display="block";
+
+ loading.textContent="Loading appointments...";
+
+ table.style.display="none";
+
+ list.innerHTML="";
+
+ try{
+
+  const token =
+  await auth.currentUser.getIdToken();
+
+  const response =
+  await fetch(url,{
+   headers:{
+    Authorization:"Bearer "+token
+   }
+  });
+
+  if(!response.ok)
+   throw new Error("Unable to load appointments");
+
+  const data =
+  await response.json();
+
+  if(!data.documents ||
+     data.documents.length===0){
+
+   loading.textContent =
+   "No appointments found.";
+
+   return;
   }
 
-});
+
+  data.documents.forEach(appointmentDoc=>{
+
+   const fields =
+   appointmentDoc.fields || {};
+
+   const name =
+   fields.name?.stringValue || "-";
+
+   const phone =
+   fields.phone?.stringValue || "-";
+
+   const test =
+   fields.test?.stringValue || "-";
+
+   const date =
+   fields.date?.stringValue || "-";
+
+   const status =
+   fields.status?.stringValue || "Pending";
+
+   const reportURL =
+   fields.reportURL?.stringValue || "";
+
+   let createdAt="-";
+
+   if(fields.createdAt?.timestampValue){
+
+    createdAt =
+    new Date(
+     fields.createdAt.timestampValue
+    ).toLocaleString("en-IN");
+
+   }
 
 
-async function loadAppointments() {
+   const row =
+   document.createElement("tr");
 
-  const url =
-    "https://firestore.googleapis.com/v1/projects/ark-diagnostic-centre/databases/(default)/documents/appointments";
 
-  const loading =
-    document.getElementById("loading");
+   row.innerHTML=`
 
-  const table =
-    document.getElementById("appointmentTable");
+<td>${escapeHTML(name)}</td>
 
-  const appointmentList =
-    document.getElementById("appointmentList");
+<td>${escapeHTML(phone)}</td>
 
-  loading.style.display = "block";
-  loading.textContent = "Loading appointments...";
-  table.style.display = "none";
-  appointmentList.innerHTML = "";
+<td>${escapeHTML(test)}</td>
 
-  try {
+<td>${escapeHTML(date)}</td>
 
-    const token = await auth.currentUser.getIdToken();
-
-    const response = await fetch(url, {
-      headers: {
-        "Authorization": "Bearer " + token
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error("Unable to load appointments");
-    }
-
-    const data = await response.json();
-
-    if (!data.documents || data.documents.length === 0) {
-      loading.textContent = "No appointments found.";
-      return;
-    }
-
-    data.documents.forEach(appointmentDoc => {
-
-      const fields = appointmentDoc.fields || {};
-
-      const name = fields.name?.stringValue || "-";
-      const phone = fields.phone?.stringValue || "-";
-      const test = fields.test?.stringValue || "-";
-      const date = fields.date?.stringValue || "-";
-const status = fields.status?.stringValue || "Pending";
-      let createdAt = "-";
-
-      if (fields.createdAt?.timestampValue) {
-        createdAt = new Date(
-          fields.createdAt.timestampValue
-        ).toLocaleString("en-IN");
-      }
-
-      const row = document.createElement("tr");
-
-      row.innerHTML = `
-  <td>${name}</td>
-  <td>${phone}</td>
-  <td>${test}</td>
-  <td>${date}</td>
-  <td>${createdAt}</td>
-  <td>
-  
-    <select class="status-select" data-doc="${appointmentDoc.name}">
-  <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
-  <option value="Confirmed" ${status === "Confirmed" ? "selected" : ""}>Confirmed</option>
-  <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
-</select>
-</td>
+<td>${escapeHTML(createdAt)}</td>
 
 <td>
-  <button
-    class="whatsapp-btn"
-    data-phone="${phone}"
-    data-name="${name}"
-    data-test="${test}"
-    data-date="${date}">
-    WhatsApp
-  </button>
 
-  <button class="delete-btn" data-doc="${appointmentDoc.name}">
-    Delete
-  </button>
+<select
+ class="status-select"
+ data-doc="${escapeAttribute(appointmentDoc.name)}">
+
+<option value="Pending"
+${status==="Pending"?"selected":""}>
+Pending
+</option>
+
+<option value="Confirmed"
+${status==="Confirmed"?"selected":""}>
+Confirmed
+</option>
+
+<option value="Completed"
+${status==="Completed"?"selected":""}>
+Completed
+</option>
+
+</select>
+
 </td>
-  `;
-      appointmentList.appendChild(row);
-      const whatsappButton = row.querySelector(".whatsapp-btn");
 
-whatsappButton.addEventListener("click", function () {
 
-  let phone = this.dataset.phone.replace(/\D/g, "");
+<td class="action-cell">
 
-  if (phone.length === 10) {
-    phone = "91" + phone;
-  }
+<button
+ class="whatsapp-btn"
+ data-phone="${escapeAttribute(phone)}"
+ data-name="${escapeAttribute(name)}"
+ data-test="${escapeAttribute(test)}"
+ data-date="${escapeAttribute(date)}">
 
-  const name = this.dataset.name;
-  const test = this.dataset.test;
-  const date = this.dataset.date;
+WhatsApp
 
-  const message =
-  `Hello ${name}, your appointment at ARK Diagnostic Centre has been confirmed.\n\nTest / Package: ${test}\nAppointment Date: ${date}\n\nThank you for choosing ARK Diagnostic Centre.`;
+</button>
 
-const whatsappURL =
-  "https://wa.me/" + phone +
-  "?text=" + encodeURIComponent(message);
 
-window.open(whatsappURL, "_blank");
+<button
+ class="delete-btn"
+ data-doc="${escapeAttribute(appointmentDoc.name)}">
 
-});
-const deleteButton = row.querySelector(".delete-btn");
+Delete
 
-deleteButton.addEventListener("click", async function () {
+</button>
 
-  const documentPath = this.dataset.doc;
+<br>
 
-  if (!confirm("Are you sure you want to delete this appointment?")) {
-    return;
-  }
 
-  try {
-    const token = await auth.currentUser.getIdToken();
+<input
+ type="file"
+ class="report-file"
+ accept="application/pdf"
+ style="display:none;">
 
-    const deleteURL =
-      "https://firestore.googleapis.com/v1/" + documentPath;
 
-    const response = await fetch(deleteURL, {
-      method: "DELETE",
-      headers: {
-        "Authorization": "Bearer " + token
+<button
+ class="upload-btn"
+ data-doc="${escapeAttribute(appointmentDoc.name)}">
+
+Upload Report
+
+</button>
+
+
+<button
+ class="view-btn"
+ ${reportURL ? "" : "style='display:none;'"}>
+View Report
+</button>
+
+
+<button
+ class="report-whatsapp-btn"
+ ${reportURL ? "" : "style='display:none;'"}>
+Send Report
+</button>
+
+
+<div class="report-status">
+${reportURL ? "Report uploaded ✓" : "No report uploaded"}
+</div>
+
+`;
+
+
+   list.appendChild(row);
+
+
+   let currentReportURL = reportURL;
+
+
+   /* APPOINTMENT WHATSAPP */
+
+   row
+   .querySelector(".whatsapp-btn")
+   .addEventListener("click",function(){
+
+    let number =
+    this.dataset.phone.replace(/\D/g,"");
+
+    if(number.length===10)
+     number="91"+number;
+
+    const message =
+`Hello ${this.dataset.name}, your appointment at ARK Diagnostic Centre has been confirmed.
+
+Test / Package: ${this.dataset.test}
+Appointment Date: ${this.dataset.date}
+
+Thank you for choosing ARK Diagnostic Centre.`;
+
+    window.open(
+     "https://wa.me/"+number+
+     "?text="+encodeURIComponent(message),
+     "_blank"
+    );
+
+   });
+
+
+   /* DELETE */
+
+   row
+   .querySelector(".delete-btn")
+   .addEventListener("click",async function(){
+
+    if(!confirm(
+     "Are you sure you want to delete this appointment?"
+    )) return;
+
+    try{
+
+     const token =
+     await auth.currentUser.getIdToken();
+
+     const deleteURL =
+     "https://firestore.googleapis.com/v1/"+
+     this.dataset.doc;
+
+     const response =
+     await fetch(deleteURL,{
+
+      method:"DELETE",
+
+      headers:{
+       Authorization:"Bearer "+token
       }
-    });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(errorText);
+     });
+
+     if(!response.ok)
+      throw new Error(await response.text());
+
+     row.remove();
+
+     alert(
+      "Appointment deleted successfully."
+     );
+
+    }catch(error){
+
+     console.error(error);
+
+     alert(
+      "Could not delete appointment."
+     );
+
     }
 
-    row.remove();
-    alert("Appointment deleted successfully.");
+   });
 
-  } catch (error) {
-    console.error("Delete error:", error);
-    alert("Could not delete appointment.");
-  }
 
-});
-      const statusSelect = row.querySelector(".status-select");
+   /* STATUS */
 
-statusSelect.addEventListener("change", async function () {
+   row
+   .querySelector(".status-select")
+   .addEventListener("change",async function(){
 
-  const newStatus = this.value;
-  const documentPath = this.dataset.doc;
+    const newStatus=this.value;
 
-  try {
+    try{
 
-    const token = await auth.currentUser.getIdToken();
-
-    const updateURL =
-      "https://firestore.googleapis.com/v1/" +
-      documentPath +
-      "?updateMask.fieldPaths=status";
-
-    const response = await fetch(updateURL, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
+     await updateFirestoreFields(
+      this.dataset.doc,
+      {
+       status:{
+        stringValue:newStatus
+       }
       },
-      body: JSON.stringify({
-        fields: {
-          status: {
-            stringValue: newStatus
-          }
-        }
-      })
-    });
+      ["status"]
+     );
 
-    if (!response.ok) {
-      throw new Error("Status update failed");
+     alert(
+      "Status updated successfully."
+     );
+
+    }catch(error){
+
+     console.error(error);
+
+     alert(
+      "Status could not be updated."
+     );
+
     }
 
-    alert("Status updated successfully.");
+   });
 
-  } catch (error) {
 
-    console.error(error);
-    alert("Status could not be updated.");
+   /* REPORT ELEMENTS */
 
-  }
+   const fileInput =
+   row.querySelector(".report-file");
 
-});
-    });
+   const uploadButton =
+   row.querySelector(".upload-btn");
 
-    loading.style.display = "none";
-    table.style.display = "table";
+   const viewButton =
+   row.querySelector(".view-btn");
 
-  } catch (error) {
+   const sendReportButton =
+   row.querySelector(".report-whatsapp-btn");
 
-    console.error("Appointment loading error:", error);
+   const reportStatus =
+   row.querySelector(".report-status");
 
-    loading.textContent =
-      "Appointments could not be loaded.";
 
-  }
+   /* SELECT PDF */
+
+   uploadButton
+   .addEventListener("click",()=>{
+
+    fileInput.click();
+
+   });
+
+
+   /* UPLOAD PDF */
+
+   fileInput
+   .addEventListener("change",async()=>{
+
+    const file =
+    fileInput.files[0];
+
+    if(!file) return;
+
+    if(
+     file.type!=="application/pdf" &&
+     !file.name.toLowerCase().endsWith(".pdf")
+    ){
+
+     alert(
+      "Please select a PDF report only."
+     );
+
+     fileInput.value="";
+
+     return;
+    }
+
+
+    uploadButton.disabled=true;
+
+    uploadButton.textContent="Uploading...";
+
+    reportStatus.textContent =
+    "Uploading report...";
+
+
+    try{
+
+     const formData =
+     new FormData();
+
+     formData.append("file",file);
+
+     formData.append(
+      "upload_preset",
+      CLOUDINARY_UPLOAD_PRESET
+     );
+
+
+     const cloudinaryURL =
+     `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/raw/upload`;
+
+
+     const uploadResponse =
+     await fetch(
+      cloudinaryURL,
+      {
+       method:"POST",
+       body:formData
+      }
+     );
+
+
+     const uploadData =
+     await uploadResponse.json();
+
+
+     if(!uploadResponse.ok){
+
+      throw new Error(
+       uploadData.error?.message ||
+       "Cloudinary upload failed"
+      );
+
+     }
+
+
+     currentReportURL =
+     uploadData.secure_url;
+
+
+     await updateFirestoreFields(
+      appointmentDoc.name,
+      {
+       reportURL:{
+        stringValue:currentReportURL
+       }
+      },
+      ["reportURL"]
+     );
+
+
+     reportStatus.textContent =
+     "Report uploaded ✓";
+
+     viewButton.style.display="inline-block";
+
+     sendReportButton.style.display="inline-block";
+
+     uploadButton.textContent =
+     "Replace Report";
+
+     alert(
+      "Patient report uploaded successfully."
+     );
+
+
+    }catch(error){
+
+     console.error(
+      "Report upload error:",
+      error
+     );
+
+     reportStatus.textContent =
+     "Upload failed";
+
+     alert(
+      "Report upload failed: "+
+      error.message
+     );
+
+    }finally{
+
+     uploadButton.disabled=false;
+
+     if(
+      uploadButton.textContent==="Uploading..."
+     ){
+
+      uploadButton.textContent =
+      currentReportURL ?
+      "Replace Report" :
+      "Upload Report";
+
+     }
+
+     fileInput.value="";
+
+    }
+
+   });
+
+
+   if(currentReportURL){
+
+    uploadButton.textContent =
+    "Replace Report";
+
+   }
+
+
+   /* VIEW REPORT */
+
+   viewButton
+   .addEventListener("click",()=>{
+
+    if(!currentReportURL){
+
+     alert(
+      "No report uploaded."
+     );
+
+     return;
+    }
+
+    window.open(
+     currentReportURL,
+     "_blank"
+    );
+
+   });
+
+
+   /* SEND REPORT WHATSAPP */
+
+   sendReportButton
+   .addEventListener("click",()=>{
+
+    if(!currentReportURL){
+
+     alert(
+      "Please upload the report first."
+     );
+
+     return;
+    }
+
+
+    let number =
+    phone.replace(/\D/g,"");
+
+    if(number.length===10)
+     number="91"+number;
+
+
+    const message =
+`Hello ${name},
+
+Your laboratory report from ARK Diagnostic Centre is ready.
+
+Test / Package: ${test}
+
+View / Download Report:
+${currentReportURL}
+
+Thank you for choosing ARK Diagnostic Centre.`;
+
+
+    window.open(
+     "https://wa.me/"+
+     number+
+     "?text="+
+     encodeURIComponent(message),
+     "_blank"
+    );
+
+   });
+
+
+  });
+
+
+  loading.style.display="none";
+
+  table.style.display="table";
+
+
+ }catch(error){
+
+  console.error(error);
+
+  loading.textContent =
+  "Appointments could not be loaded.";
+
+ }
+
 }
-document.getElementById("todayButton").addEventListener("click", () => {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, "0");
-  const dd = String(today.getDate()).padStart(2, "0");
 
-  const todayDate = `${yyyy}-${mm}-${dd}`;
 
-  document.querySelectorAll("#appointmentList tr").forEach(row => {
-    const appointmentDate = row.cells[3]?.textContent.trim();
+/* FIRESTORE UPDATE */
 
-    row.style.display =
-      appointmentDate === todayDate ? "" : "none";
-  });
+async function updateFirestoreFields(
+ documentPath,
+ fields,
+ fieldPaths
+){
+
+ const token =
+ await auth.currentUser.getIdToken();
+
+
+ const masks =
+ fieldPaths
+ .map(
+  field =>
+  "updateMask.fieldPaths="+
+  encodeURIComponent(field)
+ )
+ .join("&");
+
+
+ const updateURL =
+ "https://firestore.googleapis.com/v1/"+
+ documentPath+
+ "?"+masks;
+
+
+ const response =
+ await fetch(updateURL,{
+
+  method:"PATCH",
+
+  headers:{
+
+   "Content-Type":"application/json",
+
+   Authorization:
+   "Bearer "+token
+
+  },
+
+  body:JSON.stringify({
+   fields:fields
+  })
+
+ });
+
+
+ if(!response.ok){
+
+  throw new Error(
+   await response.text()
+  );
+
+ }
+
+
+ return response.json();
+
+}
+
+
+/* TODAY FILTER */
+
+document
+.getElementById("todayButton")
+.addEventListener("click",()=>{
+
+ const today=new Date();
+
+ const yyyy=today.getFullYear();
+
+ const mm=
+ String(today.getMonth()+1)
+ .padStart(2,"0");
+
+ const dd=
+ String(today.getDate())
+ .padStart(2,"0");
+
+ const todayDate=
+ `${yyyy}-${mm}-${dd}`;
+
+
+ document
+ .querySelectorAll("#appointmentList tr")
+ .forEach(row=>{
+
+  const appointmentDate =
+  row.cells[3]?.textContent.trim();
+
+  row.style.display =
+  appointmentDate===todayDate ?
+  "" :
+  "none";
+
+ });
+
 });
 
-document.getElementById("allButton").addEventListener("click", () => {
-  document.querySelectorAll("#appointmentList tr").forEach(row => {
-    row.style.display = "";
-  });
 
-  document.getElementById("searchInput").value = "";
-});
-  document.getElementById("todayButton").addEventListener("click", () => {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, "0");
-  const dd = String(today.getDate()).padStart(2, "0");
+/* SHOW ALL */
 
-  const todayDate = `${yyyy}-${mm}-${dd}`;
+document
+.getElementById("allButton")
+.addEventListener("click",()=>{
 
-  document.querySelectorAll("#appointmentList tr").forEach(row => {
-    const appointmentDate = row.cells[3]?.textContent.trim();
+ document
+ .querySelectorAll("#appointmentList tr")
+ .forEach(row=>{
 
-    row.style.display =
-      appointmentDate === todayDate ? "" : "none";
-  });
-});
+  row.style.display="";
 
-document.getElementById("allButton").addEventListener("click", () => {
-  document.querySelectorAll("#appointmentList tr").forEach(row => {
-    row.style.display = "";
-  });
+ });
 
-  document.getElementById("searchInput").value = "";
-});
-document.getElementById("searchInput").addEventListener("input", function () {
-
-  const searchValue = this.value.toLowerCase().trim();
-
-  document.querySelectorAll("#appointmentList tr").forEach(row => {
-
-    const patientName =
-      row.cells[0]?.textContent.toLowerCase() || "";
-
-    const mobileNumber =
-      row.cells[1]?.textContent.toLowerCase() || "";
-
-    if (
-      patientName.includes(searchValue) ||
-      mobileNumber.includes(searchValue)
-    ) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-
-  });
+ document
+ .getElementById("searchInput")
+ .value="";
 
 });
+
+
+/* SEARCH */
+
+document
+.getElementById("searchInput")
+.addEventListener("input",function(){
+
+ const searchValue =
+ this.value.toLowerCase().trim();
+
+
+ document
+ .querySelectorAll("#appointmentList tr")
+ .forEach(row=>{
+
+  const patientName =
+  row.cells[0]?.textContent
+  .toLowerCase() || "";
+
+  const mobileNumber =
+  row.cells[1]?.textContent
+  .toLowerCase() || "";
+
+
+  row.style.display =
+  patientName.includes(searchValue) ||
+  mobileNumber.includes(searchValue)
+  ? ""
+  : "none";
+
+ });
+
+});
+
+
+/* BASIC HTML SAFETY */
+
+function escapeHTML(value){
+
+ return String(value)
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
+
+}
+
+function escapeAttribute(value){
+
+ return escapeHTML(value);
+
+}
+
 </script>
 
 </body>
