@@ -452,7 +452,29 @@ statusSelect.addEventListener("change", async function () {
 
   }
 }
+document.getElementById("todayButton").addEventListener("click", () => {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
 
+  const todayDate = `${yyyy}-${mm}-${dd}`;
+
+  document.querySelectorAll("#appointmentList tr").forEach(row => {
+    const appointmentDate = row.cells[3]?.textContent.trim();
+
+    row.style.display =
+      appointmentDate === todayDate ? "" : "none";
+  });
+});
+
+document.getElementById("allButton").addEventListener("click", () => {
+  document.querySelectorAll("#appointmentList tr").forEach(row => {
+    row.style.display = "";
+  });
+
+  document.getElementById("searchInput").value = "";
+});
 </script>
 
 </body>
