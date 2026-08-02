@@ -475,6 +475,53 @@ document.getElementById("allButton").addEventListener("click", () => {
 
   document.getElementById("searchInput").value = "";
 });
+  document.getElementById("todayButton").addEventListener("click", () => {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+
+  const todayDate = `${yyyy}-${mm}-${dd}`;
+
+  document.querySelectorAll("#appointmentList tr").forEach(row => {
+    const appointmentDate = row.cells[3]?.textContent.trim();
+
+    row.style.display =
+      appointmentDate === todayDate ? "" : "none";
+  });
+});
+
+document.getElementById("allButton").addEventListener("click", () => {
+  document.querySelectorAll("#appointmentList tr").forEach(row => {
+    row.style.display = "";
+  });
+
+  document.getElementById("searchInput").value = "";
+});
+document.getElementById("searchInput").addEventListener("input", function () {
+
+  const searchValue = this.value.toLowerCase().trim();
+
+  document.querySelectorAll("#appointmentList tr").forEach(row => {
+
+    const patientName =
+      row.cells[0]?.textContent.toLowerCase() || "";
+
+    const mobileNumber =
+      row.cells[1]?.textContent.toLowerCase() || "";
+
+    if (
+      patientName.includes(searchValue) ||
+      mobileNumber.includes(searchValue)
+    ) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+
+  });
+
+});
 </script>
 
 </body>
