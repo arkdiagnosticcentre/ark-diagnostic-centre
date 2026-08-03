@@ -13,21 +13,21 @@
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       background: #f4f8fc;
       color: #1f2937;
-      min-height: 100vh;
     }
 
     .header {
       background: linear-gradient(135deg, #0d47a1, #1976d2);
       color: white;
       text-align: center;
-      padding: 32px 15px;
+      padding: 30px 15px;
     }
 
     .header h1 {
-      margin: 0 0 7px;
+      margin: 0 0 8px;
       font-size: 30px;
     }
 
@@ -40,60 +40,54 @@
     .container {
       width: 100%;
       max-width: 650px;
-      margin: 45px auto;
-      padding: 0 16px;
+      margin: 40px auto;
+      padding: 0 15px;
     }
 
     .search-box {
-      background: #ffffff;
+      background: white;
       padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 5px 22px rgba(0,0,0,0.10);
+      border-radius: 15px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
     }
 
     .search-box h2 {
-      margin: 0 0 10px;
       text-align: center;
+      margin: 0 0 10px;
       color: #1565c0;
-      font-size: 24px;
     }
 
     .description {
       text-align: center;
       color: #666;
-      margin: 0 0 25px;
+      margin: 0 0 22px;
       line-height: 1.5;
     }
 
     .mobile-input {
-      display: block;
       width: 100%;
-      height: 52px;
-      padding: 0 15px;
-      border: 1px solid #b9c1ca;
-      border-radius: 9px;
-      background: white;
-      color: #1f2937;
+      padding: 15px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
       font-size: 17px;
-      margin-bottom: 14px;
+      margin-bottom: 15px;
       outline: none;
     }
 
     .mobile-input:focus {
-      border: 2px solid #1976d2;
+      border-color: #1565c0;
+      box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.10);
     }
 
     .search-button {
-      display: block;
       width: 100%;
-      min-height: 52px;
-      padding: 14px;
-      border: 0;
-      border-radius: 9px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
       background: #1565c0;
-      color: #ffffff;
+      color: white;
       font-size: 17px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
     }
 
@@ -107,67 +101,56 @@
     }
 
     #message {
-      margin-top: 20px;
       text-align: center;
-      line-height: 1.5;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #reports {
+      margin-top: 20px;
     }
 
     .report-card {
-      background: #f7faff;
-      border: 1px solid #dbeafe;
+      background: #f4f8fc;
+      border: 1px solid #e1e8f0;
       border-radius: 12px;
       padding: 18px;
-      margin-top: 18px;
+      margin-top: 15px;
       text-align: left;
     }
 
-    .report-card h3 {
-      margin: 0 0 15px;
-      color: #1565c0;
-      font-size: 19px;
+    .report-row {
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
-    .report-card p {
-      margin: 9px 0;
-      color: #374151;
-      text-align: left;
-    }
-
-    .report-link {
+    .view-report {
       display: block;
-      margin-top: 18px;
+      width: 100%;
+      margin-top: 15px;
       padding: 13px;
+      border-radius: 8px;
       background: #1565c0;
       color: white;
+      text-align: center;
       text-decoration: none;
-      text-align: center;
-      border-radius: 8px;
-      font-weight: 700;
+      font-weight: bold;
     }
 
-    .report-link:hover {
+    .view-report:hover {
       background: #0d47a1;
-    }
-
-    .pending {
-      margin-top: 15px;
-      padding: 11px;
-      background: #fff7ed;
-      border-radius: 7px;
-      text-align: center;
-      color: #9a3412;
     }
 
     .footer {
       text-align: center;
+      color: #666;
       padding: 25px 15px;
-      color: #6b7280;
       font-size: 14px;
     }
 
     @media (max-width: 600px) {
       .header {
-        padding: 25px 12px;
+        padding: 25px 15px;
       }
 
       .header h1 {
@@ -196,17 +179,15 @@
     <p>Patient Report Portal</p>
   </header>
 
-
   <main class="container">
 
-    <section class="search-box">
+    <div class="search-box">
 
       <h2>View Your Laboratory Reports</h2>
 
       <p class="description">
         Enter your registered 10-digit mobile number to search your reports.
       </p>
-
 
       <input
         type="tel"
@@ -218,7 +199,6 @@
         autocomplete="tel"
       >
 
-
       <button
         type="button"
         id="searchButton"
@@ -227,49 +207,20 @@
         Search Reports
       </button>
 
-
       <div id="message"></div>
 
-      <div id="results"></div>
+      <div id="reports"></div>
 
-    </section>
+    </div>
 
   </main>
-
 
   <footer class="footer">
     © 2026 ARK Diagnostic Centre, Kalwakurthy
   </footer>
 
 
-  <script type="module">
-
-    import { initializeApp }
-      from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-    import {
-      getFirestore,
-      collection,
-      query,
-      where,
-      getDocs
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
-      authDomain: "ark-diagnostic-centre.firebaseapp.com",
-      projectId: "ark-diagnostic-centre",
-      storageBucket: "ark-diagnostic-centre.firebasestorage.app",
-      messagingSenderId: "238286336140",
-      appId: "1:238286336140:web:26210cbdcaf290f3a00ba9",
-      measurementId: "G-0BQ292SWKD"
-    };
-
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
+  <script>
 
     const mobileInput =
       document.getElementById("mobileNumber");
@@ -280,18 +231,21 @@
     const message =
       document.getElementById("message");
 
-    const results =
-      document.getElementById("results");
+    const reportsContainer =
+      document.getElementById("reports");
 
 
+    // Allow only numbers
     mobileInput.addEventListener("input", function () {
 
-      this.value =
-        this.value.replace(/\D/g, "").slice(0, 10);
+      this.value = this.value
+        .replace(/\D/g, "")
+        .slice(0, 10);
 
     });
 
 
+    // Search when Enter key is pressed
     mobileInput.addEventListener("keydown", function (event) {
 
       if (event.key === "Enter") {
@@ -301,25 +255,27 @@
     });
 
 
+    // Search button
     searchButton.addEventListener("click", searchReport);
 
 
     async function searchReport() {
 
-      const mobile = mobileInput.value.trim();
+      const mobile =
+        mobileInput.value.replace(/\D/g, "").trim();
 
-      results.innerHTML = "";
+
       message.innerHTML = "";
+      reportsContainer.innerHTML = "";
 
 
+      // Validate mobile number
       if (!/^\d{10}$/.test(mobile)) {
 
-        message.style.color = "#dc2626";
+        message.style.color = "#d32f2f";
 
         message.textContent =
           "Please enter a valid 10-digit mobile number.";
-
-        mobileInput.focus();
 
         return;
       }
@@ -334,155 +290,200 @@
 
       try {
 
-        const reportsQuery = query(
-          collection(db, "appointments"),
-          where("phone", "==", mobile)
+        /*
+          IMPORTANT:
+          This calls your Vercel API:
+          /api/reports.js
+        */
+
+        const response = await fetch(
+          "/api/reports?phone=" + encodeURIComponent(mobile),
+          {
+            method: "GET",
+            headers: {
+              "Accept": "application/json"
+            },
+            cache: "no-store"
+          }
         );
 
 
-        const querySnapshot =
-          await getDocs(reportsQuery);
+        let data;
+
+        try {
+          data = await response.json();
+        } catch (jsonError) {
+
+          throw new Error(
+            "Invalid response received from server."
+          );
+
+        }
 
 
-        message.innerHTML = "";
+        if (!response.ok) {
+
+          throw new Error(
+            data.error || "Unable to load reports."
+          );
+
+        }
 
 
-        if (querySnapshot.empty) {
+        if (
+          !data.reports ||
+          !Array.isArray(data.reports) ||
+          data.reports.length === 0
+        ) {
 
-          message.style.color = "#dc2626";
+          message.style.color = "#d32f2f";
 
           message.textContent =
-            "No reports found for this mobile number.";
+            "No report found for this mobile number.";
 
           return;
         }
 
 
-        let reportHTML = "";
+        message.style.color = "#2e7d32";
+
+        message.textContent =
+          data.reports.length +
+          (data.reports.length === 1
+            ? " report found."
+            : " reports found.");
 
 
-        querySnapshot.forEach((documentSnapshot) => {
+        data.reports.forEach(function (report) {
 
-          const data = documentSnapshot.data();
+          const card =
+            document.createElement("div");
 
-          const patientName =
-            escapeHTML(data.name || "Not available");
-
-          const testName =
-            escapeHTML(data.test || "Not available");
-
-          const status =
-            escapeHTML(data.status || "Not available");
-
-          const reportURL =
-            typeof data.reportURL === "string"
-              ? data.reportURL.trim()
-              : "";
+          card.className = "report-card";
 
 
-          reportHTML += `
-            <div class="report-card">
+          const patientRow =
+            document.createElement("div");
 
-              <h3>Laboratory Report</h3>
+          patientRow.className = "report-row";
 
-              <p>
-                <strong>Patient Name:</strong>
-                ${patientName}
-              </p>
+          const patientLabel =
+            document.createElement("strong");
 
-              <p>
-                <strong>Test:</strong>
-                ${testName}
-              </p>
+          patientLabel.textContent = "Patient: ";
 
-              <p>
-                <strong>Status:</strong>
-                ${status}
-              </p>
+          patientRow.appendChild(patientLabel);
 
-              ${
-                isSafeReportURL(reportURL)
+          patientRow.appendChild(
+            document.createTextNode(
+              report.name || "Patient"
+            )
+          );
 
-                ? `
-                  <a
-                    href="${escapeAttribute(reportURL)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="report-link"
-                  >
-                    View Report
-                  </a>
-                `
 
-                : `
-                  <div class="pending">
-                    Report not uploaded yet.
-                  </div>
-                `
-              }
+          const testRow =
+            document.createElement("div");
 
-            </div>
-          `;
+          testRow.className = "report-row";
+
+          const testLabel =
+            document.createElement("strong");
+
+          testLabel.textContent = "Test: ";
+
+          testRow.appendChild(testLabel);
+
+          testRow.appendChild(
+            document.createTextNode(
+              report.test || "-"
+            )
+          );
+
+
+          const dateRow =
+            document.createElement("div");
+
+          dateRow.className = "report-row";
+
+          const dateLabel =
+            document.createElement("strong");
+
+          dateLabel.textContent = "Date: ";
+
+          dateRow.appendChild(dateLabel);
+
+          dateRow.appendChild(
+            document.createTextNode(
+              report.date || "-"
+            )
+          );
+
+
+          card.appendChild(patientRow);
+          card.appendChild(testRow);
+          card.appendChild(dateRow);
+
+
+          if (report.reportURL) {
+
+            const reportLink =
+              document.createElement("a");
+
+            reportLink.className = "view-report";
+
+            reportLink.textContent = "View Report";
+
+            reportLink.href = report.reportURL;
+
+            reportLink.target = "_blank";
+
+            reportLink.rel =
+              "noopener noreferrer";
+
+            card.appendChild(reportLink);
+
+          } else {
+
+            const unavailable =
+              document.createElement("div");
+
+            unavailable.style.color = "#d32f2f";
+            unavailable.style.marginTop = "12px";
+
+            unavailable.textContent =
+              "Report not uploaded yet.";
+
+            card.appendChild(unavailable);
+
+          }
+
+
+          reportsContainer.appendChild(card);
 
         });
 
 
-        results.innerHTML = reportHTML;
-
-
       } catch (error) {
 
-        console.error("Firestore Error:", error);
+        console.error(
+          "Report search error:",
+          error
+        );
 
-        message.style.color = "#dc2626";
+        message.style.color = "#d32f2f";
 
         message.textContent =
+          error.message ||
           "Unable to load reports. Please try again.";
 
       } finally {
 
         searchButton.disabled = false;
-        searchButton.textContent = "Search Reports";
+
+        searchButton.textContent =
+          "Search Reports";
 
       }
-
-    }
-
-
-    function isSafeReportURL(url) {
-
-      if (!url) return false;
-
-      try {
-
-        const parsedURL = new URL(url);
-
-        return parsedURL.protocol === "https:";
-
-      } catch {
-
-        return false;
-
-      }
-
-    }
-
-
-    function escapeHTML(value) {
-
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-    }
-
-
-    function escapeAttribute(value) {
-
-      return escapeHTML(value);
 
     }
 
