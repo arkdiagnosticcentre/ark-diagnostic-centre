@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,6 +96,32 @@
       font-weight: bold;
     }
 
+    .report-card {
+      margin-top: 20px;
+      padding: 18px;
+      background: #f4f8fc;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .report-card p {
+      text-align: left;
+      margin: 8px 0;
+      color: #1f2937;
+    }
+
+    .report-link {
+      display: block;
+      margin-top: 15px;
+      text-align: center;
+      background: #1565c0;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     .footer {
       text-align: center;
       color: #666;
@@ -135,62 +160,4 @@
 
       <p>
         Enter your registered mobile number to view your reports
-      </p>
-
-      <input
-        type="tel"
-        id="mobileNumber"
-        class="mobile-input"
-        placeholder="Enter 10-digit mobile number"
-        maxlength="10"
-        inputmode="numeric"
-      >
-
-      <button
-        type="button"
-        class="search-button"
-        onclick="searchReport()"
-      >
-        Search Reports
-      </button>
-
-      <div id="message"></div>
-
-    </div>
-
-  </main>
-
-  <footer class="footer">
-    © 2026 ARK Diagnostic Centre, Kalwakurthy
-  </footer>
-
-  <script>
-    function searchReport() {
-
-      const mobile =
-        document.getElementById("mobileNumber").value.trim();
-
-      const message =
-        document.getElementById("message");
-
-      if (!/^[0-9]{10}$/.test(mobile)) {
-
-        message.style.color = "red";
-
-        message.innerHTML =
-          "Please enter a valid 10-digit mobile number.";
-
-        return;
-      }
-
-      message.style.color = "#1565c0";
-
-      message.innerHTML =
-        "Searching reports...";
-
-      // Firebase report search will be added here next.
-    }
-  </script>
-
-</body>
-</html>
+      </
