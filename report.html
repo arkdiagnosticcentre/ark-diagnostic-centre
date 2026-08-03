@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,20 +34,19 @@
     .header p {
       margin: 0;
       font-size: 16px;
-      opacity: 0.95;
     }
 
     .container {
-      max-width: 800px;
-      margin: 35px auto;
+      max-width: 650px;
+      margin: 40px auto;
       padding: 0 15px;
     }
 
     .search-box {
       background: white;
-      padding: 25px;
+      padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
     }
 
     .search-box h2 {
@@ -58,31 +58,31 @@
     .search-box p {
       text-align: center;
       color: #666;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
-    input {
+    .mobile-input {
       width: 100%;
-      padding: 14px;
-      border: 1px solid #ccc;
+      padding: 15px;
+      border: 1px solid #bbb;
       border-radius: 8px;
-      font-size: 16px;
-      margin-bottom: 12px;
+      font-size: 17px;
+      margin-bottom: 15px;
       outline: none;
     }
 
-    input:focus {
+    .mobile-input:focus {
       border-color: #1565c0;
     }
 
     .search-button {
       width: 100%;
-      padding: 14px;
+      padding: 15px;
       border: none;
       border-radius: 8px;
       background: #1565c0;
       color: white;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: bold;
       cursor: pointer;
     }
@@ -91,64 +91,16 @@
       background: #0d47a1;
     }
 
-    .search-button:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
     #message {
       text-align: center;
-      margin: 20px 0;
+      margin-top: 20px;
       font-weight: bold;
-    }
-
-    .report-card {
-      background: white;
-      margin-top: 18px;
-      padding: 20px;
-      border-radius: 14px;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.08);
-    }
-
-    .report-card h3 {
-      color: #1565c0;
-      margin-top: 0;
-      margin-bottom: 15px;
-    }
-
-    .report-card p {
-      margin: 8px 0;
-      line-height: 1.5;
-    }
-
-    .buttons {
-      margin-top: 18px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .report-btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 11px 18px;
-      border-radius: 7px;
-      color: white;
-      font-weight: bold;
-    }
-
-    .view-btn {
-      background: #1565c0;
-    }
-
-    .download-btn {
-      background: #00897b;
     }
 
     .footer {
       text-align: center;
       color: #666;
-      padding: 30px 15px;
+      padding: 25px 15px;
       font-size: 14px;
     }
 
@@ -157,12 +109,12 @@
         font-size: 24px;
       }
 
-      .buttons {
-        flex-direction: column;
+      .container {
+        margin: 25px auto;
       }
 
-      .report-btn {
-        text-align: center;
+      .search-box {
+        padding: 22px 18px;
       }
     }
   </style>
@@ -170,16 +122,75 @@
 
 <body>
 
-  <div class="header">
+  <header class="header">
     <h1>ARK Diagnostic Centre</h1>
     <p>Patient Report Portal</p>
-  </div>
+  </header>
 
-  <div class="container">
+  <main class="container">
 
     <div class="search-box">
 
       <h2>View Your Laboratory Reports</h2>
 
       <p>
-        Enter your registered mobile number to view
+        Enter your registered mobile number to view your reports
+      </p>
+
+      <input
+        type="tel"
+        id="mobileNumber"
+        class="mobile-input"
+        placeholder="Enter 10-digit mobile number"
+        maxlength="10"
+        inputmode="numeric"
+      >
+
+      <button
+        type="button"
+        class="search-button"
+        onclick="searchReport()"
+      >
+        Search Reports
+      </button>
+
+      <div id="message"></div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    © 2026 ARK Diagnostic Centre, Kalwakurthy
+  </footer>
+
+  <script>
+    function searchReport() {
+
+      const mobile =
+        document.getElementById("mobileNumber").value.trim();
+
+      const message =
+        document.getElementById("message");
+
+      if (!/^[0-9]{10}$/.test(mobile)) {
+
+        message.style.color = "red";
+
+        message.innerHTML =
+          "Please enter a valid 10-digit mobile number.";
+
+        return;
+      }
+
+      message.style.color = "#1565c0";
+
+      message.innerHTML =
+        "Searching reports...";
+
+      // Firebase report search will be added here next.
+    }
+  </script>
+
+</body>
+</html>
