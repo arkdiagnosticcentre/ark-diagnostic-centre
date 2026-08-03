@@ -13,76 +13,87 @@
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: #f4f8fc;
       color: #1f2937;
+      min-height: 100vh;
     }
 
     .header {
       background: linear-gradient(135deg, #0d47a1, #1976d2);
       color: white;
       text-align: center;
-      padding: 30px 15px;
+      padding: 32px 15px;
     }
 
     .header h1 {
-      margin: 0 0 8px;
+      margin: 0 0 7px;
       font-size: 30px;
     }
 
     .header p {
       margin: 0;
       font-size: 16px;
+      opacity: 0.95;
     }
 
     .container {
+      width: 100%;
       max-width: 650px;
-      margin: 40px auto;
-      padding: 0 15px;
+      margin: 45px auto;
+      padding: 0 16px;
     }
 
     .search-box {
-      background: white;
+      background: #ffffff;
       padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      border-radius: 16px;
+      box-shadow: 0 5px 22px rgba(0,0,0,0.10);
     }
 
     .search-box h2 {
+      margin: 0 0 10px;
       text-align: center;
-      margin-top: 0;
       color: #1565c0;
+      font-size: 24px;
     }
 
-    .search-box p {
+    .description {
       text-align: center;
       color: #666;
-      margin-bottom: 22px;
+      margin: 0 0 25px;
+      line-height: 1.5;
     }
 
     .mobile-input {
+      display: block;
       width: 100%;
-      padding: 15px;
-      border: 1px solid #bbb;
-      border-radius: 8px;
+      height: 52px;
+      padding: 0 15px;
+      border: 1px solid #b9c1ca;
+      border-radius: 9px;
+      background: white;
+      color: #1f2937;
       font-size: 17px;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
       outline: none;
     }
 
     .mobile-input:focus {
-      border-color: #1565c0;
+      border: 2px solid #1976d2;
     }
 
     .search-button {
+      display: block;
       width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
+      min-height: 52px;
+      padding: 14px;
+      border: 0;
+      border-radius: 9px;
       background: #1565c0;
-      color: white;
+      color: #ffffff;
       font-size: 17px;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -90,46 +101,75 @@
       background: #0d47a1;
     }
 
+    .search-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
     #message {
-      text-align: center;
       margin-top: 20px;
-      font-weight: bold;
+      text-align: center;
+      line-height: 1.5;
     }
 
     .report-card {
-      margin-top: 20px;
+      background: #f7faff;
+      border: 1px solid #dbeafe;
+      border-radius: 12px;
       padding: 18px;
-      background: #f4f8fc;
-      border-radius: 10px;
+      margin-top: 18px;
       text-align: left;
     }
 
+    .report-card h3 {
+      margin: 0 0 15px;
+      color: #1565c0;
+      font-size: 19px;
+    }
+
     .report-card p {
+      margin: 9px 0;
+      color: #374151;
       text-align: left;
-      margin: 8px 0;
-      color: #1f2937;
     }
 
     .report-link {
       display: block;
-      margin-top: 15px;
-      text-align: center;
+      margin-top: 18px;
+      padding: 13px;
       background: #1565c0;
       color: white;
-      padding: 12px;
-      border-radius: 8px;
       text-decoration: none;
-      font-weight: bold;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .report-link:hover {
+      background: #0d47a1;
+    }
+
+    .pending {
+      margin-top: 15px;
+      padding: 11px;
+      background: #fff7ed;
+      border-radius: 7px;
+      text-align: center;
+      color: #9a3412;
     }
 
     .footer {
       text-align: center;
-      color: #666;
       padding: 25px 15px;
+      color: #6b7280;
       font-size: 14px;
     }
 
     @media (max-width: 600px) {
+      .header {
+        padding: 25px 12px;
+      }
+
       .header h1 {
         font-size: 24px;
       }
@@ -140,6 +180,10 @@
 
       .search-box {
         padding: 22px 18px;
+      }
+
+      .search-box h2 {
+        font-size: 21px;
       }
     }
   </style>
@@ -152,12 +196,297 @@
     <p>Patient Report Portal</p>
   </header>
 
+
   <main class="container">
 
-    <div class="search-box">
+    <section class="search-box">
 
       <h2>View Your Laboratory Reports</h2>
 
-      <p>
-        Enter your registered mobile number to view your reports
-      </
+      <p class="description">
+        Enter your registered 10-digit mobile number to search your reports.
+      </p>
+
+
+      <input
+        type="tel"
+        id="mobileNumber"
+        class="mobile-input"
+        placeholder="Enter 10-digit mobile number"
+        maxlength="10"
+        inputmode="numeric"
+        autocomplete="tel"
+      >
+
+
+      <button
+        type="button"
+        id="searchButton"
+        class="search-button"
+      >
+        Search Reports
+      </button>
+
+
+      <div id="message"></div>
+
+      <div id="results"></div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+    © 2026 ARK Diagnostic Centre, Kalwakurthy
+  </footer>
+
+
+  <script type="module">
+
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
+      authDomain: "ark-diagnostic-centre.firebaseapp.com",
+      projectId: "ark-diagnostic-centre",
+      storageBucket: "ark-diagnostic-centre.firebasestorage.app",
+      messagingSenderId: "238286336140",
+      appId: "1:238286336140:web:26210cbdcaf290f3a00ba9",
+      measurementId: "G-0BQ292SWKD"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+
+    const mobileInput =
+      document.getElementById("mobileNumber");
+
+    const searchButton =
+      document.getElementById("searchButton");
+
+    const message =
+      document.getElementById("message");
+
+    const results =
+      document.getElementById("results");
+
+
+    mobileInput.addEventListener("input", function () {
+
+      this.value =
+        this.value.replace(/\D/g, "").slice(0, 10);
+
+    });
+
+
+    mobileInput.addEventListener("keydown", function (event) {
+
+      if (event.key === "Enter") {
+        searchReport();
+      }
+
+    });
+
+
+    searchButton.addEventListener("click", searchReport);
+
+
+    async function searchReport() {
+
+      const mobile = mobileInput.value.trim();
+
+      results.innerHTML = "";
+      message.innerHTML = "";
+
+
+      if (!/^\d{10}$/.test(mobile)) {
+
+        message.style.color = "#dc2626";
+
+        message.textContent =
+          "Please enter a valid 10-digit mobile number.";
+
+        mobileInput.focus();
+
+        return;
+      }
+
+
+      searchButton.disabled = true;
+      searchButton.textContent = "Searching...";
+
+      message.style.color = "#1565c0";
+      message.textContent = "Searching reports...";
+
+
+      try {
+
+        const reportsQuery = query(
+          collection(db, "appointments"),
+          where("phone", "==", mobile)
+        );
+
+
+        const querySnapshot =
+          await getDocs(reportsQuery);
+
+
+        message.innerHTML = "";
+
+
+        if (querySnapshot.empty) {
+
+          message.style.color = "#dc2626";
+
+          message.textContent =
+            "No reports found for this mobile number.";
+
+          return;
+        }
+
+
+        let reportHTML = "";
+
+
+        querySnapshot.forEach((documentSnapshot) => {
+
+          const data = documentSnapshot.data();
+
+          const patientName =
+            escapeHTML(data.name || "Not available");
+
+          const testName =
+            escapeHTML(data.test || "Not available");
+
+          const status =
+            escapeHTML(data.status || "Not available");
+
+          const reportURL =
+            typeof data.reportURL === "string"
+              ? data.reportURL.trim()
+              : "";
+
+
+          reportHTML += `
+            <div class="report-card">
+
+              <h3>Laboratory Report</h3>
+
+              <p>
+                <strong>Patient Name:</strong>
+                ${patientName}
+              </p>
+
+              <p>
+                <strong>Test:</strong>
+                ${testName}
+              </p>
+
+              <p>
+                <strong>Status:</strong>
+                ${status}
+              </p>
+
+              ${
+                isSafeReportURL(reportURL)
+
+                ? `
+                  <a
+                    href="${escapeAttribute(reportURL)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="report-link"
+                  >
+                    View Report
+                  </a>
+                `
+
+                : `
+                  <div class="pending">
+                    Report not uploaded yet.
+                  </div>
+                `
+              }
+
+            </div>
+          `;
+
+        });
+
+
+        results.innerHTML = reportHTML;
+
+
+      } catch (error) {
+
+        console.error("Firestore Error:", error);
+
+        message.style.color = "#dc2626";
+
+        message.textContent =
+          "Unable to load reports. Please try again.";
+
+      } finally {
+
+        searchButton.disabled = false;
+        searchButton.textContent = "Search Reports";
+
+      }
+
+    }
+
+
+    function isSafeReportURL(url) {
+
+      if (!url) return false;
+
+      try {
+
+        const parsedURL = new URL(url);
+
+        return parsedURL.protocol === "https:";
+
+      } catch {
+
+        return false;
+
+      }
+
+    }
+
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    function escapeAttribute(value) {
+
+      return escapeHTML(value);
+
+    }
+
+  </script>
+
+</body>
+</html>
