@@ -46,7 +46,7 @@
       background: white;
       padding: 25px;
       border-radius: 15px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
     }
 
     .search-box h2 {
@@ -107,7 +107,7 @@
       margin-top: 18px;
       padding: 20px;
       border-radius: 14px;
-      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 3px 14px rgba(0,0,0,0.08);
     }
 
     .report-card h3 {
@@ -132,4 +132,54 @@
       display: inline-block;
       text-decoration: none;
       padding: 11px 18px;
-      border-radius
+      border-radius: 7px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .view-btn {
+      background: #1565c0;
+    }
+
+    .download-btn {
+      background: #00897b;
+    }
+
+    .footer {
+      text-align: center;
+      color: #666;
+      padding: 30px 15px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .report-btn {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>ARK Diagnostic Centre</h1>
+    <p>Patient Report Portal</p>
+  </div>
+
+  <div class="container">
+
+    <div class="search-box">
+
+      <h2>View Your Laboratory Reports</h2>
+
+      <p>
+        Enter your registered mobile number to view
