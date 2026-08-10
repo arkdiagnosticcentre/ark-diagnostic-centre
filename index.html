@@ -3,482 +3,1125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ARK Diagnostic Centre | Kalwakurthy</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ================= PATIENT REPORT BUTTON ================= */
+
+.report-btn {
+    background: #6a1b9a;
+    color: white !important;
+}
+
+.report-btn:hover {
+    background: #4a148c;
+}
+
+/* ================= PATIENT REPORT SECTION ================= */
+
+.patient-report-section {
+    padding: 55px 20px;
+    background: #f4f8fc;
+}
+
+.patient-report-card {
+    max-width: 1050px;
+    margin: auto;
+    padding: 35px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    justify-content: space-between;
+}
+
+.report-icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;
+    background: #e8eaf6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 40px;
+    flex-shrink: 0;
+}
+
+.report-content {
+    flex: 1;
+}
+
+.report-content h2 {
+    margin: 0 0 8px;
+    color: #1565c0;
+    font-size: 26px;
+}
+
+.report-content p {
+    margin: 0;
+    color: #666;
+    line-height: 1.7;
+}
+
+.report-button {
+    display: inline-block;
+
+    background: #1565c0;
+    color: white;
+
+    text-decoration: none;
+
+    padding: 14px 24px;
+    border-radius: 10px;
+
+    font-weight: 600;
+    white-space: nowrap;
+
+    transition: 0.3s;
+}
+
+.report-button:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+}
+
+/* ================= FOOTER LINKS ================= */
+
+.footer-report-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-report-link:hover {
+    text-decoration: underline;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .patient-report-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 20px;
+    }
+
+    .report-content h2 {
+        font-size: 22px;
+    }
+
+    .report-button {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
+
+<!-- ========================================================= -->
+<!-- ================= HEADER / NAVIGATION ==================== -->
+<!-- ========================================================= -->
+
 <header class="header">
+
     <div class="logo">
         🧪 <span>ARK Diagnostic Centre</span>
     </div>
 
     <nav>
+
         <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Packages</a>
-        <a href="#">Contact</a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#services">
+            Services
+        </a>
+
+        <a href="#packages">
+            Packages
+        </a>
+
+        <!-- PATIENT REPORT LINK -->
+        <a href="report.html">
+            📄 Patient Reports
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
     </nav>
+
 </header>
+
+
+<!-- ========================================================= -->
+<!-- ======================== HERO ============================ -->
+<!-- ========================================================= -->
 
 <section class="hero">
 
-<div class="hero-text">
+    <div class="hero-text">
 
-<h1>Advanced Diagnostic Care Closer To You</h1>
+        <h1>
+            Advanced Diagnostic Care Closer To You
+        </h1>
 
-<p>
-Accurate • Affordable • Trusted Diagnostic Services in Kalwakurthy.
-Blood Tests, Thyroid, Diabetes, LFT, KFT, Lipid Profile and Home Sample Collection.
-</p>
+        <p>
+            Accurate • Affordable • Trusted Diagnostic Services in Kalwakurthy.
+            Blood Tests, Thyroid, Diabetes, LFT, KFT, Lipid Profile and
+            Home Sample Collection.
+        </p>
 
-<div class="buttons">
-<a href="tel:+919398908582" class="btn call">📞 Call Now</a>
+        <div class="buttons">
 
-<a href="https://wa.me/919398908582" class="btn whatsapp">
-💬 WhatsApp
-</a>
-</div>
+            <!-- CALL -->
+            <a
+                href="tel:+919398908582"
+                class="btn call">
+                📞 Call Now
+            </a>
 
-</div>
 
-<div class="hero-image">
-<img src="ARK DIAGNOSTIC CENTRE.jpeg"
-     alt="ARK Diagnostic Centre Kalwakurthy">
-</div>
+            <!-- WHATSAPP -->
+            <a
+                href="https://wa.me/919398908582"
+                class="btn whatsapp"
+                target="_blank">
+                💬 WhatsApp
+            </a>
+
+
+            <!-- PATIENT REPORT -->
+            <a
+                href="report.html"
+                class="btn report-btn">
+                📄 View Patient Report
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="ARK DIAGNOSTIC CENTRE.jpeg"
+            alt="ARK Diagnostic Centre Kalwakurthy">
+
+    </div>
 
 </section>
+
+
+<!-- ========================================================= -->
+<!-- ======================== STATS =========================== -->
+<!-- ========================================================= -->
 
 <section class="stats">
 
-<div class="card">
-<h2>500+</h2>
-<p>Diagnostic Tests</p>
-</div>
+    <div class="card">
 
-<div class="card">
-<h2>365</h2>
-<p>Days Open</p>
-</div>
+        <h2>500+</h2>
 
-<div class="card">
-<h2>100%</h2>
-<p>Accurate Reports</p>
-</div>
+        <p>
+            Diagnostic Tests
+        </p>
 
-<div class="card">
-<h2>Home</h2>
-<p>Sample Collection</p>
-</div>
+    </div>
+
+
+    <div class="card">
+
+        <h2>365</h2>
+
+        <p>
+            Days Open
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>100%</h2>
+
+        <p>
+            Accurate Reports
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Home</h2>
+
+        <p>
+            Sample Collection
+        </p>
+
+    </div>
 
 </section>
 
-<a href="https://wa.me/919398908582" class="floating-whatsapp">
-💬
+
+<!-- ========================================================= -->
+<!-- ================= PATIENT REPORT SECTION ================= -->
+<!-- ========================================================= -->
+
+<section class="patient-report-section">
+
+    <div class="patient-report-card">
+
+        <div class="report-icon">
+            📄
+        </div>
+
+
+        <div class="report-content">
+
+            <h2>
+                Download Your Lab Report
+            </h2>
+
+            <p>
+                Your laboratory report is available online.
+                Enter your registered mobile number to securely
+                search, view and download your diagnostic report.
+            </p>
+
+        </div>
+
+
+        <a
+            href="report.html"
+            class="report-button">
+
+            View My Report →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- ================= FLOATING WHATSAPP ====================== -->
+<!-- ========================================================= -->
+
+<a
+    href="https://wa.me/919398908582"
+    class="floating-whatsapp"
+    target="_blank"
+    aria-label="WhatsApp">
+
+    💬
+
 </a>
 
+
+<!-- ========================================================= -->
+<!-- ======================== FIREBASE ======================== -->
+<!-- ========================================================= -->
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import { getAnalytics }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
-  authDomain: "ark-diagnostic-centre.firebaseapp.com",
-  projectId: "ark-diagnostic-centre",
-  storageBucket: "ark-diagnostic-centre.firebasestorage.app",
-  messagingSenderId: "238286336140",
-  appId: "1:238286336140:web:26210cbdcaf290f3a00ba9",
-  measurementId: "G-0BQ292SWKD"
+
+    apiKey:
+    "AIzaSyBPNeep_D7i2Y2BtMCf3tJtF0gFluCprlQg",
+
+    authDomain:
+    "ark-diagnostic-centre.firebaseapp.com",
+
+    projectId:
+    "ark-diagnostic-centre",
+
+    storageBucket:
+    "ark-diagnostic-centre.firebasestorage.app",
+
+    messagingSenderId:
+    "238286336140",
+
+    appId:
+    "1:238286336140:web:26210cbdcaf290f3a00ba9",
+
+    measurementId:
+    "G-0BQ292SWKD"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const analytics =
+getAnalytics(app);
+
 </script>
 
-<!-- ================= ABOUT ================= -->
 
-<section class="about">
+<!-- ========================================================= -->
+<!-- ========================== ABOUT ========================= -->
+<!-- ========================================================= -->
 
-<div class="about-image">
-<img src="Interior.jpeg"
-     alt="ARK Diagnostic Centre Laboratory Interior">
-</div>
+<section
+    id="about"
+    class="about">
 
-<div class="about-content">
+    <div class="about-image">
 
-<h2>About ARK Diagnostic Centre</h2>
+        <img
+            src="Interior.jpeg"
+            alt="ARK Diagnostic Centre Laboratory Interior">
 
-<p>
-ARK Diagnostic Centre is one of the trusted diagnostic laboratories in Kalwakurthy, offering accurate, affordable, and timely diagnostic services with modern laboratory equipment and experienced professionals.
-</p>
+    </div>
 
-<ul>
-<li>✔ Accurate Laboratory Reports</li>
-<li>✔ Experienced Technicians</li>
-<li>✔ Affordable Test Prices</li>
-<li>✔ Home Sample Collection</li>
-<li>✔ Same Day Report Delivery</li>
-<li>✔ 365 Days Open</li>
-</ul>
 
-</div>
+    <div class="about-content">
+
+        <h2>
+            About ARK Diagnostic Centre
+        </h2>
+
+        <p>
+
+            ARK Diagnostic Centre is one of the trusted
+            diagnostic laboratories in Kalwakurthy, offering
+            accurate, affordable, and timely diagnostic services
+            with modern laboratory equipment and experienced
+            professionals.
+
+        </p>
+
+
+        <ul>
+
+            <li>
+                ✔ Accurate Laboratory Reports
+            </li>
+
+            <li>
+                ✔ Experienced Technicians
+            </li>
+
+            <li>
+                ✔ Affordable Test Prices
+            </li>
+
+            <li>
+                ✔ Home Sample Collection
+            </li>
+
+            <li>
+                ✔ Same Day Report Delivery
+            </li>
+
+            <li>
+                ✔ 365 Days Open
+            </li>
+
+        </ul>
+
+    </div>
 
 </section>
 
-<!-- ================= WHY CHOOSE US ================= -->
+
+<!-- ========================================================= -->
+<!-- ===================== WHY CHOOSE US ====================== -->
+<!-- ========================================================= -->
 
 <section class="why">
 
-<h2 class="section-title">Why Choose ARK Diagnostic Centre?</h2>
+    <h2 class="section-title">
+        Why Choose ARK Diagnostic Centre?
+    </h2>
 
-<div class="why-grid">
 
-<div class="why-card">
-<h3>🧪 Accurate Reports</h3>
-<p>High quality diagnostic testing with reliable and accurate reports.</p>
-</div>
+    <div class="why-grid">
 
-<div class="why-card">
-<h3>👨‍⚕️ Experienced Staff</h3>
-<p>Professional and friendly laboratory technicians.</p>
-</div>
 
-<div class="why-card">
-<h3>🏠 Home Sample Collection</h3>
-<p>Convenient blood sample collection at your home.</p>
-</div>
+        <div class="why-card">
 
-<div class="why-card">
-<h3>⚡ Fast Reports</h3>
-<p>Most reports are delivered on the same day.</p>
-</div>
+            <h3>
+                🧪 Accurate Reports
+            </h3>
 
-</div>
+            <p>
+                High quality diagnostic testing with
+                reliable and accurate reports.
+            </p>
 
-</section>
+        </div>
 
-<!-- ================= SERVICES ================= -->
 
-<section class="services">
+        <div class="why-card">
 
-<h2 class="section-title">Our Diagnostic Services</h2>
+            <h3>
+                👨‍⚕️ Experienced Staff
+            </h3>
 
-<div class="service-grid">
+            <p>
+                Professional and friendly laboratory
+                technicians.
+            </p>
 
-<div class="service-card">
-<h3>🩸 Blood Tests</h3>
-<p>CBC, ESR, Hb, Blood Group and Complete Blood Count.</p>
-</div>
+        </div>
 
-<div class="service-card">
-<h3>🩺 Diabetes Profile</h3>
-<p>FBS, PPBS, HbA1c and Complete Diabetes Screening.</p>
-</div>
 
-<div class="service-card">
-<h3>🧬 Thyroid Profile</h3>
-<p>T3, T4 and TSH Tests.</p>
-</div>
+        <div class="why-card">
 
-<div class="service-card">
-<h3>🫀 Lipid Profile</h3>
-<p>Complete Cholesterol Screening.</p>
-</div>
+            <h3>
+                🏠 Home Sample Collection
+            </h3>
 
-<div class="service-card">
-<h3>🧪 Liver Function Test</h3>
-<p>Complete LFT Package.</p>
-</div>
+            <p>
+                Convenient blood sample collection
+                at your home.
+            </p>
 
-<div class="service-card">
-<h3>💧 Kidney Function Test</h3>
-<p>Complete KFT Package.</p>
-</div>
+        </div>
 
-<div class="service-card">
-<h3>🏥 Health Packages</h3>
-<p>Affordable preventive health check-up packages.</p>
-</div>
 
-<div class="service-card">
-<h3>🚗 Home Sample Collection</h3>
-<p>Book home blood sample collection easily.</p>
-</div>
+        <div class="why-card">
 
-</div>
+            <h3>
+                ⚡ Fast Reports
+            </h3>
 
-</section>
-<!-- ================= HEALTH PACKAGES ================= -->
+            <p>
+                Most reports are delivered on the
+                same day.
+            </p>
 
-<section class="packages">
+        </div>
 
-<h2 class="section-title">Health Packages</h2>
 
-<div class="package-grid">
-
-<div class="package-card">
-<span class="badge">POPULAR</span>
-<h3>ARK Health Profile 1</h3>
-<p>CBP, Sugar, LFT, KFT, Thyroid, Lipid Profile</p>
-<h2>₹1499</h2>
-<a href="#appointment" class="btn call">Book Now</a>
-</div>
-
-<div class="package-card">
-<span class="badge">BEST VALUE</span>
-<h3>ARK Health Profile 2</h3>
-<p>Complete Executive Health Checkup</p>
-<h2>₹2499</h2>
-<a href="#appointment" class="btn call">Book Now</a>
-</div>
-
-<div class="package-card">
-<span class="badge">OFFER</span>
-<h3>Diabetes Package</h3>
-<p>FBS + PPBS + HbA1c</p>
-<h2>₹499</h2>
-<a href="#appointment" class="btn call">Book Now</a>
-</div>
-
-</div>
+    </div>
 
 </section>
 
-<!-- ================= TEST PRICE LIST ================= -->
+
+<!-- ========================================================= -->
+<!-- ======================== SERVICES ======================== -->
+<!-- ========================================================= -->
+
+<section
+    id="services"
+    class="services">
+
+    <h2 class="section-title">
+        Our Diagnostic Services
+    </h2>
+
+
+    <div class="service-grid">
+
+
+        <div class="service-card">
+
+            <h3>
+                🩸 Blood Tests
+            </h3>
+
+            <p>
+                CBC, ESR, Hb, Blood Group and
+                Complete Blood Count.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <h3>
+                🩺 Diabetes Profile
+            </h3>
+
+            <p>
+                FBS, PPBS, HbA1c and Complete
+                Diabetes Screening.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <h3>
+                🧬 Thyroid Profile
+            </h3>
+
+            <p>
+                T3, T4 and TSH Tests.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <h3>
+                🫀 Lipid Profile
+            </h3>
+
+            <p>
+                Complete Cholesterol Screening.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <h3>
+                🧪 Liver Function Test
+            </h3>
+
+            <p>
+                Complete LFT Package.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <h3>
+                💧 Kidney Function Test
+            </h3>
+
+            <p>
+                Complete KFT Package.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <h3>
+                🏥 Health Packages
+            </h3>
+
+            <p>
+                Affordable preventive health
+                check-up packages.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <h3>
+                🚗 Home Sample Collection
+            </h3>
+
+            <p>
+                Book home blood sample collection
+                easily.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- ===================== HEALTH PACKAGES ==================== -->
+<!-- ========================================================= -->
+
+<section
+    id="packages"
+    class="packages">
+
+    <h2 class="section-title">
+        Health Packages
+    </h2>
+
+
+    <div class="package-grid">
+
+
+        <div class="package-card">
+
+            <span class="badge">
+                POPULAR
+            </span>
+
+            <h3>
+                ARK Health Profile 1
+            </h3>
+
+            <p>
+                CBP, Sugar, LFT, KFT, Thyroid,
+                Lipid Profile
+            </p>
+
+            <h2>
+                ₹1499
+            </h2>
+
+            <a
+                href="#appointment"
+                class="btn call">
+
+                Book Now
+
+            </a>
+
+        </div>
+
+
+        <div class="package-card">
+
+            <span class="badge">
+                BEST VALUE
+            </span>
+
+            <h3>
+                ARK Health Profile 2
+            </h3>
+
+            <p>
+                Complete Executive Health Checkup
+            </p>
+
+            <h2>
+                ₹2499
+            </h2>
+
+            <a
+                href="#appointment"
+                class="btn call">
+
+                Book Now
+
+            </a>
+
+        </div>
+
+
+        <div class="package-card">
+
+            <span class="badge">
+                OFFER
+            </span>
+
+            <h3>
+                Diabetes Package
+            </h3>
+
+            <p>
+                FBS + PPBS + HbA1c
+            </p>
+
+            <h2>
+                ₹499
+            </h2>
+
+            <a
+                href="#appointment"
+                class="btn call">
+
+                Book Now
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- ===================== TEST PRICE LIST ==================== -->
+<!-- ========================================================= -->
 
 <section class="pricing">
 
-<h2 class="section-title">Search Test Prices</h2>
+    <h2 class="section-title">
+        Search Test Prices
+    </h2>
 
-<input
-type="text"
-id="searchBox"
-placeholder="🔍 Search Test Name..."
-onkeyup="searchTests()">
 
-<div class="price-grid">
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="🔍 Search Test Name..."
+        onkeyup="searchTests()">
 
-<div class="price-card">
-<h3>CBC</h3>
-<p>Complete Blood Count</p>
-<h2>₹300</h2>
-</div>
 
-<div class="price-card">
-<h3>Blood Sugar</h3>
-<p>Fasting / PP</p>
-<h2>₹100</h2>
-</div>
+    <div class="price-grid">
 
-<div class="price-card">
-<h3>Thyroid Profile</h3>
-<p>T3 • T4 • TSH</p>
-<h2>₹500</h2>
-</div>
 
-<div class="price-card">
-<h3>LFT</h3>
-<p>Liver Function Test</p>
-<h2>₹600</h2>
-</div>
+        <div class="price-card">
 
-<div class="price-card">
-<h3>KFT</h3>
-<p>Kidney Function Test</p>
-<h2>₹1200</h2>
-</div>
+            <h3>
+                CBC
+            </h3>
 
-</div>
+            <p>
+                Complete Blood Count
+            </p>
+
+            <h2>
+                ₹300
+            </h2>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>
+                Blood Sugar
+            </h3>
+
+            <p>
+                Fasting / PP
+            </p>
+
+            <h2>
+                ₹100
+            </h2>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>
+                Thyroid Profile
+            </h3>
+
+            <p>
+                T3 • T4 • TSH
+            </p>
+
+            <h2>
+                ₹500
+            </h2>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>
+                LFT
+            </h3>
+
+            <p>
+                Liver Function Test
+            </p>
+
+            <h2>
+                ₹600
+            </h2>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>
+                KFT
+            </h3>
+
+            <p>
+                Kidney Function Test
+            </p>
+
+            <h2>
+                ₹1200
+            </h2>
+
+        </div>
+
+
+    </div>
 
 </section>
 
-<!-- ================= APPOINTMENT ================= -->
 
-<section id="appointment" class="appointment">
+<!-- ========================================================= -->
+<!-- ====================== APPOINTMENT ======================= -->
+<!-- ========================================================= -->
 
-<h2 class="section-title">Book Appointment</h2>
+<section
+    id="appointment"
+    class="appointment">
 
-<form class="appointment-form" id="appointmentForm">
+    <h2 class="section-title">
+        Book Appointment
+    </h2>
 
-<input type="text" id="patientName" placeholder="Full Name" required>
 
-<input type="tel" id="patientPhone" placeholder="Mobile Number" required>
+    <form
+        class="appointment-form"
+        id="appointmentForm">
 
-<select id="patientTest" required>
-<option value="">Select Test / Package</option>
-<option>Blood Test</option>
-<option>Diabetes Profile</option>
-<option>Thyroid Profile</option>
-<option>Lipid Profile</option>
-<option>Liver Function Test (LFT)</option>
-<option>Kidney Function Test (KFT)</option>
-<option>ARK Health Profile 1</option>
-<option>ARK Health Profile 2</option>
-<option>Home Sample Collection</option>
-</select>
 
-<input type="date" id="appointmentDate" required>
+        <input
+            type="text"
+            id="patientName"
+            placeholder="Full Name"
+            required>
 
-<button type="button" class="btn whatsapp" onclick="bookAppointment()">
-Book Appointment on WhatsApp
-</button>
 
-</form>
+        <input
+            type="tel"
+            id="patientPhone"
+            placeholder="Mobile Number"
+            required>
+
+
+        <select
+            id="patientTest"
+            required>
+
+            <option value="">
+                Select Test / Package
+            </option>
+
+            <option>
+                Blood Test
+            </option>
+
+            <option>
+                Diabetes Profile
+            </option>
+
+            <option>
+                Thyroid Profile
+            </option>
+
+            <option>
+                Lipid Profile
+            </option>
+
+            <option>
+                Liver Function Test (LFT)
+            </option>
+
+            <option>
+                Kidney Function Test (KFT)
+            </option>
+
+            <option>
+                ARK Health Profile 1
+            </option>
+
+            <option>
+                ARK Health Profile 2
+            </option>
+
+            <option>
+                Home Sample Collection
+            </option>
+
+        </select>
+
+
+        <input
+            type="date"
+            id="appointmentDate"
+            required>
+
+
+        <button
+            type="button"
+            class="btn whatsapp"
+            onclick="bookAppointment()">
+
+            Book Appointment on WhatsApp
+
+        </button>
+
+
+    </form>
 
 </section>
-<!-- ================= PATIENT REVIEWS ================= -->
+
+
+<!-- ========================================================= -->
+<!-- ===================== PATIENT REVIEWS ==================== -->
+<!-- ========================================================= -->
 
 <section class="reviews">
 
-<h2 class="section-title">Patient Reviews</h2>
+    <h2 class="section-title">
+        Patient Reviews
+    </h2>
 
-<div class="review-grid">
 
-<div class="review-card">
-⭐⭐⭐⭐⭐
-<h3>Excellent Service</h3>
-<p>Very fast reports and friendly staff. Highly recommended.</p>
-<h4>- Ramesh Kumar</h4>
-</div>
+    <div class="review-grid">
 
-<div class="review-card">
-⭐⭐⭐⭐⭐
-<h3>Best Diagnostic Centre</h3>
-<p>Affordable prices with accurate reports. Excellent experience.</p>
-<h4>- Lakshmi</h4>
-</div>
 
-<div class="review-card">
-⭐⭐⭐⭐⭐
-<h3>Professional Staff</h3>
-<p>Clean laboratory and quick report delivery.</p>
-<h4>- Srinivas</h4>
-</div>
+        <div class="review-card">
 
-</div>
+            ⭐⭐⭐⭐⭐
+
+            <h3>
+                Excellent Service
+            </h3>
+
+            <p>
+                Very fast reports and friendly staff.
+                Highly recommended.
+            </p>
+
+            <h4>
+                - Ramesh Kumar
+            </h4>
+
+        </div>
+
+
+        <div class="review-card">
+
+            ⭐⭐⭐⭐⭐
+
+            <h3>
+                Best Diagnostic Centre
+            </h3>
+
+            <p>
+                Affordable prices with accurate reports.
+                Excellent experience.
+            </p>
+
+            <h4>
+                - Lakshmi
+            </h4>
+
+        </div>
+
+
+        <div class="review-card">
+
+            ⭐⭐⭐⭐⭐
+
+            <h3>
+                Professional Staff
+            </h3>
+
+            <p>
+                Clean laboratory and quick report delivery.
+            </p>
+
+            <h4>
+                - Srinivas
+            </h4>
+
+        </div>
+
+
+    </div>
 
 </section>
 
-<!-- ================= GALLERY ================= -->
+
+<!-- ========================================================= -->
+<!-- ========================== GALLERY ======================= -->
+<!-- ========================================================= -->
 
 <section class="gallery">
 
-<h2 class="section-title">Our Gallery</h2>
+    <h2 class="section-title">
+        Our Gallery
+    </h2>
 
-<div class="gallery-grid">
 
-<img src="ARK DIAGNOSTIC CENTRE.jpeg" alt="ARK Diagnostic Centre Front View">
+    <div class="gallery-grid">
 
-<img src="Interior.jpeg" alt="ARK Diagnostic Centre Laboratory Interior">
 
-<img src="Sample Collection Area.jpeg" alt="ARK Diagnostic Centre Sample Collection Area">
+        <img
+            src="ARK DIAGNOSTIC CENTRE.jpeg"
+            alt="ARK Diagnostic Centre Front View">
 
-<img src="Waiting Area.jpeg" alt="ARK Diagnostic Centre Waiting Area">
 
-<img src="Printing Place.jpeg" alt="ARK Diagnostic Centre">
+        <img
+            src="Interior.jpeg"
+            alt="ARK Diagnostic Centre Laboratory Interior">
 
-</div>
+
+        <img
+            src="Sample Collection Area.jpeg"
+            alt="ARK Diagnostic Centre Sample Collection Area">
+
+
+        <img
+            src="Waiting Area.jpeg"
+            alt="ARK Diagnostic Centre Waiting Area">
+
+
+        <img
+            src="Printing Place.jpeg"
+            alt="ARK Diagnostic Centre">
+
+    </div>
 
 </section>
 
-<!-- ================= FAQ ================= -->
+
+<!-- ========================================================= -->
+<!-- ============================ FAQ ========================= -->
+<!-- ========================================================= -->
 
 <section class="faq">
 
-<h2 class="section-title">Frequently Asked Questions</h2>
+    <h2 class="section-title">
+        Frequently Asked Questions
+    </h2>
 
-<div class="faq-box">
-<h3>How can I book a test?</h3>
-<p>You can call us or use the online appointment form.</p>
-</div>
 
-<div class="faq-box">
-<h3>Is Home Sample Collection available?</h3>
-<p>Yes. Home sample collection is available in Kalwakurthy.</p>
-</div>
+    <div class="faq-box">
 
-<div class="faq-box">
-<h3>When will I receive my reports?</h3>
-<p>Most reports are delivered on the same day.</p>
-</div>
-
-</section>
-
-<!-- ================= CONTACT ================= -->
-
-<section class="contact">
-
-<h2 class="section-title">Contact Us</h2>
-
-<div class="contact-grid">
-
-<div>
-
-<h3>ARK Diagnostic Centre</h3>
-
-<p>
-Bus Stand Back Side,<br>
-Beside Dr. Vijay Kumar Clinic,<br>
-Subhash Nagar,<br>
-Kalwakurthy,<br>
-Nagarkurnool District.
-</p>
-
-<br>
-
-<p>📞 9398908582</p>
-
-<p>📧 arkdiagnosticskalwakurthy@gmail.com</p>
-
-<br>
-
-<a href="https://wa.me/919398908582" class="btn whatsapp">
-WhatsApp Us
-</a>
-
-</div>
-
-<div>
-
-<iframe
-src="https://www.google.com/maps?q=Kalwakurthy&output=embed"
-width="100%"
-height="350"
-style="border:0;border-radius:20px;"
-loading="lazy">
-</iframe>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-<h2>ARK Diagnostic Centre</h2>
-
-<p>
-Bus Stand Back Side,<br>
-Beside Dr. Vijay Kumar Clinic,<br>
-Subhash Nagar,<br>
-Kalwakurthy.
-</p>
-
-<p>📞 9398908582</p>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+        <h3>
+            How can I book a t
