@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -18,7 +19,9 @@ rel="stylesheet">
 
 <style>
 
-/* ================= PATIENT REPORT ================= */
+/* =========================================================
+   PATIENT REPORT
+========================================================= */
 
 .report-btn{
     background:#6a1b9a !important;
@@ -93,7 +96,10 @@ rel="stylesheet">
     background:#0d47a1;
 }
 
-/* ================= PRICE SEARCH ================= */
+
+/* =========================================================
+   PRICE SEARCH
+========================================================= */
 
 .pricing{
     padding:60px 20px;
@@ -172,7 +178,111 @@ rel="stylesheet">
     grid-column:1/-1;
 }
 
-/* ================= MOBILE ================= */
+
+/* =========================================================
+   MULTIPLE TEST SELECTION
+========================================================= */
+
+.multi-test-box{
+    max-width:1000px;
+    margin:0 auto 20px;
+    background:#fff;
+    border:1px solid #d9e3ef;
+    border-radius:15px;
+    padding:18px;
+}
+
+.multi-test-title{
+    font-size:18px;
+    font-weight:600;
+    color:#1565c0;
+    margin-bottom:5px;
+}
+
+.multi-test-help{
+    font-size:13px;
+    color:#666;
+    margin-bottom:15px;
+}
+
+.selected-tests{
+    min-height:45px;
+    background:#f4f8fc;
+    border:1px solid #dce6f0;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:15px;
+    color:#555;
+}
+
+.selected-tests strong{
+    color:#1565c0;
+}
+
+.test-checkbox-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:10px;
+    max-height:500px;
+    overflow-y:auto;
+    padding:5px;
+}
+
+.test-check{
+    position:relative;
+}
+
+.test-check input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.test-check label{
+    display:block;
+    padding:12px 14px;
+    border:1px solid #d5dce5;
+    border-radius:10px;
+    background:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:.2s;
+}
+
+.test-check label:hover{
+    border-color:#1565c0;
+    background:#f4f8fc;
+}
+
+.test-check input:checked + label{
+    background:#e3f2fd;
+    border-color:#1565c0;
+    color:#0d47a1;
+    font-weight:600;
+}
+
+.test-check input:checked + label::before{
+    content:"✓ ";
+    color:#1565c0;
+    font-weight:bold;
+}
+
+.clear-tests{
+    margin-top:12px;
+    background:#757575;
+    color:white;
+    border:none;
+    padding:9px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:700px){
 
@@ -192,16 +302,24 @@ rel="stylesheet">
         box-sizing:border-box;
     }
 
+    .test-checkbox-grid{
+        grid-template-columns:1fr;
+        max-height:450px;
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
 <header class="header">
 
@@ -225,14 +343,18 @@ rel="stylesheet">
 📄 Patient Reports
 </a>
 
-<a href="#contact">Contact</a>
+<a href="#contact">
+Contact
+</a>
 
 </nav>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="hero">
 
@@ -291,38 +413,39 @@ alt="ARK Diagnostic Centre Kalwakurthy">
 </section>
 
 
-<!-- ================= STATS ================= -->
+<!-- =========================================================
+     STATS
+========================================================= -->
 
 <section class="stats">
 
 <div class="card">
 
 <h2>500+</h2>
-
 <p>Diagnostic Tests</p>
 
 </div>
 
+
 <div class="card">
 
 <h2>365</h2>
-
 <p>Days Open</p>
 
 </div>
 
+
 <div class="card">
 
 <h2>100%</h2>
-
 <p>Accurate Reports</p>
 
 </div>
 
+
 <div class="card">
 
 <h2>Home</h2>
-
 <p>Sample Collection</p>
 
 </div>
@@ -330,7 +453,9 @@ alt="ARK Diagnostic Centre Kalwakurthy">
 </section>
 
 
-<!-- ================= PATIENT REPORT ================= -->
+<!-- =========================================================
+     PATIENT REPORT
+========================================================= -->
 
 <section class="patient-report-section">
 
@@ -340,6 +465,7 @@ alt="ARK Diagnostic Centre Kalwakurthy">
 📄
 </div>
 
+
 <div class="report-content">
 
 <h2>
@@ -348,11 +474,12 @@ Download Your Lab Report
 
 <p>
 Your laboratory report is available online.
-Enter your registered patient ID to securely
+Enter your registered Patient ID to securely
 search, view and download your diagnostic report.
 </p>
 
 </div>
+
 
 <a
 href="report.html"
@@ -367,7 +494,9 @@ View My Report →
 </section>
 
 
-<!-- ================= WHATSAPP ================= -->
+<!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
 
 <a
 href="https://wa.me/919398908582"
@@ -380,44 +509,9 @@ aria-label="WhatsApp">
 </a>
 
 
-<!-- ================= FIREBASE ================= -->
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-const firebaseConfig = {
-
-apiKey:
-"AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
-
-authDomain:
-"ark-diagnostic-centre.firebaseapp.com",
-
-projectId:
-"ark-diagnostic-centre",
-
-storageBucket:
-"ark-diagnostic-centre.firebasestorage.app",
-
-messagingSenderId:
-"238286336140",
-
-appId:
-"1:238286336140:web:26210cbdcaf290f3a00ba9",
-
-measurementId:
-"G-0BQ292SWKD"
-
-};
-
-initializeApp(firebaseConfig);
-
-</script>
-
-
-<!-- ================= ABOUT ================= -->
+<!-- =========================================================
+     ABOUT
+========================================================= -->
 
 <section id="about" class="about">
 
@@ -428,6 +522,7 @@ src="Interior.jpeg"
 alt="ARK Diagnostic Centre Laboratory Interior">
 
 </div>
+
 
 <div class="about-content">
 
@@ -443,13 +538,19 @@ with modern laboratory equipment and experienced
 professionals.
 </p>
 
+
 <ul>
 
 <li>✔ Accurate Laboratory Reports</li>
+
 <li>✔ Experienced Technicians</li>
+
 <li>✔ Affordable Test Prices</li>
+
 <li>✔ Home Sample Collection</li>
+
 <li>✔ Same Day Report Delivery</li>
+
 <li>✔ 365 Days Open</li>
 
 </ul>
@@ -459,7 +560,9 @@ professionals.
 </section>
 
 
-<!-- ================= WHY CHOOSE US ================= -->
+<!-- =========================================================
+     WHY CHOOSE US
+========================================================= -->
 
 <section class="why">
 
@@ -467,11 +570,15 @@ professionals.
 Why Choose ARK Diagnostic Centre?
 </h2>
 
+
 <div class="why-grid">
+
 
 <div class="why-card">
 
-<h3>🧪 Accurate Reports</h3>
+<h3>
+🧪 Accurate Reports
+</h3>
 
 <p>
 High quality diagnostic testing with
@@ -480,9 +587,12 @@ reliable and accurate reports.
 
 </div>
 
+
 <div class="why-card">
 
-<h3>👨‍⚕️ Experienced Staff</h3>
+<h3>
+👨‍⚕️ Experienced Staff
+</h3>
 
 <p>
 Professional and friendly laboratory
@@ -491,9 +601,12 @@ technicians.
 
 </div>
 
+
 <div class="why-card">
 
-<h3>🏠 Home Sample Collection</h3>
+<h3>
+🏠 Home Sample Collection
+</h3>
 
 <p>
 Convenient blood sample collection
@@ -502,9 +615,12 @@ at your home.
 
 </div>
 
+
 <div class="why-card">
 
-<h3>⚡ Fast Reports</h3>
+<h3>
+⚡ Fast Reports
+</h3>
 
 <p>
 Most reports are delivered on the
@@ -513,12 +629,15 @@ same day.
 
 </div>
 
+
 </div>
 
 </section>
 
 
-<!-- ================= SERVICES ================= -->
+<!-- =========================================================
+     SERVICES
+========================================================= -->
 
 <section id="services" class="services">
 
@@ -526,72 +645,124 @@ same day.
 Our Diagnostic Services
 </h2>
 
+
 <div class="service-grid">
 
+
 <div class="service-card">
-<h3>🩸 Blood Tests</h3>
+
+<h3>
+🩸 Blood Tests
+</h3>
+
 <p>
 CBP, HB, RBC, Blood Group, ESR and
 routine blood investigations.
 </p>
+
 </div>
 
+
 <div class="service-card">
-<h3>🩺 Diabetes Tests</h3>
+
+<h3>
+🩺 Diabetes Tests
+</h3>
+
 <p>
 FBS, PLBS, RBS, GRBS and diabetes screening.
 </p>
+
 </div>
 
+
 <div class="service-card">
-<h3>🧬 Thyroid Tests</h3>
+
+<h3>
+🧬 Thyroid Tests
+</h3>
+
 <p>
 T3, T4, TSH and complete thyroid profile.
 </p>
+
 </div>
 
+
 <div class="service-card">
-<h3>🫀 Lipid Profile</h3>
+
+<h3>
+🫀 Lipid Profile
+</h3>
+
 <p>
 Complete cholesterol and lipid screening.
 </p>
+
 </div>
 
+
 <div class="service-card">
-<h3>🧪 Liver Function Test</h3>
+
+<h3>
+🧪 Liver Function Test
+</h3>
+
 <p>
 LFT and liver-related investigations.
 </p>
+
 </div>
 
+
 <div class="service-card">
-<h3>💧 Kidney Function Test</h3>
+
+<h3>
+💧 Kidney Function Test
+</h3>
+
 <p>
 Blood Urea, Creatinine and kidney-related tests.
 </p>
+
 </div>
 
+
 <div class="service-card">
-<h3>🦠 Infection Tests</h3>
+
+<h3>
+🦠 Infection Tests
+</h3>
+
 <p>
 Dengue, Malaria, Widal, CRP, HIV, HCV,
 HBsAg and other tests.
 </p>
+
 </div>
 
+
 <div class="service-card">
-<h3>🏠 Home Sample Collection</h3>
+
+<h3>
+🏠 Home Sample Collection
+</h3>
+
 <p>
 Convenient blood sample collection at your home.
 </p>
+
 </div>
+
 
 </div>
 
 </section>
 
 
-<!-- ================= PACKAGES ================= -->
+<!-- =========================================================
+     HEALTH PACKAGES
+========================================================= -->
 
 <section id="packages" class="packages">
 
@@ -599,11 +770,15 @@ Convenient blood sample collection at your home.
 Health Packages
 </h2>
 
+
 <div class="package-grid">
+
 
 <div class="package-card">
 
-<span class="badge">POPULAR</span>
+<span class="badge">
+POPULAR
+</span>
 
 <h3>
 Health Profile - I
@@ -613,10 +788,16 @@ Health Profile - I
 Complete Health Checkup Package
 </p>
 
-<h2>₹1,500</h2>
+<h2>
+₹1,500
+</h2>
 
-<a href="#appointment" class="btn call">
+<a
+href="#appointment"
+class="btn call">
+
 Book Now
+
 </a>
 
 </div>
@@ -624,7 +805,9 @@ Book Now
 
 <div class="package-card">
 
-<span class="badge">BEST VALUE</span>
+<span class="badge">
+BEST VALUE
+</span>
 
 <h3>
 Health Profile - II
@@ -634,10 +817,16 @@ Health Profile - II
 Advanced Health Checkup Package
 </p>
 
-<h2>₹2,000</h2>
+<h2>
+₹2,000
+</h2>
 
-<a href="#appointment" class="btn call">
+<a
+href="#appointment"
+class="btn call">
+
 Book Now
+
 </a>
 
 </div>
@@ -645,7 +834,9 @@ Book Now
 
 <div class="package-card">
 
-<span class="badge">SPECIAL</span>
+<span class="badge">
+SPECIAL
+</span>
 
 <h3>
 Infertility Profile - Male
@@ -655,10 +846,16 @@ Infertility Profile - Male
 Male Infertility Profile
 </p>
 
-<h2>₹2,500</h2>
+<h2>
+₹2,500
+</h2>
 
-<a href="#appointment" class="btn call">
+<a
+href="#appointment"
+class="btn call">
+
 Book Now
+
 </a>
 
 </div>
@@ -666,7 +863,9 @@ Book Now
 
 <div class="package-card">
 
-<span class="badge">SPECIAL</span>
+<span class="badge">
+SPECIAL
+</span>
 
 <h3>
 Infertility Profile - Female
@@ -676,20 +875,29 @@ Infertility Profile - Female
 Female Infertility Profile
 </p>
 
-<h2>₹4,000</h2>
+<h2>
+₹4,000
+</h2>
 
-<a href="#appointment" class="btn call">
+<a
+href="#appointment"
+class="btn call">
+
 Book Now
+
 </a>
 
 </div>
+
 
 </div>
 
 </section>
 
 
-<!-- ================= COMPLETE TEST PRICE LIST ================= -->
+<!-- =========================================================
+     TEST PRICE LIST
+========================================================= -->
 
 <section id="pricing" class="pricing">
 
@@ -698,20 +906,23 @@ Search Test Prices
 </h2>
 
 <p style="text-align:center;color:#666;margin-bottom:20px;">
-Search any test by name, abbreviation or description
+
+Search any test by name, abbreviation or description.
+
 </p>
+
 
 <input
 type="text"
 id="searchBox"
 placeholder="🔍 Search Test Name...">
 
+
 <div id="priceGrid" class="price-grid">
 
 
-<!-- 1 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="cbp complete blood picture complete blood count blood">
 
 <h3>CBP</h3>
@@ -721,10 +932,9 @@ data-search="cbp complete blood picture complete blood count blood">
 </div>
 
 
-<!-- 2 -->
-
-<div class="price-card test-card"
-data-search="hb hemoglobin hb percentage">
+<div
+class="price-card test-card"
+data-search="hb hemoglobin">
 
 <h3>HB %</h3>
 <p>Hemoglobin</p>
@@ -733,9 +943,8 @@ data-search="hb hemoglobin hb percentage">
 </div>
 
 
-<!-- 3 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="rbs random blood sugar">
 
 <h3>RBS</h3>
@@ -745,10 +954,9 @@ data-search="rbs random blood sugar">
 </div>
 
 
-<!-- 4 -->
-
-<div class="price-card test-card"
-data-search="fbs plbs fasting post lunch blood sugar ppbs">
+<div
+class="price-card test-card"
+data-search="fbs plbs ppbs fasting post lunch blood sugar">
 
 <h3>FBS, PLBS</h3>
 <p>Fasting / Post Lunch Blood Sugar</p>
@@ -757,9 +965,8 @@ data-search="fbs plbs fasting post lunch blood sugar ppbs">
 </div>
 
 
-<!-- 5 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="blood urea urea">
 
 <h3>Blood Urea</h3>
@@ -769,9 +976,8 @@ data-search="blood urea urea">
 </div>
 
 
-<!-- 6 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="serum creatinine creatinine kidney">
 
 <h3>Serum Creatinine</h3>
@@ -781,9 +987,8 @@ data-search="serum creatinine creatinine kidney">
 </div>
 
 
-<!-- 7 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="serum bilirubin bilirubin liver">
 
 <h3>Serum Bilirubin</h3>
@@ -793,9 +998,8 @@ data-search="serum bilirubin bilirubin liver">
 </div>
 
 
-<!-- 8 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="serum uric acid uric acid">
 
 <h3>Serum Uric Acid</h3>
@@ -805,9 +1009,8 @@ data-search="serum uric acid uric acid">
 </div>
 
 
-<!-- 9 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="serum calcium calcium">
 
 <h3>Serum Calcium</h3>
@@ -817,9 +1020,8 @@ data-search="serum calcium calcium">
 </div>
 
 
-<!-- 10 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="serum electrolytes electrolytes sodium potassium">
 
 <h3>Serum Electrolytes</h3>
@@ -829,9 +1031,8 @@ data-search="serum electrolytes electrolytes sodium potassium">
 </div>
 
 
-<!-- 11 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="lipid profile cholesterol">
 
 <h3>Lipid Profile</h3>
@@ -841,9 +1042,8 @@ data-search="lipid profile cholesterol">
 </div>
 
 
-<!-- 12 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="lft liver function test liver">
 
 <h3>LFT</h3>
@@ -853,9 +1053,8 @@ data-search="lft liver function test liver">
 </div>
 
 
-<!-- 13 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="t3 t4 tsh thyroid thyroid profile">
 
 <h3>T3 T4 TSH</h3>
@@ -865,9 +1064,8 @@ data-search="t3 t4 tsh thyroid thyroid profile">
 </div>
 
 
-<!-- 14 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="tsh thyroid stimulating hormone">
 
 <h3>TSH</h3>
@@ -877,9 +1075,8 @@ data-search="tsh thyroid stimulating hormone">
 </div>
 
 
-<!-- 15 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="crp c reactive protein">
 
 <h3>CRP</h3>
@@ -889,9 +1086,8 @@ data-search="crp c reactive protein">
 </div>
 
 
-<!-- 16 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="dengue ns1 igg igm dengue fever">
 
 <h3>Dengue</h3>
@@ -901,9 +1097,8 @@ data-search="dengue ns1 igg igm dengue fever">
 </div>
 
 
-<!-- 17 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="hiv human immunodeficiency virus">
 
 <h3>HIV</h3>
@@ -913,9 +1108,8 @@ data-search="hiv human immunodeficiency virus">
 </div>
 
 
-<!-- 18 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="hcv hepatitis c virus">
 
 <h3>HCV</h3>
@@ -925,9 +1119,8 @@ data-search="hcv hepatitis c virus">
 </div>
 
 
-<!-- 19 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="hbsag hepatitis b surface antigen hepatitis b">
 
 <h3>HBsAg</h3>
@@ -937,10 +1130,9 @@ data-search="hbsag hepatitis b surface antigen hepatitis b">
 </div>
 
 
-<!-- 20 -->
-
-<div class="price-card test-card"
-data-search="vdrl venereal disease research laboratory">
+<div
+class="price-card test-card"
+data-search="vdrl">
 
 <h3>VDRL</h3>
 <p>Venereal Disease Research Laboratory</p>
@@ -949,9 +1141,8 @@ data-search="vdrl venereal disease research laboratory">
 </div>
 
 
-<!-- 21 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="cue complete urine examination urine">
 
 <h3>CUE</h3>
@@ -961,9 +1152,8 @@ data-search="cue complete urine examination urine">
 </div>
 
 
-<!-- 22 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="upt urine pregnancy test pregnancy">
 
 <h3>UPT</h3>
@@ -973,10 +1163,9 @@ data-search="upt urine pregnancy test pregnancy">
 </div>
 
 
-<!-- 23 -->
-
-<div class="price-card test-card"
-data-search="grbs glucometer random blood sugar random sugar">
+<div
+class="price-card test-card"
+data-search="grbs glucometer random blood sugar">
 
 <h3>GRBS</h3>
 <p>Gluco Meter Random Blood Sugar</p>
@@ -985,9 +1174,8 @@ data-search="grbs glucometer random blood sugar random sugar">
 </div>
 
 
-<!-- 24 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="mp malarial parasite malaria">
 
 <h3>MP</h3>
@@ -997,9 +1185,8 @@ data-search="mp malarial parasite malaria">
 </div>
 
 
-<!-- 25 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="widal typhoid">
 
 <h3>Widal</h3>
@@ -1009,9 +1196,8 @@ data-search="widal typhoid">
 </div>
 
 
-<!-- 26 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="blood group blood grouping">
 
 <h3>Blood Group</h3>
@@ -1021,9 +1207,8 @@ data-search="blood group blood grouping">
 </div>
 
 
-<!-- 27 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="esr erythrocyte sedimentation rate">
 
 <h3>ESR</h3>
@@ -1033,9 +1218,8 @@ data-search="esr erythrocyte sedimentation rate">
 </div>
 
 
-<!-- 28 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="aso titer antistreptolysin o">
 
 <h3>ASO Titer</h3>
@@ -1045,9 +1229,8 @@ data-search="aso titer antistreptolysin o">
 </div>
 
 
-<!-- 29 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="ra factor rheumatoid factor">
 
 <h3>RA Factor</h3>
@@ -1057,9 +1240,8 @@ data-search="ra factor rheumatoid factor">
 </div>
 
 
-<!-- 30 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="pt inr prothrombin">
 
 <h3>PT INR</h3>
@@ -1069,21 +1251,19 @@ data-search="pt inr prothrombin">
 </div>
 
 
-<!-- 31 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="aptt activated partial thromboplastin">
 
 <h3>APTT</h3>
-<p>APTT Test</p>
+<p>APTT</p>
 <h2>₹500</h2>
 
 </div>
 
 
-<!-- 32 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="serum amylase amylase">
 
 <h3>Serum Amylase</h3>
@@ -1093,9 +1273,8 @@ data-search="serum amylase amylase">
 </div>
 
 
-<!-- 33 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="serum lipase lipase">
 
 <h3>Serum Lipase</h3>
@@ -1105,9 +1284,8 @@ data-search="serum lipase lipase">
 </div>
 
 
-<!-- 34 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="ecg electrocardiogram heart">
 
 <h3>ECG</h3>
@@ -1117,9 +1295,8 @@ data-search="ecg electrocardiogram heart">
 </div>
 
 
-<!-- 35 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="urine culture culture urine infection">
 
 <h3>Urine Culture</h3>
@@ -1129,9 +1306,8 @@ data-search="urine culture culture urine infection">
 </div>
 
 
-<!-- 36 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="stool culture stool">
 
 <h3>Stool Culture</h3>
@@ -1141,98 +1317,90 @@ data-search="stool culture stool">
 </div>
 
 
-<!-- 37 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="blood culture">
 
 <h3>Blood Culture</h3>
 <p>Blood Culture Test</p>
-<h2>₹1,000</h2>
+<h2>₹1000</h2>
 
 </div>
 
 
-<!-- 38 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="vit d vitamin d vitamin d3">
 
 <h3>Vit D Total</h3>
 <p>Vitamin D Total</p>
-<h2>₹1,500</h2>
+<h2>₹1500</h2>
 
 </div>
 
 
-<!-- 39 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="vitamin b12 b12">
 
 <h3>Vitamin B12</h3>
 <p>Vitamin B12 Test</p>
-<h2>₹1,000</h2>
+<h2>₹1000</h2>
 
 </div>
 
 
-<!-- 40 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="ca 125 ca125 cancer marker">
 
 <h3>CA 125</h3>
 <p>CA 125 Test</p>
-<h2>₹1,000</h2>
+<h2>₹1000</h2>
 
 </div>
 
 
-<!-- 41 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="health profile 1 health profile i health checkup">
 
 <h3>Health Profile - I</h3>
 <p>Complete Health Profile</p>
-<h2>₹1,500</h2>
+<h2>₹1500</h2>
 
 </div>
 
 
-<!-- 42 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="health profile 2 health profile ii health checkup">
 
 <h3>Health Profile - II</h3>
 <p>Advanced Health Profile</p>
-<h2>₹2,000</h2>
+<h2>₹2000</h2>
 
 </div>
 
 
-<!-- 43 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="infertility profile male male infertility">
 
 <h3>Infertility Profile (Male)</h3>
 <p>Male Infertility Profile</p>
-<h2>₹2,500</h2>
+<h2>₹2500</h2>
 
 </div>
 
 
-<!-- 44 -->
-
-<div class="price-card test-card"
+<div
+class="price-card test-card"
 data-search="infertility profile female female infertility">
 
 <h3>Infertility Profile (Female)</h3>
 <p>Female Infertility Profile</p>
-<h2>₹4,000</h2>
+<h2>₹4000</h2>
 
 </div>
 
@@ -1242,17 +1410,23 @@ data-search="infertility profile female female infertility">
 </section>
 
 
-<!-- ================= APPOINTMENT ================= -->
+<!-- =========================================================
+     APPOINTMENT
+========================================================= -->
 
-<section id="appointment" class="appointment">
+<section
+id="appointment"
+class="appointment">
 
 <h2 class="section-title">
 Book Appointment
 </h2>
 
+
 <form
 class="appointment-form"
 id="appointmentForm">
+
 
 <input
 type="text"
@@ -1260,171 +1434,34 @@ id="patientName"
 placeholder="Full Name"
 required>
 
+
 <input
 type="tel"
 id="patientPhone"
 placeholder="Mobile Number"
 maxlength="10"
+inputmode="numeric"
 required>
 
-<select
-id="patientTest"
-required>
 
-<option value="">
-Select Test / Package
-</option>
-
-<option>CBP</option>
-<option>HB %</option>
-<option>RBS</option>
-<option>FBS, PLBS</option>
-<option>Blood Urea</option>
-<option>Serum Creatinine</option>
-<option>Serum Bilirubin</option>
-<option>Serum Uric Acid</option>
-<option>Serum Calcium</option>
-<option>Serum Electrolytes</option>
-<option>Lipid Profile</option>
-<option>LFT</option>
-<option>T3 T4 TSH</option>
-<option>TSH</option>
-<option>CRP</option>
-<option>Dengue</option>
-<option>HIV</option>
-<option>HCV</option>
-<option>HBsAg</option>
-<option>VDRL</option>
-<option>CUE</option>
-<option>UPT</option>
-<option>GRBS</option>
-<option>MP</option>
-<option>Widal</option>
-<option>Blood Group</option>
-<option>ESR</option>
-<option>ASO Titer</option>
-<option>RA Factor</option>
-<option>PT INR</option>
-<option>APTT</option>
-<option>Serum Amylase</option>
-<option>Serum Lipase</option>
-<option>ECG</option>
-<option>Urine Culture</option>
-<option>Stool Culture</option>
-<option>Blood Culture</option>
-<option>Vit D Total</option>
-<option>Vitamin B12</option>
-<option>CA 125</option>
-<option>Health Profile - I</option>
-<option>Health Profile - II</option>
-<option>Infertility Profile (Male)</option>
-<option>Infertility Profile (Female)</option>
-<option>Home Sample Collection</option>
-
-</select>
+<!-- =========================================================
+     HIDDEN FIELD
+     IMPORTANT:
+     Existing script.js reads this field.
+========================================================= -->
 
 <input
-type="date"
-id="appointmentDate"
-required>
-
-<button
-type="button"
-class="btn whatsapp"
-onclick="bookAppointment()">
-
-Book Appointment on WhatsApp
-
-</button>
-
-</form>
-
-</section>
+type="hidden"
+id="patientTest"
+value="">
 
 
-<!-- ================= REVIEWS ================= -->
+<!-- =========================================================
+     MULTIPLE TEST SELECTION
+========================================================= -->
 
-<section class="reviews">
+<div class="multi-test-box">
 
-<h2 class="section-title">
-Patient Reviews
-</h2>
+<div class="multi-test-title">
 
-<div class="review-grid">
-
-<div class="review-card">
-
-⭐⭐⭐⭐⭐
-
-<h3>
-Excellent Service
-</h3>
-
-<p>
-Very fast reports and friendly staff.
-Highly recommended.
-</p>
-
-<h4>
-- Ramesh Kumar
-</h4>
-
-</div>
-
-
-<div class="review-card">
-
-⭐⭐⭐⭐⭐
-
-<h3>
-Best Diagnostic Centre
-</h3>
-
-<p>
-Affordable prices with accurate reports.
-Excellent experience.
-</p>
-
-<h4>
-- Lakshmi
-</h4>
-
-</div>
-
-
-<div class="review-card">
-
-⭐⭐⭐⭐⭐
-
-<h3>
-Professional Staff
-</h3>
-
-<p>
-Clean laboratory and quick report delivery.
-</p>
-
-<h4>
-- Srinivas
-</h4>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= GALLERY ================= -->
-
-<section class="gallery">
-
-<h2 class="section-title">
-Our Gallery
-</h2>
-
-<div class="gallery-grid">
-
-<img
-src="ARK DIAGNOSTIC CENTRE.jpeg"
-alt="ARK Diagn
+Select Test / Packages
