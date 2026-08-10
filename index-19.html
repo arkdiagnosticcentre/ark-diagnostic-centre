@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARK Diagnostic Centre | Kalwakurthy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:Poppins,Arial,sans-serif}
+.report-btn{background:#6a1b9a!important;color:#fff!important}.report-btn:hover{background:#4a148c!important}
+.patient-report-section{padding:55px 20px;background:#f4f8fc}.patient-report-card{max-width:1050px;margin:auto;padding:35px;background:#fff;border-radius:22px;box-shadow:0 8px 30px rgba(0,0,0,.08);display:flex;align-items:center;gap:28px;justify-content:space-between}.report-icon{width:75px;height:75px;border-radius:18px;background:#e8eaf6;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0}.report-content{flex:1}.report-content h2{margin:0 0 8px;color:#1565c0;font-size:26px}.report-content p{margin:0;color:#666;line-height:1.7}.report-button{display:inline-block;background:#1565c0;color:#fff;text-decoration:none;padding:14px 24px;border-radius:10px;font-weight:600;white-space:nowrap}
+.pricing{padding:60px 20px;background:#f7fbff}#searchBox{display:block;width:90%;max-width:900px;margin:0 auto 30px;padding:16px 20px;border:2px solid #1565c0;border-radius:12px;font-size:16px;font-family:Poppins,sans-serif;outline:none}.price-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}.price-card{background:#fff;padding:22px;border-radius:16px;box-shadow:0 5px 20px rgba(0,0,0,.07)}.price-card h3{color:#1565c0;margin:0 0 7px}.price-card p{color:#666}.price-card h2{color:#d32f2f;margin:10px 0 0}
+.multi-test-box{width:100%;max-width:1000px;margin:0 auto 20px;background:#fff;border:1px solid #d9e3ef;border-radius:15px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,.05)}.multi-test-title{font-size:20px;font-weight:700;color:#1565c0;margin-bottom:5px}.multi-test-help{font-size:13px;color:#666;margin-bottom:15px}.selected-tests{min-height:55px;background:#f4f8fc;border:1px solid #dce6f0;border-radius:10px;padding:14px;margin-bottom:15px}.selected-tests strong{color:#1565c0}.selected-test-item{display:flex;justify-content:space-between;gap:10px;background:#fff;border:1px solid #dce6f0;padding:8px 10px;border-radius:7px;margin:5px 0}.selected-test-item span:last-child{color:#d32f2f;font-weight:600}.total-box{margin-top:12px;padding:14px;background:#e8f5e9;border:2px solid #43a047;border-radius:10px;display:flex;justify-content:space-between;font-size:18px;font-weight:700;color:#1b5e20}.test-checkbox-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;max-height:520px;overflow-y:auto;padding:5px}.test-check{position:relative}.test-check input{position:absolute;opacity:0}.test-check label{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid #d5dce5;border-radius:10px;background:#fff;cursor:pointer;font-size:14px}.test-check input:checked+label{background:#e3f2fd;border:2px solid #1565c0;color:#0d47a1;font-weight:600}.test-check input:checked+label:before{content:"✓";color:#1565c0;font-weight:bold}.test-price{color:#d32f2f;font-weight:700;white-space:nowrap}
+.other-test-box{margin-top:18px;padding:15px;background:#fff8e1;border:1px solid #ffcc80;border-radius:10px}.other-test-title{color:#e65100;font-weight:700;margin-bottom:8px}#otherTest{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-family:Poppins,sans-serif;font-size:14px;resize:vertical;min-height:55px}.clear-tests{margin-top:12px;background:#757575;color:#fff;border:0;padding:10px 16px;border-radius:8px;cursor:pointer}
+.appointment-form{max-width:1000px;margin:auto}.appointment-form input{width:100%;padding:14px 15px;margin-bottom:15px;border:1px solid #ccd6e0;border-radius:10px;font-size:15px;font-family:Poppins,sans-serif}.date-label{display:block;margin-bottom:8px;color:#1565c0;font-weight:600}.date-help{display:block;margin-top:-8px;margin-bottom:15px;color:#777;font-size:12px}.book-final-btn{width:100%;padding:15px;border:0;border-radius:10px;background:#25D366;color:#fff;font-size:16px;font-weight:700;cursor:pointer}.book-final-btn:disabled{opacity:.6}.booking-message{text-align:center;margin-top:15px;font-weight:600}
+@media(max-width:700px){.patient-report-card{flex-direction:column;text-align:center;padding:28px 20px}.report-button{width:100%;text-align:center}.test-checkbox-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="logo">🧪 <span>ARK Diagnostic Centre</span></div>
+<nav>
+<a href="#">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#packages">Packages</a><a href="#pricing">Tests & Prices</a><a href="report.html">📄 Patient Reports</a><a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-text">
+<h1>Advanced Diagnostic Care Closer To You</h1>
+<p>Accurate • Affordable • Trusted Diagnostic Services in Kalwakurthy. Blood Tests, Thyroid, Diabetes, LFT, KFT, Lipid Profile and Home Sample Collection.</p>
+<div class="buttons">
+<a href="tel:+919398908582" class="btn call">📞 Call Now</a>
+<a href="https://wa.me/919398908582" class="btn whatsapp" target="_blank">💬 WhatsApp</a>
+<a href="report.html" class="btn report-btn">📄 View Patient Report</a>
+</div>
+</div>
+<div class="hero-image"><img src="ARK DIAGNOSTIC CENTRE.jpeg" alt="ARK Diagnostic Centre Kalwakurthy"></div>
+</section>
+
+<section class="stats">
+<div class="card"><h2>500+</h2><p>Diagnostic Tests</p></div><div class="card"><h2>365</h2><p>Days Open</p></div><div class="card"><h2>100%</h2><p>Accurate Reports</p></div><div class="card"><h2>Home</h2><p>Sample Collection</p></div>
+</section>
+
+<section class="patient-report-section">
+<div class="patient-report-card"><div class="report-icon">📄</div><div class="report-content"><h2>Download Your Lab Report</h2><p>Your laboratory report is available online. Enter your registered Patient ID to securely search, view and download your diagnostic report.</p></div><a href="report.html" class="report-button">View My Report →</a></div>
+</section>
+
+<a href="https://wa.me/919398908582" class="floating-whatsapp" target="_blank">💬</a>
+
+<section id="about" class="about">
+<div class="about-image"><img src="Interior.jpeg" alt="ARK Diagnostic Centre Laboratory Interior"></div>
+<div class="about-content"><h2>About ARK Diagnostic Centre</h2><p>ARK Diagnostic Centre is one of the trusted diagnostic laboratories in Kalwakurthy, offering accurate, affordable, and timely diagnostic services with modern laboratory equipment and experienced professionals.</p><ul><li>✔ Accurate Laboratory Reports</li><li>✔ Experienced Technicians</li><li>✔ Affordable Test Prices</li><li>✔ Home Sample Collection</li><li>✔ Same Day Report Delivery</li><li>✔ 365 Days Open</li></ul></div>
+</section>
+
+<section class="why"><h2 class="section-title">Why Choose ARK Diagnostic Centre?</h2><div class="why-grid">
+<div class="why-card"><h3>🧪 Accurate Reports</h3><p>High quality diagnostic testing with reliable and accurate reports.</p></div>
+<div class="why-card"><h3>👨‍⚕️ Experienced Staff</h3><p>Professional and friendly laboratory technicians.</p></div>
+<div class="why-card"><h3>🏠 Home Sample Collection</h3><p>Convenient blood sample collection at your home.</p></div>
+<div class="why-card"><h3>⚡ Fast Reports</h3><p>Most reports are delivered on the same day.</p></div>
+</div></section>
+
+<section id="services" class="services"><h2 class="section-title">Our Diagnostic Services</h2><div class="service-grid">
+<div class="service-card"><h3>🩸 Blood Tests</h3><p>CBP, HB, RBC, Blood Group, ESR and routine blood investigations.</p></div>
+<div class="service-card"><h3>🩺 Diabetes Tests</h3><p>FBS, PLBS, RBS, GRBS and diabetes screening.</p></div>
+<div class="service-card"><h3>🧬 Thyroid Tests</h3><p>T3, T4, TSH and complete thyroid profile.</p></div>
+<div class="service-card"><h3>🫀 Lipid Profile</h3><p>Complete cholesterol and lipid screening.</p></div>
+<div class="service-card"><h3>🧪 Liver Function Test</h3><p>LFT and liver-related investigations.</p></div>
+<div class="service-card"><h3>💧 Kidney Function Test</h3><p>Blood Urea, Creatinine and kidney-related tests.</p></div>
+<div class="service-card"><h3>🦠 Infection Tests</h3><p>Dengue, Malaria, Widal, CRP, HIV, HCV, HBsAg and other tests.</p></div>
+<div class="service-card"><h3>🏠 Home Sample Collection</h3><p>Convenient blood sample collection at your home.</p></div>
+</div></section>
+
+<section id="packages" class="packages"><h2 class="section-title">Health Packages</h2><div class="package-grid">
+<div class="package-card"><span class="badge">POPULAR</span><h3>Health Profile - I</h3><p>Complete Health Checkup Package</p><h2>₹1,500</h2><a href="#appointment" class="btn call">Book Now</a></div>
+<div class="package-card"><span class="badge">BEST VALUE</span><h3>Health Profile - II</h3><p>Advanced Health Checkup Package</p><h2>₹2,000</h2><a href="#appointment" class="btn call">Book Now</a></div>
+<div class="package-card"><span class="badge">SPECIAL</span><h3>Infertility Profile - Male</h3><p>Male Infertility Profile</p><h2>₹2,500</h2><a href="#appointment" class="btn call">Book Now</a></div>
+<div class="package-card"><span class="badge">SPECIAL</span><h3>Infertility Profile - Female</h3><p>Female Infertility Profile</p><h2>₹4,000</h2><a href="#appointment" class="btn call">Book Now</a></div>
+</div></section>
+
+<section id="pricing" class="pricing">
+<h2 class="section-title">Search Test Prices</h2><p style="text-align:center;color:#666">Search any test by name, abbreviation or description.</p>
+<input id="searchBox" type="text" placeholder="🔍 Search Test Name...">
+<div id="priceGrid" class="price-grid">
+<div class="price-card test-card" data-search="cbp complete blood picture complete blood count blood"><h3>CBP</h3><p>Complete Blood Picture</p><h2>₹250</h2></div>
+<div class="price-card test-card" data-search="hb hemoglobin"><h3>HB %</h3><p>Hemoglobin</p><h2>₹100</h2></div>
+<div class="price-card test-card" data-search="rbs random blood sugar"><h3>RBS</h3><p>Random Blood Sugar</p><h2>₹50</h2></div>
+<div class="price-card test-card" data-search="fbs plbs ppbs fasting post lunch blood sugar"><h3>FBS, PLBS</h3><p>Fasting / Post Lunch Blood Sugar</p><h2>₹100</h2></div>
+<div class="price-card test-card" data-search="blood urea urea"><h3>Blood Urea</h3><p>Blood Urea Test</p><h2>₹200</h2></div>
+<div class="price-card test-card" data-search="serum creatinine creatinine kidney"><h3>Serum Creatinine</h3><p>Creatinine Test</p><h2>₹200</h2></div>
+<div class="price-card test-card" data-search="serum bilirubin bilirubin liver"><h3>Serum Bilirubin</h3><p>Bilirubin Test</p><h2>₹150</h2></div>
+<div class="price-card test-card" data-search="serum uric acid uric acid"><h3>Serum Uric Acid</h3><p>Uric Acid Test</p><h2>₹300</h2></div>
+<div class="price-card test-card" data-search="serum calcium calcium"><h3>Serum Calcium</h3><p>Calcium Test</p><h2>₹200</h2></div>
+<div class="price-card test-card" data-search="serum electrolytes electrolytes sodium potassium"><h3>Serum Electrolytes</h3><p>Electrolytes Test</p><h2>₹500</h2></div>
+<div class="price-card test-card" data-search="lipid profile cholesterol"><h3>Lipid Profile</h3><p>Complete Lipid Profile</p><h2>₹500</h2></div>
+<div class="price-card test-card" data-search="lft liver function test liver"><h3>LFT</h3><p>Liver Function Test</p><h2>₹500</h2></div>
+<div class="price-card test-card" data-search="t3 t4 tsh thyroid thyroid profile"><h3>T3 T4 TSH</h3><p>Thyroid Profile</p><h2>₹500</h2></div>
+<div class="price-card test-card" data-search="tsh thyroid stimulating hormone"><h3>TSH</h3><p>Thyroid Stimulating Hormone</p><h2>₹300</h2></div>
+<div class="price-card test-card" data-search="crp c reactive protein"><h3>CRP</h3><p>C-Reactive Protein</p><h2>₹250</h2></div>
+<div class="price-card test-card" data-search="dengue ns1 igg igm dengue fever"><h3>Dengue</h3><p>NS1, IgG, IgM</p><h2>₹800</h2></div>
+<div class="price-card test-card" data-search="hiv human immunodeficiency virus"><h3>HIV</h3><p>Human Immunodeficiency Virus</p><h2>₹300</h2></div>
+<div class="price-card test-card" data-search="hcv hepatitis c virus"><h3>HCV</h3><p>Hepatitis C Virus</p><h2>₹300</h2></div>
+<div class="price-card test-card" data-search="hbsag hepatitis b surface antigen hepatitis b"><h3>HBsAg</h3><p>Hepatitis B Surface Antigen</p><h2>₹300</h2></div>
+<div class="price-card test-card" data-search="vdrl venereal disease"><h3>VDRL</h3><p>Venereal Disease Research Laboratory</p><h2>₹250</h2></div>
+<div class="price-card test-card" data-search="cue complete urine examination urine"><h3>CUE</h3><p>Complete Urine Examination</p><h2>₹150</h2></div>
+<div class="price-card test-card" data-search="upt urine pregnancy test pregnancy"><h3>UPT</h3><p>Urine Pregnancy Test</p><h2>₹100</h2></div>
+<div class="price-card test-card" data-search="grbs glucometer random blood sugar"><h3>GRBS</h3><p>Gluco Meter Random Blood Sugar</p><h2>₹100</h2></div>
+<div class="price-card test-card" data-search="mp malarial parasite malaria"><h3>MP</h3><p>Malarial Parasite Test</p><h2>₹200</h2></div>
+<div class="price-card test-card" data-search="widal typhoid"><h3>Widal</h3><p>Widal Test</p><h2>₹100</h2></div>
+<div class="price-card test-card" data-search="blood group blood grouping"><h3>Blood Group</h3><p>Blood Group Test</p><h2>₹50</h2></div>
+<div class="price-card test-card" data-search="esr erythrocyte sedimentation rate"><h3>ESR</h3><p>Erythrocyte Sedimentation Rate</p><h2>₹200</h2></div>
+<div class="price-card test-card" data-search="aso titer antistreptolysin o"><h3>ASO Titer</h3><p>Antistreptolysin O</p><h2>₹300</h2></div>
+<div class="price-card test-card" data-search="ra factor rheumatoid factor rheumatism"><h3>RA Factor</h3><p>Rheumatoid Factor</p><h2>₹300</h2></div>
+<div class="price-card test-card" data-search="pt inr prothrombin time"><h3>PT INR</h3><p>PT / INR Test</p><h2>₹500</h2></div>
+<div class="price-card test-card" data-search="aptt activated partial thromboplastin"><h3>APTT</h3><p>APTT</p><h2>₹500</h2></div>
+<div class="price-card test-card" data-search="serum amylase amylase"><h3>Serum Amylase</h3><p>Amylase Test</p><h2>₹600</h2></div>
+<div class="price-card test-card" data-search="serum lipase lipase"><h3>Serum Lipase</h3><p>Lipase Test</p><h2>₹600</h2></div>
+<div class="price-card test-card" data-search="ecg electrocardiogram heart"><h3>ECG</h3><p>Electrocardiogram</p><h2>₹250</h2></div>
+<div class="price-card test-card" data-search="urine culture culture urine infection"><h3>Urine Culture</h3><p>Urine Culture Test</p><h2>₹800</h2></div>
+<div class="price-card test-card" data-search="stool culture stool"><h3>Stool Culture</h3><p>Stool Culture Test</p><h2>₹800</h2></div>
+<div class="price-card test-card" data-search="blood culture culture blood"><h3>Blood Culture</h3><p>Blood Culture Test</p><h2>₹1,000</h2></div>
+<div class="price-card test-card" data-search="vit d vitamin d vitamin d3"><h3>Vit D Total</h3><p>Vitamin D Total</p><h2>₹1,500</h2></div>
+<div class="price-card test-card" data-search="vitamin b12 b12"><h3>Vitamin B12</h3><p>Vitamin B12 Test</p><h2>₹1,000</h2></div>
+<div class="price-card test-card" data-search="ca 125 ca125 cancer marker"><h3>CA 125</h3><p>CA 125 Test</p><h2>₹1,000</h2></div>
+<div class="price-card test-card" data-search="health profile 1 health profile i health checkup"><h3>Health Profile - I</h3><p>Complete Health Profile</p><h2>₹1,500</h2></div>
+<div class="price-card test-card" data-search="health profile 2 health profile ii health checkup"><h3>Health Profile - II</h3><p>Advanced Health Profile</p><h2>₹2,000</h2></div>
+<div class="price-card test-card" data-search="infertility profile male male infertility"><h3>Infertility Profile (Male)</h3><p>Male Infertility Profile</p><h2>₹2,500</h2></div>
+<div class="price-card test-card" data-search="infertility profile female female infertility"><h3>Infertility Profile (Female)</h3><p>Female Infertility Profile</p><h2>₹4,000</h2></div>
+</div>
+</section>
+
+<section id="appointment" class="appointment">
+<h2 class="section-title">Book Appointment</h2>
+<form class="appointment-form" id="appointmentForm">
+<input type="text" id="patientName" placeholder="Full Name" autocomplete="name" required>
+<input type="tel" id="patientPhone" placeholder="Mobile Number" maxlength="10" inputmode="numeric" autocomplete="tel" required>
+<input type="hidden" id="patientTest">
+
+<div class="multi-test-box">
+<div class="multi-test-title">🧪 Select Test / Packages</div>
+<div class="multi-test-help">Select multiple tests. The amount will be calculated automatically.</div>
+<div id="selectedTests" class="selected-tests"><strong>Selected Tests:</strong><div>No tests selected yet.</div></div>
+<div class="total-box"><span>Total Amount</span><span id="totalAmount">₹0</span></div>
+
+<div class="test-checkbox-grid">
+<div class="test-check"><input id="t1" class="test-option" type="checkbox" value="CBP" data-price="250"><label for="t1"><span>CBP</span><span class="test-price">₹250</span></label></div>
+<div class="test-check"><input id="t2" class="test-option" type="checkbox" value="HB %" data-price="100"><label for="t2"><span>HB %</span><span class="test-price">₹100</span></label></div>
+<div class="test-check"><input id="t3" class="test-option" type="checkbox" value="RBS" data-price="50"><label for="t3"><span>RBS</span><span class="test-price">₹50</span></label></div>
+<div class="test-check"><input id="t4" class="test-option" type="checkbox" value="FBS, PLBS" data-price="100"><label for="t4"><span>FBS, PLBS</span><span class="test-price">₹100</span></label></div>
+<div class="test-check"><input id="t5" class="test-option" type="checkbox" value="Blood Urea" data-price="200"><label for="t5"><span>Blood Urea</span><span class="test-price">₹200</span></label></div>
+<div class="test-check"><input id="t6" class="test-option" type="checkbox" value="Serum Creatinine" data-price="200"><label for="t6"><span>Serum Creatinine</span><span class="test-price">₹200</span></label></div>
+<div class="test-check"><input id="t7" class="test-option" type="checkbox" value="Serum Bilirubin" data-price="150"><label for="t7"><span>Serum Bilirubin</span><span class="test-price">₹150</span></label></div>
+<div class="test-check"><input id="t8" class="test-option" type="checkbox" value="Serum Uric Acid" data-price="300"><label for="t8"><span>Serum Uric Acid</span><span class="test-price">₹300</span></label></div>
+<div class="test-check"><input id="t9" class="test-option" type="checkbox" value="Serum Calcium" data-price="200"><label for="t9"><span>Serum Calcium</span><span class="test-price">₹200</span></label></div>
+<div class="test-check"><input id="t10" class="test-option" type="checkbox" value="Serum Electrolytes" data-price="500"><label for="t10"><span>Serum Electrolytes</span><span class="test-price">₹500</span></label></div>
+<div class="test-check"><input id="t11" class="test-option" type="checkbox" value="Lipid Profile" data-price="500"><label for="t11"><span>Lipid Profile</span><span class="test-price">₹500</span></label></div>
+<div class="test-check"><input id="t12" class="test-option" type="checkbox" value="LFT" data-price="500"><label for="t12"><span>LFT</span><span class="test-price">₹500</span></label></div>
+<div class="test-check"><input id="t13" class="test-option" type="checkbox" value="T3 T4 TSH" data-price="500"><label for="t13"><span>T3 T4 TSH</span><span class="test-price">₹500</span></label></div>
+<div class="test-check"><input id="t14" class="test-option" type="checkbox" value="TSH" data-price="300"><label for="t14"><span>TSH</span><span class="test-price">₹300</span></label></div>
+<div class="test-check"><input id="t15" class="test-option" type="checkbox" value="CRP" data-price="250"><label for="t15"><span>CRP</span><span class="test-price">₹250</span></label></div>
+<div class="test-check"><input id="t16" class="test-option" type="checkbox" value="Dengue" data-price="800"><label for="t16"><span>Dengue</span><span class="test-price">₹800</span></label></div>
+<div class="test-check"><input id="t17" class="test-option" type="checkbox" value="HIV" data-price="300"><label for="t17"><span>HIV</span><span class="test-price">₹300</span></label></div>
+<div class="test-check"><input id="t18" class="test-option" type="checkbox" value="HCV" data-price="300"><label for="t18"><span>HCV</span><span class="test-price">₹300</span></label></div>
+<div class="test-check"><input id="t19" class="test-option" type="checkbox" value="HBsAg" data-price="300"><label for="t19"><span>HBsAg</span><span class="test-price">₹300</span></label></div>
+<div class="test-check"><input id="t20" class="test-option" type="checkbox" value="VDRL" data-price="250"><label for="t20"><span>VDRL</span><span class="test-price">₹250</span></label></div>
+<div class="test-check"><input id="t21" class="test-option" type="checkbox" value="CUE" data-price="150"><label for="t21"><span>CUE</span><span class="test-price">₹150</span></label></div>
+<div class="test-check"><input id="t22" class="test-option" type="checkbox" value="UPT" data-price="100"><label for="t22"><span>UPT</span><span class="test-price">₹100</span></label></div>
+<div class="test-check"><input id="t23" class="test-option" type="checkbox" value="GRBS" data-price="100"><label for="t23"><span>GRBS</span><span class="test-price">₹100</span></label></div>
+<div class="test-check"><input id="t24" class="test-option" type="checkbox" value="MP" data-price="200"><label for="t24"><span>MP</span><span class="test-price">₹200</span></label></div>
+<div class="test-check"><input id="t25" class="test-option" type="checkbox" value="Widal" data-price="100"><label for="t25"><span>Widal</span><span class="test-price">₹100</span></label></div>
+<div class="test-check"><input id="t26" class="test-option" type="checkbox" value="Blood Group" data-price="50"><label for="t26"><span>Blood Group</span><span class="test-price">₹50</span></label></div>
+<div class="test-check"><input id="t27" class="test-option" type="checkbox" value="ESR" data-price="200"><label for="t27"><span>ESR</span><span class="test-price">₹200</span></label></div>
+<div class="test-check"><input id="t28" class="test-option" type="checkbox" value="ASO Titer" data-price="300"><label for="t28"><span>ASO Titer</span><span class="test-price">₹300</span></label></div>
+<div class="test-check"><input id="t29" class="test-option" type="checkbox" value="RA Factor" data-price="300"><label for="t29"><span>RA Factor</span><span class="test-price">₹300</span></label></div>
+<div class="test-check"><input id="t30" class="test-option" type="checkbox" value="PT INR" data-price="500"><label for="t30"><span>PT INR</span><span class="test-price">₹500</span></label></div>
+<div class="test-check"><input id="t31" class="test-option" type="checkbox" value="APTT" data-price="500"><label for="t31"><span>APTT</span><span class="test-price">₹500</span></label></div>
+<div class="test-check"><input id="t32" class="test-option" type="checkbox" value="Serum Amylase" data-price="600"><label for="t32"><span>Serum Amylase</span><span class="test-price">₹600</span></label></div>
+<div class="test-check"><input id="t33" class="test-option" type="checkbox" value="Serum Lipase" data-price="600"><label for="t33"><span>Serum Lipase</span><span class="test-price">₹600</span></label></div>
+<div class="test-check"><input id="t34" class="test-option" type="checkbox" value="ECG" data-price="250"><label for="t34"><span>ECG</span><span class="test-price">₹250</span></label></div>
+<div class="test-check"><input id="t35" class="test-option" type="checkbox" value="Urine Culture" data-price="800"><label for="t35"><span>Urine Culture</span><span class="test-price">₹800</span></label></div>
+<div class="test-check"><input id="t36" class="test-option" type="checkbox" value="Stool Culture" data-price="800"><label for="t36"><span>Stool Culture</span><span class="test-price">₹800</span></label></div>
+<div class="test-check"><input id="t37" class="test-option" type="checkbox" value="Blood Culture" data-price="1000"><label for="t37"><span>Blood Culture</span><span class="test-price">₹1,000</span></label></div>
+<div class="test-check"><input id="t38" class="test-option" type="checkbox" value="Vit D Total" data-price="1500"><label for="t38"><span>Vit D Total</span><span class="test-price">₹1,500</span></label></div>
+<div class="test-check"><input id="t39" class="test-option" type="checkbox" value="Vitamin B12" data-price="1000"><label for="t39"><span>Vitamin B12</span><span class="test-price">₹1,000</span></label></div>
+<div class="test-check"><input id="t40" class="test-option" type="checkbox" value="CA 125" data-price="1000"><label for="t40"><span>CA 125</span><span class="test-price">₹1,000</span></label></div>
+<div class="test-check"><input id="t41" class="test-option" type="checkbox" value="Health Profile - I" data-price="1500"><label for="t41"><span>Health Profile - I</span><span class="test-price">₹1,500</span></label></div>
+<div class="test-check"><input id="t42" class="test-option" type="checkbox" value="Health Profile - II" data-price="2000"><label for="t42"><span>Health Profile - II</span><span class="test-price">₹2,000</span></label></div>
+<div class="test-check"><input id="t43" class="test-option" type="checkbox" value="Infertility Profile (Male)" data-price="2500"><label for="t43"><span>Infertility Profile (Male)</span><span class="test-price">₹2,500</span></label></div>
+<div class="test-check"><input id="t44" class="test-option" type="checkbox" value="Infertility Profile (Female)" data-price="4000"><label for="t44"><span>Infertility Profile (Female)</span><span class="test-price">₹4,000</span></label></div>
+</div>
+
+<div class="other-test-box">
+<div class="other-test-title">➕ Other / Special Test</div>
+<p style="font-size:13px;color:#666">If the required test is not listed, enter the test name. Our staff will confirm availability and price.</p>
+<textarea id="otherTest" placeholder="Example: PSA, Ferritin, Vitamin D3, etc."></textarea>
+</div>
+<button type="button" class="clear-tests" id="clearTests">Clear Selected Tests</button>
+</div>
+
+<label for="appointmentDate" class="date-label">📅 Appointment Date</label>
+<input type="date" id="appointmentDate" required>
+<span class="date-help">Please select the date on which you would like to visit ARK Diagnostic Centre.</span>
+<button type="button" id="bookAppointmentButton" class="book-final-btn">💬 Book Appointment on WhatsApp</button>
+<div id="bookingMessage" class="booking-message"></div>
+</form>
+</section>
+
+<section class="reviews"><h2 class="section-title">Patient Reviews</h2><div class="review-grid">
+<div class="review-card">⭐⭐⭐⭐⭐<h3>Excellent Service</h3><p>Very fast reports and friendly staff. Highly recommended.</p><h4>- Ramesh Kumar</h4></div>
+<div class="review-card">⭐⭐⭐⭐⭐<h3>Best Diagnostic Centre</h3><p>Affordable prices with accurate reports. Excellent experience.</p><h4>- Lakshmi</h4></div>
+<div class="review-card">⭐⭐⭐⭐⭐<h3>Professional Staff</h3><p>Clean laboratory and quick report delivery.</p><h4>- Srinivas</h4></div>
+</div></section>
+
+<section class="gallery"><h2 class="section-title">Our Gallery</h2><div class="gallery-grid">
+<img src="ARK DIAGNOSTIC CENTRE.jpeg" alt="ARK Diagnostic Centre Front View">
+<img src="Interior.jpeg" alt="ARK Diagnostic Centre Laboratory Interior">
+<img src="Sample Collection Area.jpeg" alt="ARK Diagnostic Centre Sample Collection Area">
+<img src="Waiting Area.jpeg" alt="ARK Diagnostic Centre Waiting Area">
+<img src="Printing Place.jpeg" alt="ARK Diagnostic Centre">
+</div></section>
+
+<section class="faq"><h2 class="section-title">Frequently Asked Questions</h2>
+<div class="faq-box"><h3>How can I book a test?</h3><p>Select one or more tests, choose your appointment date and click Book Appointment on WhatsApp.</p></div>
+<div class="faq-box"><h3>Can I select multiple tests?</h3><p>Yes. You can select multiple tests in one appointment. The total amount is calculated automatically.</p></div>
+<div class="faq-box"><h3>What if my required test is not listed?</h3><p>Use the Other / Special Test box. Our staff will confirm availability and price.</p></div>
+<div class="faq-box"><h3>Is Home Sample Collection available?</h3><p>Yes. Home sample collection is available in Kalwakurthy.</p></div>
+</section>
+
+<section id="contact" class="contact"><h2 class="section-title">Contact Us</h2><div class="contact-grid">
+<div><h3>ARK Diagnostic Centre</h3><p>Bus Stand Back Side,<br>Beside Dr. Vijay Kumar Clinic,<br>Subhash Nagar,<br>Kalwakurthy,<br>Nagarkurnool District.</p><p>📞 9398908582</p><p>📧 arkdiagnosticskalwakurthy@gmail.com</p><a href="https://wa.me/919398908582" class="btn whatsapp" target="_blank">WhatsApp Us</a></div>
+<div><iframe src="https://www.google.com/maps?q=Kalwakurthy&output=embed" width="100%" height="350" style="border:0;border-radius:20px" loading="lazy"></iframe></div>
+</div></section>
+
+<footer><h2>ARK Diagnostic Centre</h2><p>Bus Stand Back Side,<br>Beside Dr. Vijay Kumar Clinic,<br>Subhash Nagar,<br>Kalwakurthy.</p><p>📞 9398908582</p></footer>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+initializeApp({
+apiKey:"AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFlCprlQg",
+authDomain:"ark-diagnostic-centre.firebaseapp.com",
+projectId:"ark-diagnostic-centre",
+storageBucket:"ark-diagnostic-centre.firebasestorage.app",
+messagingSenderId:"238286336140",
+appId:"1:238286336140:web:26210cbdcaf290f3a00ba9",
+measurementId:"G-0BQ292SWKD"
+});
+
+const options=[...document.querySelectorAll(".test-option")];
+const selectedBox=document.getElementById("selectedTests");
+const totalBox=document.getElementById("totalAmount");
+const other=document.getElementById("otherTest");
+const hidden=document.getElementById("patientTest");
+const date=document.getElementById("appointmentDate");
+const message=document.getElementById("bookingMessage");
+const button=document.getElementById("bookAppointmentButton");
+
+function today(){
+const d=new Date();
+return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+date.min=today();
+
+function safe(v){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+
+function update(){
+const picked=options.filter(x=>x.checked);
+let total=0;
+let html="<strong>Selected Tests:</strong>";
+if(!picked.length) html+="<div>No tests selected yet.</div>";
+picked.forEach(x=>{const p=+x.dataset.price||0;total+=p;html+=`<div class="selected-test-item"><span>${safe(x.value)}</span><span>₹${p.toLocaleString("en-IN")}</span></div>`});
+if(other.value.trim()) html+=`<div class="selected-test-item"><span>Other / Special: ${safe(other.value.trim())}</span><span>Price to be confirmed</span></div>`;
+selectedBox.innerHTML=html;
+totalBox.textContent="₹"+total.toLocaleString("en-IN");
+const names=picked.map(x=>x.value);
+if(other.value.trim()) names.push("Other / Special Test: "+other.value.trim());
+hidden.value=names.join(", ");
+}
+options.forEach(x=>x.addEventListener("change",update));
+other.addEventListener("input",update);
+document.getElementById("clearTests").onclick=()=>{options.forEach(x=>x.checked=false);other.value="";update()};
+
+document.getElementById("searchBox").addEventListener("input",function(){
+const q=this.value.toLowerCase().trim();
+document.querySelectorAll(".test-card").forEach(c=>c.style.display=(c.dataset.search||c.textContent).toLowerCase().includes(q)?"":"none");
+});
+
+button.onclick=async()=>{
+const name=document.getElementById("patientName").value.trim();
+const phone=document.getElementById("patientPhone").value.trim();
+const picked=options.filter(x=>x.checked);
+const otherValue=other.value.trim();
+if(!name){alert("Please enter patient name.");return}
+if(!/^[0-9]{10}$/.test(phone)){alert("Please enter a valid 10-digit mobile number.");return}
+if(!picked.length&&!otherValue){alert("Please select at least one test or enter an Other / Special Test.");return}
+if(!date.value){alert("Please select Appointment Date.");return}
+
+let total=0;picked.forEach(x=>total+=+x.dataset.price||0);
+const names=picked.map(x=>x.value);
+if(otherValue)names.push("Other / Special Test: "+otherValue);
+const tests=names.join(", ");
+
+button.disabled=true;button.textContent="Saving Appointment...";message.style.color="#1565c0";message.textContent="Please wait...";
+
+try{
+const r=await fetch("https://firestore.googleapis.com/v1/projects/ark-diagnostic-centre/databases/(default)/documents/appointments",{
+method:"POST",headers:{"Content-Type":"application/json"},
+body:JSON.stringify({fields:{
+name:{stringValue:name},phone:{stringValue:phone},test:{stringValue:tests},date:{stringValue:date.value},
+totalAmount:{integerValue:String(total)},otherTest:{stringValue:otherValue},status:{stringValue:"Pending"},createdAt:{timestampValue:new Date().toISOString()}
+}})
+});
+if(!r.ok)throw new Error(await r.text());
+
+const wa=`Hello ARK Diagnostic Centre,
+
+I would like to book an appointment.
+
+Patient Name: ${name}
+Mobile Number: ${phone}
+
+Selected Tests:
+${names.map((x,i)=>`${i+1}. ${x}`).join("
+")}
+
+Total Amount:
+₹${total.toLocaleString("en-IN")}${otherValue?"
+
+Note: Other / Special test price will be confirmed by ARK Diagnostic Centre.":""}
+
+Appointment Date:
+${date.value}
+
+Please confirm my appointment.
+
+Thank you.`;
+message.style.color="#2e7d32";message.textContent="Appointment saved successfully. Opening WhatsApp...";
+setTimeout(()=>location.href="https://wa.me/919398908582?text="+encodeURIComponent(wa),500);
+}catch(e){console.error(e);message.style.color="#d32f2f";message.textContent="Appointment could not be saved. Please try again.";alert("Appointment could not be saved. Please try again.")}
+finally{button.disabled=false;button.textContent="💬 Book Appointment on WhatsApp"}
+};
+update();
+</script>
+</body>
+</html>
