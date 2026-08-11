@@ -463,18 +463,28 @@
         });
 
 
-      } catch (error) {
+     } catch (error) {
 
-        console.error(
-          "Report search error:",
-          error
-        );
+  console.error("Report search error:", error);
 
-        message.style.color = "#d32f2f";
+  message.style.color = "#d32f2f";
 
-        message.textContent =
-          error.message ||
-          "Unable to load reports. Please try again.";
+  let errorMessage = "Unable to load reports. Please try again.";
+
+  if (error instanceof Error) {
+    errorMessage = error.message;
+  } else if (typeof error === "string") {
+    errorMessage = error;
+  } else if (error && typeof error === "object") {
+    errorMessage =
+      error.error ||
+      error.message ||
+      JSON.stringify(error);
+  }
+
+  message.textContent = errorMessage;
+
+}
 
       } finally {
 
