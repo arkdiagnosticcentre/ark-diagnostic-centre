@@ -1,1135 +1,2415 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ARK Diagnostic Centre - Admin</title>
+<title>ARK Diagnostic Centre | Kalwakurthy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 <style>
-body{
-  font-family:Arial,sans-serif;
-  background:#f4f8fc;
-  margin:0;
-  padding:20px;
+
+/* =========================================================
+   PATIENT REPORT
+========================================================= */
+
+.report-btn{
+    background:#6a1b9a !important;
+    color:white !important;
 }
 
-h1{
-  text-align:center;
-  color:#1565c0;
+.report-btn:hover{
+    background:#4a148c !important;
 }
 
-h2{text-align:center;}
-
-.login-box{
-  max-width:400px;
-  margin:60px auto;
-  background:white;
-  padding:30px;
-  border-radius:15px;
-  box-shadow:0 4px 15px rgba(0,0,0,.1);
+.patient-report-section{
+    padding:55px 20px;
+    background:#f4f8fc;
 }
 
-.login-box input{
-  width:100%;
-  box-sizing:border-box;
-  padding:13px;
-  margin:8px 0;
-  border:1px solid #ccc;
-  border-radius:8px;
-  font-size:16px;
+.patient-report-card{
+    max-width:1050px;
+    margin:auto;
+    padding:35px;
+    background:white;
+    border-radius:22px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+
+    display:flex;
+    align-items:center;
+    gap:28px;
+    justify-content:space-between;
 }
 
-button{
-  padding:10px 14px;
-  border:none;
-  border-radius:8px;
-  background:#1565c0;
-  color:white;
-  cursor:pointer;
-  margin:2px;
+.report-icon{
+    width:75px;
+    height:75px;
+    border-radius:18px;
+    background:#e8eaf6;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+    flex-shrink:0;
 }
 
-button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+.report-content{
+    flex:1;
 }
 
-.login-button{
-  width:100%;
-  margin-top:10px;
+.report-content h2{
+    margin:0 0 8px;
+    color:#1565c0;
+    font-size:26px;
 }
 
-.logout{
-  display:block;
-  margin:10px auto 20px;
-  background:#d32f2f;
+.report-content p{
+    margin:0;
+    color:#666;
+    line-height:1.7;
 }
 
-#loginMessage{
-  text-align:center;
-  color:red;
-  margin-top:15px;
+.report-button{
+    display:inline-block;
+    background:#1565c0;
+    color:white;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:10px;
+    font-weight:600;
+    white-space:nowrap;
 }
 
-.dashboard{
-  max-width:1250px;
-  margin:auto;
-  background:white;
-  padding:20px;
-  border-radius:15px;
-  box-shadow:0 4px 15px rgba(0,0,0,.1);
-  overflow-x:auto;
+.report-button:hover{
+    background:#0d47a1;
 }
 
-table{
-  width:100%;
-  border-collapse:collapse;
+
+/* =========================================================
+   PRICE SEARCH
+========================================================= */
+
+.pricing{
+    padding:60px 20px;
+    background:#f7fbff;
 }
 
-th,td{
-  padding:10px;
-  border-bottom:1px solid #ddd;
-  text-align:left;
-  vertical-align:middle;
+#searchBox{
+    display:block;
+    width:90%;
+    max-width:900px;
+    margin:0 auto 30px;
+
+    padding:16px 20px;
+    box-sizing:border-box;
+
+    border:2px solid #1565c0;
+    border-radius:12px;
+
+    font-size:16px;
+    font-family:Poppins,sans-serif;
+
+    outline:none;
 }
 
-th{
-  background:#1565c0;
-  color:white;
+#searchBox:focus{
+    box-shadow:0 0 0 4px rgba(21,101,192,.12);
 }
 
-.loading{
-  text-align:center;
-  padding:20px;
+.price-grid{
+    max-width:1200px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:20px;
 }
 
-#dashboardSection{
-  display:none;
+.price-card{
+    background:white;
+    padding:22px;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.07);
+
+    transition:.25s;
 }
 
-.search-box{
-  max-width:1250px;
-  margin:20px auto;
+.price-card:hover{
+    transform:translateY(-4px);
 }
 
-.search-box input{
-  width:100%;
-  box-sizing:border-box;
-  padding:13px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  font-size:16px;
+.price-card h3{
+    color:#1565c0;
+    margin:0 0 7px;
 }
 
-.filters{
-  text-align:center;
-  margin-bottom:20px;
+.price-card p{
+    color:#666;
+    min-height:25px;
 }
 
-.status-select{
-  padding:7px;
-  border-radius:6px;
+.price-card h2{
+    color:#d32f2f;
+    margin:10px 0 0;
 }
 
-.delete-btn{
-  background:#d32f2f;
+.no-results{
+    text-align:center;
+    color:#d32f2f;
+    font-weight:600;
+    padding:30px;
+    grid-column:1/-1;
 }
 
-.upload-btn{
-  background:#6a1b9a;
+
+/* =========================================================
+   MULTIPLE TEST SELECTION
+========================================================= */
+
+.multi-test-box{
+    max-width:1000px;
+    margin:0 auto 20px;
+    background:#fff;
+    border:1px solid #d9e3ef;
+    border-radius:15px;
+    padding:18px;
 }
 
-.view-btn{
-  background:#00897b;
+.multi-test-title{
+    font-size:18px;
+    font-weight:600;
+    color:#1565c0;
+    margin-bottom:5px;
 }
 
-.report-whatsapp-btn{
-  background:#25D366;
+.multi-test-help{
+    font-size:13px;
+    color:#666;
+    margin-bottom:15px;
 }
 
-.action-cell{
-  min-width:230px;
+.selected-tests{
+    min-height:45px;
+    background:#f4f8fc;
+    border:1px solid #dce6f0;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:15px;
+    color:#555;
 }
 
-.report-status{
-  font-size:12px;
-  margin-top:5px;
+.selected-tests strong{
+    color:#1565c0;
 }
+
+.test-checkbox-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:10px;
+    max-height:500px;
+    overflow-y:auto;
+    padding:5px;
+}
+
+.test-check{
+    position:relative;
+}
+
+.test-check input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.test-check label{
+    display:block;
+    padding:12px 14px;
+    border:1px solid #d5dce5;
+    border-radius:10px;
+    background:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:.2s;
+}
+
+.test-check label:hover{
+    border-color:#1565c0;
+    background:#f4f8fc;
+}
+
+.test-check input:checked + label{
+    background:#e3f2fd;
+    border-color:#1565c0;
+    color:#0d47a1;
+    font-weight:600;
+}
+
+.test-check input:checked + label::before{
+    content:"✓ ";
+    color:#1565c0;
+    font-weight:bold;
+}
+
+.clear-tests{
+    margin-top:12px;
+    background:#757575;
+    color:white;
+    border:none;
+    padding:9px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .patient-report-card{
+        flex-direction:column;
+        text-align:center;
+        padding:28px 20px;
+    }
+
+    .report-content h2{
+        font-size:22px;
+    }
+
+    .report-button{
+        width:100%;
+        text-align:center;
+        box-sizing:border-box;
+    }
+
+    .test-checkbox-grid{
+        grid-template-columns:1fr;
+        max-height:450px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<h1>ARK Diagnostic Centre</h1>
 
-<div id="loginSection" class="login-box">
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-<h2>Admin Login</h2>
+<header class="header">
+
+<div class="logo">
+🧪 <span>ARK Diagnostic Centre</span>
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+
+<a href="#about">About</a>
+
+<a href="#services">Services</a>
+
+<a href="#packages">Packages</a>
+
+<a href="#pricing">Tests & Prices</a>
+
+<a href="report.html">
+📄 Patient Reports
+</a>
+
+<a href="#contact">
+Contact
+</a>
+
+</nav>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+Advanced Diagnostic Care Closer To You
+</h1>
+
+<p>
+Accurate • Affordable • Trusted Diagnostic Services in Kalwakurthy.
+Blood Tests, Thyroid, Diabetes, LFT, KFT, Lipid Profile and
+Home Sample Collection.
+</p>
+
+<div class="buttons">
+
+<a
+href="tel:+919398908582"
+class="btn call">
+
+📞 Call Now
+
+</a>
+
+<a
+href="https://wa.me/919398908582"
+class="btn whatsapp"
+target="_blank">
+
+💬 WhatsApp
+
+</a>
+
+<a
+href="report.html"
+class="btn report-btn">
+
+📄 View Patient Report
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-image">
+
+<img
+src="ARK DIAGNOSTIC CENTRE.jpeg"
+alt="ARK Diagnostic Centre Kalwakurthy">
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     STATS
+========================================================= -->
+
+<section class="stats">
+
+<div class="card">
+
+<h2>500+</h2>
+<p>Diagnostic Tests</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>365</h2>
+<p>Days Open</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>100%</h2>
+<p>Accurate Reports</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>Home</h2>
+<p>Sample Collection</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PATIENT REPORT
+========================================================= -->
+
+<section class="patient-report-section">
+
+<div class="patient-report-card">
+
+<div class="report-icon">
+📄
+</div>
+
+
+<div class="report-content">
+
+<h2>
+Download Your Lab Report
+</h2>
+
+<p>
+Your laboratory report is available online.
+Enter your registered Patient ID to securely
+search, view and download your diagnostic report.
+</p>
+
+</div>
+
+
+<a
+href="report.html"
+class="report-button">
+
+View My Report →
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+<a
+href="https://wa.me/919398908582"
+class="floating-whatsapp"
+target="_blank"
+aria-label="WhatsApp">
+
+💬
+
+</a>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section id="about" class="about">
+
+<div class="about-image">
+
+<img
+src="Interior.jpeg"
+alt="ARK Diagnostic Centre Laboratory Interior">
+
+</div>
+
+
+<div class="about-content">
+
+<h2>
+About ARK Diagnostic Centre
+</h2>
+
+<p>
+ARK Diagnostic Centre is one of the trusted
+diagnostic laboratories in Kalwakurthy, offering
+accurate, affordable, and timely diagnostic services
+with modern laboratory equipment and experienced
+professionals.
+</p>
+
+
+<ul>
+
+<li>✔ Accurate Laboratory Reports</li>
+
+<li>✔ Experienced Technicians</li>
+
+<li>✔ Affordable Test Prices</li>
+
+<li>✔ Home Sample Collection</li>
+
+<li>✔ Same Day Report Delivery</li>
+
+<li>✔ 365 Days Open</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     WHY CHOOSE US
+========================================================= -->
+
+<section class="why">
+
+<h2 class="section-title">
+Why Choose ARK Diagnostic Centre?
+</h2>
+
+
+<div class="why-grid">
+
+
+<div class="why-card">
+
+<h3>
+🧪 Accurate Reports
+</h3>
+
+<p>
+High quality diagnostic testing with
+reliable and accurate reports.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<h3>
+👨‍⚕️ Experienced Staff
+</h3>
+
+<p>
+Professional and friendly laboratory
+technicians.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<h3>
+🏠 Home Sample Collection
+</h3>
+
+<p>
+Convenient blood sample collection
+at your home.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<h3>
+⚡ Fast Reports
+</h3>
+
+<p>
+Most reports are delivered on the
+same day.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section id="services" class="services">
+
+<h2 class="section-title">
+Our Diagnostic Services
+</h2>
+
+
+<div class="service-grid">
+
+
+<div class="service-card">
+
+<h3>
+🩸 Blood Tests
+</h3>
+
+<p>
+CBP, HB, RBC, Blood Group, ESR and
+routine blood investigations.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+🩺 Diabetes Tests
+</h3>
+
+<p>
+FBS, PLBS, RBS, GRBS and diabetes screening.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+🧬 Thyroid Tests
+</h3>
+
+<p>
+T3, T4, TSH and complete thyroid profile.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+🫀 Lipid Profile
+</h3>
+
+<p>
+Complete cholesterol and lipid screening.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+🧪 Liver Function Test
+</h3>
+
+<p>
+LFT and liver-related investigations.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+💧 Kidney Function Test
+</h3>
+
+<p>
+Blood Urea, Creatinine and kidney-related tests.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+🦠 Infection Tests
+</h3>
+
+<p>
+Dengue, Malaria, Widal, CRP, HIV, HCV,
+HBsAg and other tests.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+🏠 Home Sample Collection
+</h3>
+
+<p>
+Convenient blood sample collection at your home.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     HEALTH PACKAGES
+========================================================= -->
+
+<section id="packages" class="packages">
+
+<h2 class="section-title">
+Health Packages
+</h2>
+
+
+<div class="package-grid">
+
+
+<div class="package-card">
+
+<span class="badge">
+POPULAR
+</span>
+
+<h3>
+Health Profile - I
+</h3>
+
+<p>
+Complete Health Checkup Package
+</p>
+
+<h2>
+₹1,500
+</h2>
+
+<a
+href="#appointment"
+class="btn call">
+
+Book Now
+
+</a>
+
+</div>
+
+
+<div class="package-card">
+
+<span class="badge">
+BEST VALUE
+</span>
+
+<h3>
+Health Profile - II
+</h3>
+
+<p>
+Advanced Health Checkup Package
+</p>
+
+<h2>
+₹2,000
+</h2>
+
+<a
+href="#appointment"
+class="btn call">
+
+Book Now
+
+</a>
+
+</div>
+
+
+<div class="package-card">
+
+<span class="badge">
+SPECIAL
+</span>
+
+<h3>
+Infertility Profile - Male
+</h3>
+
+<p>
+Male Infertility Profile
+</p>
+
+<h2>
+₹2,500
+</h2>
+
+<a
+href="#appointment"
+class="btn call">
+
+Book Now
+
+</a>
+
+</div>
+
+
+<div class="package-card">
+
+<span class="badge">
+SPECIAL
+</span>
+
+<h3>
+Infertility Profile - Female
+</h3>
+
+<p>
+Female Infertility Profile
+</p>
+
+<h2>
+₹4,000
+</h2>
+
+<a
+href="#appointment"
+class="btn call">
+
+Book Now
+
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     TEST PRICE LIST
+========================================================= -->
+
+<section id="pricing" class="pricing">
+
+<h2 class="section-title">
+Search Test Prices
+</h2>
+
+<p style="text-align:center;color:#666;margin-bottom:20px;">
+
+Search any test by name, abbreviation or description.
+
+</p>
+
 
 <input
- type="email"
- id="adminEmail"
- placeholder="Admin Email">
+type="text"
+id="searchBox"
+placeholder="🔍 Search Test Name...">
+
+
+<div id="priceGrid" class="price-grid">
+
+
+<div
+class="price-card test-card"
+data-search="cbp complete blood picture complete blood count blood">
+
+<h3>CBP</h3>
+<p>Complete Blood Picture</p>
+<h2>₹250</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="hb hemoglobin">
+
+<h3>HB %</h3>
+<p>Hemoglobin</p>
+<h2>₹100</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="rbs random blood sugar">
+
+<h3>RBS</h3>
+<p>Random Blood Sugar</p>
+<h2>₹50</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="fbs plbs ppbs fasting post lunch blood sugar">
+
+<h3>FBS, PLBS</h3>
+<p>Fasting / Post Lunch Blood Sugar</p>
+<h2>₹100</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="blood urea urea">
+
+<h3>Blood Urea</h3>
+<p>Blood Urea Test</p>
+<h2>₹200</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="serum creatinine creatinine kidney">
+
+<h3>Serum Creatinine</h3>
+<p>Creatinine Test</p>
+<h2>₹200</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="serum bilirubin bilirubin liver">
+
+<h3>Serum Bilirubin</h3>
+<p>Bilirubin Test</p>
+<h2>₹150</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="serum uric acid uric acid">
+
+<h3>Serum Uric Acid</h3>
+<p>Uric Acid Test</p>
+<h2>₹300</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="serum calcium calcium">
+
+<h3>Serum Calcium</h3>
+<p>Calcium Test</p>
+<h2>₹200</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="serum electrolytes electrolytes sodium potassium">
+
+<h3>Serum Electrolytes</h3>
+<p>Electrolytes Test</p>
+<h2>₹500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="lipid profile cholesterol">
+
+<h3>Lipid Profile</h3>
+<p>Complete Lipid Profile</p>
+<h2>₹500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="lft liver function test liver">
+
+<h3>LFT</h3>
+<p>Liver Function Test</p>
+<h2>₹500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="t3 t4 tsh thyroid thyroid profile">
+
+<h3>T3 T4 TSH</h3>
+<p>Thyroid Profile</p>
+<h2>₹500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="tsh thyroid stimulating hormone">
+
+<h3>TSH</h3>
+<p>Thyroid Stimulating Hormone</p>
+<h2>₹300</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="crp c reactive protein">
+
+<h3>CRP</h3>
+<p>C-Reactive Protein</p>
+<h2>₹250</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="dengue ns1 igg igm dengue fever">
+
+<h3>Dengue</h3>
+<p>NS1, IgG, IgM</p>
+<h2>₹800</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="hiv human immunodeficiency virus">
+
+<h3>HIV</h3>
+<p>Human Immunodeficiency Virus</p>
+<h2>₹300</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="hcv hepatitis c virus">
+
+<h3>HCV</h3>
+<p>Hepatitis C Virus</p>
+<h2>₹300</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="hbsag hepatitis b surface antigen hepatitis b">
+
+<h3>HBsAg</h3>
+<p>Hepatitis B Surface Antigen</p>
+<h2>₹300</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="vdrl">
+
+<h3>VDRL</h3>
+<p>Venereal Disease Research Laboratory</p>
+<h2>₹250</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="cue complete urine examination urine">
+
+<h3>CUE</h3>
+<p>Complete Urine Examination</p>
+<h2>₹150</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="upt urine pregnancy test pregnancy">
+
+<h3>UPT</h3>
+<p>Urine Pregnancy Test</p>
+<h2>₹100</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="grbs glucometer random blood sugar">
+
+<h3>GRBS</h3>
+<p>Gluco Meter Random Blood Sugar</p>
+<h2>₹100</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="mp malarial parasite malaria">
+
+<h3>MP</h3>
+<p>Malarial Parasite Test</p>
+<h2>₹200</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="widal typhoid">
+
+<h3>Widal</h3>
+<p>Widal Test</p>
+<h2>₹100</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="blood group blood grouping">
+
+<h3>Blood Group</h3>
+<p>Blood Group Test</p>
+<h2>₹50</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="esr erythrocyte sedimentation rate">
+
+<h3>ESR</h3>
+<p>Erythrocyte Sedimentation Rate</p>
+<h2>₹200</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="aso titer antistreptolysin o">
+
+<h3>ASO Titer</h3>
+<p>Antistreptolysin O</p>
+<h2>₹300</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="ra factor rheumatoid factor">
+
+<h3>RA Factor</h3>
+<p>Rheumatoid Factor</p>
+<h2>₹300</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="pt inr prothrombin">
+
+<h3>PT INR</h3>
+<p>PT / INR Test</p>
+<h2>₹500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="aptt activated partial thromboplastin">
+
+<h3>APTT</h3>
+<p>APTT</p>
+<h2>₹500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="serum amylase amylase">
+
+<h3>Serum Amylase</h3>
+<p>Amylase Test</p>
+<h2>₹600</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="serum lipase lipase">
+
+<h3>Serum Lipase</h3>
+<p>Lipase Test</p>
+<h2>₹600</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="ecg electrocardiogram heart">
+
+<h3>ECG</h3>
+<p>Electrocardiogram</p>
+<h2>₹250</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="urine culture culture urine infection">
+
+<h3>Urine Culture</h3>
+<p>Urine Culture Test</p>
+<h2>₹800</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="stool culture stool">
+
+<h3>Stool Culture</h3>
+<p>Stool Culture Test</p>
+<h2>₹800</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="blood culture">
+
+<h3>Blood Culture</h3>
+<p>Blood Culture Test</p>
+<h2>₹1000</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="vit d vitamin d vitamin d3">
+
+<h3>Vit D Total</h3>
+<p>Vitamin D Total</p>
+<h2>₹1500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="vitamin b12 b12">
+
+<h3>Vitamin B12</h3>
+<p>Vitamin B12 Test</p>
+<h2>₹1000</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="ca 125 ca125 cancer marker">
+
+<h3>CA 125</h3>
+<p>CA 125 Test</p>
+<h2>₹1000</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="health profile 1 health profile i health checkup">
+
+<h3>Health Profile - I</h3>
+<p>Complete Health Profile</p>
+<h2>₹1500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="health profile 2 health profile ii health checkup">
+
+<h3>Health Profile - II</h3>
+<p>Advanced Health Profile</p>
+<h2>₹2000</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="infertility profile male male infertility">
+
+<h3>Infertility Profile (Male)</h3>
+<p>Male Infertility Profile</p>
+<h2>₹2500</h2>
+
+</div>
+
+
+<div
+class="price-card test-card"
+data-search="infertility profile female female infertility">
+
+<h3>Infertility Profile (Female)</h3>
+<p>Female Infertility Profile</p>
+<h2>₹4000</h2>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     APPOINTMENT
+========================================================= -->
+
+<section
+id="appointment"
+class="appointment">
+
+<h2 class="section-title">
+Book Appointment
+</h2>
+
+
+<form
+class="appointment-form"
+id="appointmentForm">
+
 
 <input
- type="password"
- id="adminPassword"
- placeholder="Password">
+type="text"
+id="patientName"
+placeholder="Full Name"
+required>
 
-<button id="loginButton" class="login-button">
-Login
-</button>
-
-<div id="loginMessage"></div>
-
-</div>
-
-
-<div id="dashboardSection">
-
-<h2>Appointment Dashboard</h2>
-
-<button id="logoutButton" class="logout">
-Logout
-</button>
-
-<div class="search-box">
 
 <input
- type="text"
- id="searchInput"
- placeholder="Search Patient Name / Mobile Number">
+type="tel"
+id="patientPhone"
+placeholder="Mobile Number"
+maxlength="10"
+inputmode="numeric"
+required>
+
+
+<!-- =========================================================
+     HIDDEN FIELD
+     IMPORTANT:
+     Existing script.js reads this field.
+========================================================= -->
+
+<input
+type="hidden"
+id="patientTest"
+value="">
+
+
+<!-- =========================================================
+     MULTIPLE TEST SELECTION
+========================================================= -->
+
+<div class="multi-test-box">
+
+<div class="multi-test-title">
+
+Select Test / Packages
 
 </div>
 
-<div class="filters">
 
-<button id="todayButton">
-Today Appointments
-</button>
+<div class="multi-test-help">
 
-<button id="allButton">
-Show All
-</button>
+మీకు అవసరమైన అన్ని Tests ను ✓ Select చేయండి.
+ఒకటి కంటే ఎక్కువ Tests కూడా select చేసుకోవచ్చు.
 
 </div>
 
 
-<div class="dashboard">
+<div
+id="selectedTests"
+class="selected-tests">
 
-<div id="loading" class="loading">
-Loading appointments...
-</div>
-
-<table id="appointmentTable" style="display:none;">
-
-<thead>
-<tr>
-<th>Patient Name</th>
-<th>Mobile Number</th>
-<th>Test / Package</th>
-<th>Appointment Date</th>
-<th>Booked Time</th>
-<th>Status</th>
-<th>Action / Report</th>
-</tr>
-</thead>
-
-<tbody id="appointmentList"></tbody>
-
-</table>
+<strong>Selected Tests:</strong>
+<span id="selectedTestsText">
+No tests selected
+</span>
 
 </div>
+
+
+<div class="test-checkbox-grid">
+
+
+<div class="test-check">
+<input type="checkbox" id="test1" value="CBP">
+<label for="test1">CBP</label>
 </div>
 
 
-<script type="module">
+<div class="test-check">
+<input type="checkbox" id="test2" value="HB %">
+<label for="test2">HB %</label>
+</div>
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-import {
- getAuth,
- signInWithEmailAndPassword,
- signOut,
- onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+<div class="test-check">
+<input type="checkbox" id="test3" value="RBS">
+<label for="test3">RBS</label>
+</div>
 
 
-const firebaseConfig = {
+<div class="test-check">
+<input type="checkbox" id="test4" value="FBS, PLBS">
+<label for="test4">FBS, PLBS</label>
+</div>
 
- apiKey:"AIzaSyBPNeep_D7i2YBtMCf3tJtF0gFluCprlQg",
 
- authDomain:"ark-diagnostic-centre.firebaseapp.com",
+<div class="test-check">
+<input type="checkbox" id="test5" value="Blood Urea">
+<label for="test5">Blood Urea</label>
+</div>
 
- projectId:"ark-diagnostic-centre",
 
- storageBucket:"ark-diagnostic-centre.firebasestorage.app",
+<div class="test-check">
+<input type="checkbox" id="test6" value="Serum Creatinine">
+<label for="test6">Serum Creatinine</label>
+</div>
 
- messagingSenderId:"238286336140",
 
- appId:"1:238286336140:web:26210cbdcaf290f3a00ba9",
+<div class="test-check">
+<input type="checkbox" id="test7" value="Serum Bilirubin">
+<label for="test7">Serum Bilirubin</label>
+</div>
 
- measurementId:"G-0BQ292SWKD"
-};
 
+<div class="test-check">
+<input type="checkbox" id="test8" value="Serum Uric Acid">
+<label for="test8">Serum Uric Acid</label>
+</div>
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
+<div class="test-check">
+<input type="checkbox" id="test9" value="Serum Calcium">
+<label for="test9">Serum Calcium</label>
+</div>
 
-/* CLOUDINARY */
 
-const CLOUDINARY_CLOUD_NAME = "kqk3dluj";
+<div class="test-check">
+<input type="checkbox" id="test10" value="Serum Electrolytes">
+<label for="test10">Serum Electrolytes</label>
+</div>
 
-const CLOUDINARY_UPLOAD_PRESET =
-"ark_patient_reports";
 
+<div class="test-check">
+<input type="checkbox" id="test11" value="Lipid Profile">
+<label for="test11">Lipid Profile</label>
+</div>
 
-const loginSection =
-document.getElementById("loginSection");
 
-const dashboardSection =
-document.getElementById("dashboardSection");
+<div class="test-check">
+<input type="checkbox" id="test12" value="LFT">
+<label for="test12">LFT</label>
+</div>
 
-const loginMessage =
-document.getElementById("loginMessage");
 
+<div class="test-check">
+<input type="checkbox" id="test13" value="T3 T4 TSH">
+<label for="test13">T3 T4 TSH</label>
+</div>
 
-/* LOGIN */
 
-document
-.getElementById("loginButton")
-.addEventListener("click",async()=>{
+<div class="test-check">
+<input type="checkbox" id="test14" value="TSH">
+<label for="test14">TSH</label>
+</div>
 
- const email =
- document.getElementById("adminEmail").value.trim();
 
- const password =
- document.getElementById("adminPassword").value;
+<div class="test-check">
+<input type="checkbox" id="test15" value="CRP">
+<label for="test15">CRP</label>
+</div>
 
- if(!email || !password){
 
-  loginMessage.textContent =
-  "Please enter email and password.";
+<div class="test-check">
+<input type="checkbox" id="test16" value="Dengue">
+<label for="test16">Dengue</label>
+</div>
 
-  return;
- }
 
- loginMessage.textContent="Logging in...";
+<div class="test-check">
+<input type="checkbox" id="test17" value="HIV">
+<label for="test17">HIV</label>
+</div>
 
- try{
 
-  await signInWithEmailAndPassword(
-   auth,email,password
-  );
+<div class="test-check">
+<input type="checkbox" id="test18" value="HCV">
+<label for="test18">HCV</label>
+</div>
 
-  loginMessage.textContent="";
 
- }catch(error){
+<div class="test-check">
+<input type="checkbox" id="test19" value="HBsAg">
+<label for="test19">HBsAg</label>
+</div>
 
-  console.error(error);
 
-  loginMessage.textContent =
-  "Invalid email or password.";
- }
+<div class="test-check">
+<input type="checkbox" id="test20" value="VDRL">
+<label for="test20">VDRL</label>
+</div>
 
-});
 
+<div class="test-check">
+<input type="checkbox" id="test21" value="CUE">
+<label for="test21">CUE</label>
+</div>
 
-/* LOGOUT */
 
-document
-.getElementById("logoutButton")
-.addEventListener("click",async()=>{
+<div class="test-check">
+<input type="checkbox" id="test22" value="UPT">
+<label for="test22">UPT</label>
+</div>
 
- await signOut(auth);
 
-});
+<div class="test-check">
+<input type="checkbox" id="test23" value="GRBS">
+<label for="test23">GRBS</label>
+</div>
 
 
-/* AUTH STATE */
+<div class="test-check">
+<input type="checkbox" id="test24" value="MP">
+<label for="test24">MP</label>
+</div>
 
-onAuthStateChanged(auth,user=>{
 
- if(user){
+<div class="test-check">
+<input type="checkbox" id="test25" value="Widal">
+<label for="test25">Widal</label>
+</div>
 
-  loginSection.style.display="none";
 
-  dashboardSection.style.display="block";
+<div class="test-check">
+<input type="checkbox" id="test26" value="Blood Group">
+<label for="test26">Blood Group</label>
+</div>
 
-  loadAppointments();
 
- }else{
+<div class="test-check">
+<input type="checkbox" id="test27" value="ESR">
+<label for="test27">ESR</label>
+</div>
 
-  loginSection.style.display="block";
 
-  dashboardSection.style.display="none";
+<div class="test-check">
+<input type="checkbox" id="test28" value="ASO Titer">
+<label for="test28">ASO Titer</label>
+</div>
 
- }
 
-});
+<div class="test-check">
+<input type="checkbox" id="test29" value="RA Factor">
+<label for="test29">RA Factor</label>
+</div>
 
 
-/* LOAD APPOINTMENTS */
+<div class="test-check">
+<input type="checkbox" id="test30" value="PT INR">
+<label for="test30">PT INR</label>
+</div>
 
-async function loadAppointments(){
 
- const url =
- "https://firestore.googleapis.com/v1/projects/ark-diagnostic-centre/databases/(default)/documents/appointments";
+<div class="test-check">
+<input type="checkbox" id="test31" value="APTT">
+<label for="test31">APTT</label>
+</div>
 
- const loading =
- document.getElementById("loading");
 
- const table =
- document.getElementById("appointmentTable");
+<div class="test-check">
+<input type="checkbox" id="test32" value="Serum Amylase">
+<label for="test32">Serum Amylase</label>
+</div>
 
- const list =
- document.getElementById("appointmentList");
 
- loading.style.display="block";
+<div class="test-check">
+<input type="checkbox" id="test33" value="Serum Lipase">
+<label for="test33">Serum Lipase</label>
+</div>
 
- loading.textContent="Loading appointments...";
 
- table.style.display="none";
+<div class="test-check">
+<input type="checkbox" id="test34" value="ECG">
+<label for="test34">ECG</label>
+</div>
 
- list.innerHTML="";
 
- try{
+<div class="test-check">
+<input type="checkbox" id="test35" value="Urine Culture">
+<label for="test35">Urine Culture</label>
+</div>
 
-  const token =
-  await auth.currentUser.getIdToken();
 
-  const response =
-  await fetch(url,{
-   headers:{
-    Authorization:"Bearer "+token
-   }
-  });
+<div class="test-check">
+<input type="checkbox" id="test36" value="Stool Culture">
+<label for="test36">Stool Culture</label>
+</div>
 
-  if(!response.ok)
-   throw new Error("Unable to load appointments");
 
-  const data =
-  await response.json();
+<div class="test-check">
+<input type="checkbox" id="test37" value="Blood Culture">
+<label for="test37">Blood Culture</label>
+</div>
 
-  if(!data.documents ||
-     data.documents.length===0){
 
-   loading.textContent =
-   "No appointments found.";
+<div class="test-check">
+<input type="checkbox" id="test38" value="Vit D Total">
+<label for="test38">Vit D Total</label>
+</div>
 
-   return;
-  }
 
+<div class="test-check">
+<input type="checkbox" id="test39" value="Vitamin B12">
+<label for="test39">Vitamin B12</label>
+</div>
 
-  data.documents.forEach(appointmentDoc=>{
 
-   const fields =
-   appointmentDoc.fields || {};
+<div class="test-check">
+<input type="checkbox" id="test40" value="CA 125">
+<label for="test40">CA 125</label>
+</div>
 
-   const name =
-   fields.name?.stringValue || "-";
 
-   const phone =
-   fields.phone?.stringValue || "-";
+<div class="test-check">
+<input type="checkbox" id="test41" value="Health Profile - I">
+<label for="test41">Health Profile - I</label>
+</div>
 
-   const test =
-   fields.test?.stringValue || "-";
 
-   const date =
-   fields.date?.stringValue || "-";
+<div class="test-check">
+<input type="checkbox" id="test42" value="Health Profile - II">
+<label for="test42">Health Profile - II</label>
+</div>
 
-   const status =
-   fields.status?.stringValue || "Pending";
 
-   const reportURL =
-   fields.reportURL?.stringValue || "";
+<div class="test-check">
+<input type="checkbox" id="test43" value="Infertility Profile (Male)">
+<label for="test43">Infertility Profile (Male)</label>
+</div>
 
-   let createdAt="-";
 
-   if(fields.createdAt?.timestampValue){
+<div class="test-check">
+<input type="checkbox" id="test44" value="Infertility Profile (Female)">
+<label for="test44">Infertility Profile (Female)</label>
+</div>
 
-    createdAt =
-    new Date(
-     fields.createdAt.timestampValue
-    ).toLocaleString("en-IN");
 
-   }
+<div class="test-check">
+<input type="checkbox" id="test45" value="Home Sample Collection">
+<label for="test45">Home Sample Collection</label>
+</div>
 
 
-   const row =
-   document.createElement("tr");
+</div>
 
-
-   row.innerHTML=`
-
-<td>${escapeHTML(name)}</td>
-
-<td>${escapeHTML(phone)}</td>
-
-<td>${escapeHTML(test)}</td>
-
-<td>${escapeHTML(date)}</td>
-
-<td>${escapeHTML(createdAt)}</td>
-
-<td>
-
-<select
- class="status-select"
- data-doc="${escapeAttribute(appointmentDoc.name)}">
-
-<option value="Pending"
-${status==="Pending"?"selected":""}>
-Pending
-</option>
-
-<option value="Confirmed"
-${status==="Confirmed"?"selected":""}>
-Confirmed
-</option>
-
-<option value="Completed"
-${status==="Completed"?"selected":""}>
-Completed
-</option>
-
-</select>
-
-</td>
-
-
-<td class="action-cell">
 
 <button
- class="whatsapp-btn"
- data-phone="${escapeAttribute(phone)}"
- data-name="${escapeAttribute(name)}"
- data-test="${escapeAttribute(test)}"
- data-date="${escapeAttribute(date)}">
+type="button"
+class="clear-tests"
+id="clearTests">
 
-WhatsApp
+Clear Selected Tests
 
 </button>
+
+</div>
+
+
+<input
+type="date"
+id="appointmentDate"
+required>
 
 
 <button
- class="delete-btn"
- data-doc="${escapeAttribute(appointmentDoc.name)}">
+type="button"
+class="btn whatsapp"
+onclick="bookAppointment()">
 
-Delete
+📲 Book Appointment on WhatsApp
 
 </button>
+
+
+</form>
+
+</section>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section class="reviews">
+
+<h2 class="section-title">
+Patient Reviews
+</h2>
+
+
+<div class="review-grid">
+
+
+<div class="review-card">
+
+⭐⭐⭐⭐⭐
+
+<h3>
+Excellent Service
+</h3>
+
+<p>
+Very fast reports and friendly staff.
+Highly recommended.
+</p>
+
+<h4>
+- Ramesh Kumar
+</h4>
+
+</div>
+
+
+<div class="review-card">
+
+⭐⭐⭐⭐⭐
+
+<h3>
+Best Diagnostic Centre
+</h3>
+
+<p>
+Affordable prices with accurate reports.
+Excellent experience.
+</p>
+
+<h4>
+- Lakshmi
+</h4>
+
+</div>
+
+
+<div class="review-card">
+
+⭐⭐⭐⭐⭐
+
+<h3>
+Professional Staff
+</h3>
+
+<p>
+Clean laboratory and quick report delivery.
+</p>
+
+<h4>
+- Srinivas
+</h4>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     GALLERY
+========================================================= -->
+
+<section class="gallery">
+
+<h2 class="section-title">
+Our Gallery
+</h2>
+
+
+<div class="gallery-grid">
+
+<img
+src="ARK DIAGNOSTIC CENTRE.jpeg"
+alt="ARK Diagnostic Centre Front View">
+
+
+<img
+src="Interior.jpeg"
+alt="ARK Diagnostic Centre Laboratory Interior">
+
+
+<img
+src="Sample Collection Area.jpeg"
+alt="ARK Diagnostic Centre Sample Collection Area">
+
+
+<img
+src="Waiting Area.jpeg"
+alt="ARK Diagnostic Centre Waiting Area">
+
+
+<img
+src="Printing Place.jpeg"
+alt="ARK Diagnostic Centre">
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section class="faq">
+
+<h2 class="section-title">
+Frequently Asked Questions
+</h2>
+
+
+<div class="faq-box">
+
+<h3>
+How can I book a test?
+</h3>
+
+<p>
+You can call us, WhatsApp us or use the
+online appointment form.
+</p>
+
+</div>
+
+
+<div class="faq-box">
+
+<h3>
+Can I select more than one test?
+</h3>
+
+<p>
+Yes. You can select multiple tests or packages
+before booking your appointment.
+</p>
+
+</div>
+
+
+<div class="faq-box">
+
+<h3>
+Is Home Sample Collection available?
+</h3>
+
+<p>
+Yes. Home sample collection is available
+in Kalwakurthy.
+</p>
+
+</div>
+
+
+<div class="faq-box">
+
+<h3>
+When will I receive my reports?
+</h3>
+
+<p>
+Most reports are delivered on the same day,
+depending on the test.
+</p>
+
+</div>
+
+
+<div class="faq-box">
+
+<h3>
+How can I view my laboratory report?
+</h3>
+
+<p>
+Click on Patient Reports and enter your
+registered Patient ID to view your report.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section
+id="contact"
+class="contact">
+
+<h2 class="section-title">
+Contact Us
+</h2>
+
+
+<div class="contact-grid">
+
+
+<div>
+
+<h3>
+ARK Diagnostic Centre
+</h3>
+
+<p>
+
+Bus Stand Back Side,<br>
+Beside Dr. Vijay Kumar Clinic,<br>
+Subhash Nagar,<br>
+Kalwakurthy,<br>
+Nagarkurnool District.
+
+</p>
+
+<br>
+
+<p>
+📞 9398908582
+</p>
+
+<p>
+📧 arkdiagnosticskalwakurthy@gmail.com
+</p>
 
 <br>
 
 
-<input
- type="file"
- class="report-file"
- accept="application/pdf"
- style="display:none;">
+<a
+href="tel:+919398908582"
+class="btn call">
+
+📞 Call Us
+
+</a>
 
 
-<button
- class="upload-btn"
- data-doc="${escapeAttribute(appointmentDoc.name)}">
+<a
+href="https://wa.me/919398908582"
+class="btn whatsapp"
+target="_blank">
 
-Upload Report
+💬 WhatsApp Us
 
-</button>
-
-
-<button
- class="view-btn"
- ${reportURL ? "" : "style='display:none;'"}>
-View Report
-</button>
+</a>
 
 
-<button
- class="report-whatsapp-btn"
- ${reportURL ? "" : "style='display:none;'"}>
-Send Report
-</button>
-
-
-<div class="report-status">
-${reportURL ? "Report uploaded ✓" : "No report uploaded"}
 </div>
 
-`;
 
+<div>
 
-   list.appendChild(row);
+<iframe
+src="https://www.google.com/maps?q=Kalwakurthy&output=embed"
+width="100%"
+height="350"
+style="border:0;border-radius:20px;"
+loading="lazy">
+</iframe>
 
+</div>
 
-   let currentReportURL = reportURL;
 
+</div>
 
-   /* APPOINTMENT WHATSAPP */
+</section>
 
-   row
-   .querySelector(".whatsapp-btn")
-   .addEventListener("click",function(){
 
-    let number =
-    this.dataset.phone.replace(/\D/g,"");
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
-    if(number.length===10)
-     number="91"+number;
+<footer>
 
-    const message =
-`Hello ${this.dataset.name}, your appointment at ARK Diagnostic Centre has been confirmed.
+<h2>
+ARK Diagnostic Centre
+</h2>
 
-Test / Package: ${this.dataset.test}
-Appointment Date: ${this.dataset.date}
+<p>
 
-Thank you for choosing ARK Diagnostic Centre.`;
+Bus Stand Back Side,<br>
+Beside Dr. Vijay Kumar Clinic,<br>
+Subhash Nagar,<br>
+Kalwakurthy.
 
-    window.open(
-     "https://wa.me/"+number+
-     "?text="+encodeURIComponent(message),
-     "_blank"
-    );
+</p>
 
-   });
+<p>
+📞 9398908582
+</p>
 
+<p>
+📧 arkdiagnosticskalwakurthy@gmail.com
+</p>
 
-   /* DELETE */
+<p>
 
-   row
-   .querySelector(".delete-btn")
-   .addEventListener("click",async function(){
+<a
+href="report.html"
+class="footer-report-link">
 
-    if(!confirm(
-     "Are you sure you want to delete this appointment?"
-    )) return;
+📄 Patient Reports
 
-    try{
+</a>
 
-     const token =
-     await auth.currentUser.getIdToken();
+</p>
 
-     const deleteURL =
-     "https://firestore.googleapis.com/v1/"+
-     this.dataset.doc;
+<p>
+© 2026 ARK Diagnostic Centre, Kalwakurthy
+</p>
 
-     const response =
-     await fetch(deleteURL,{
+</footer>
 
-      method:"DELETE",
 
-      headers:{
-       Authorization:"Bearer "+token
-      }
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
-     });
+<script>
 
-     if(!response.ok)
-      throw new Error(await response.text());
+/* =========================================================
+   TEST PRICE SEARCH
+========================================================= */
 
-     row.remove();
+const searchBox =
+document.getElementById("searchBox");
 
-     alert(
-      "Appointment deleted successfully."
-     );
+const testCards =
+document.querySelectorAll(".test-card");
 
-    }catch(error){
 
-     console.error(error);
+searchBox.addEventListener("input",function(){
 
-     alert(
-      "Could not delete appointment."
-     );
+const searchValue =
+this.value.toLowerCase().trim();
 
-    }
+let found=0;
 
-   });
 
+testCards.forEach(function(card){
 
-   /* STATUS */
+const searchText =
+(
+card.innerText +
+" " +
+(card.dataset.search || "")
+).toLowerCase();
 
-   row
-   .querySelector(".status-select")
-   .addEventListener("change",async function(){
 
-    const newStatus=this.value;
+if(searchText.includes(searchValue)){
 
-    try{
+card.style.display="";
+found++;
 
-     await updateFirestoreFields(
-      this.dataset.doc,
-      {
-       status:{
-        stringValue:newStatus
-       }
-      },
-      ["status"]
-     );
+}else{
 
-     alert(
-      "Status updated successfully."
-     );
-
-    }catch(error){
-
-     console.error(error);
-
-     alert(
-      "Status could not be updated."
-     );
-
-    }
-
-   });
-
-
-   /* REPORT ELEMENTS */
-
-   const fileInput =
-   row.querySelector(".report-file");
-
-   const uploadButton =
-   row.querySelector(".upload-btn");
-
-   const viewButton =
-   row.querySelector(".view-btn");
-
-   const sendReportButton =
-   row.querySelector(".report-whatsapp-btn");
-
-   const reportStatus =
-   row.querySelector(".report-status");
-
-
-   /* SELECT PDF */
-
-   uploadButton
-   .addEventListener("click",()=>{
-
-    fileInput.click();
-
-   });
-
-
-   /* UPLOAD PDF */
-
-   fileInput
-   .addEventListener("change",async()=>{
-
-    const file =
-    fileInput.files[0];
-
-    if(!file) return;
-
-    if(
-     file.type!=="application/pdf" &&
-     !file.name.toLowerCase().endsWith(".pdf")
-    ){
-
-     alert(
-      "Please select a PDF report only."
-     );
-
-     fileInput.value="";
-
-     return;
-    }
-
-
-    uploadButton.disabled=true;
-
-    uploadButton.textContent="Uploading...";
-
-    reportStatus.textContent =
-    "Uploading report...";
-
-
-    try{
-
-     const formData =
-     new FormData();
-
-     formData.append("file",file);
-
-     formData.append(
-      "upload_preset",
-      CLOUDINARY_UPLOAD_PRESET
-     );
-
-
-     const cloudinaryURL =
-     `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/raw/upload`;
-
-
-     const uploadResponse =
-     await fetch(
-      cloudinaryURL,
-      {
-       method:"POST",
-       body:formData
-      }
-     );
-
-
-     const uploadData =
-     await uploadResponse.json();
-
-
-     if(!uploadResponse.ok){
-
-      throw new Error(
-       uploadData.error?.message ||
-       "Cloudinary upload failed"
-      );
-
-     }
-
-
-     currentReportURL =
-     uploadData.secure_url;
-
-
-     await updateFirestoreFields(
-      appointmentDoc.name,
-      {
-       reportURL:{
-        stringValue:currentReportURL
-       }
-      },
-      ["reportURL"]
-     );
-
-
-     reportStatus.textContent =
-     "Report uploaded ✓";
-
-     viewButton.style.display="inline-block";
-
-     sendReportButton.style.display="inline-block";
-
-     uploadButton.textContent =
-     "Replace Report";
-
-     alert(
-      "Patient report uploaded successfully."
-     );
-
-
-    }catch(error){
-
-     console.error(
-      "Report upload error:",
-      error
-     );
-
-     reportStatus.textContent =
-     "Upload failed";
-
-     alert(
-      "Report upload failed: "+
-      error.message
-     );
-
-    }finally{
-
-     uploadButton.disabled=false;
-
-     if(
-      uploadButton.textContent==="Uploading..."
-     ){
-
-      uploadButton.textContent =
-      currentReportURL ?
-      "Replace Report" :
-      "Upload Report";
-
-     }
-
-     fileInput.value="";
-
-    }
-
-   });
-
-
-   if(currentReportURL){
-
-    uploadButton.textContent =
-    "Replace Report";
-
-   }
-
-
-   /* VIEW REPORT */
-
-   viewButton
-   .addEventListener("click",()=>{
-
-    if(!currentReportURL){
-
-     alert(
-      "No report uploaded."
-     );
-
-     return;
-    }
-
-    window.open(
-     currentReportURL,
-     "_blank"
-    );
-
-   });
-
-
-   /* SEND REPORT WHATSAPP */
-
-   sendReportButton
-   .addEventListener("click",()=>{
-
-    if(!currentReportURL){
-
-     alert(
-      "Please upload the report first."
-     );
-
-     return;
-    }
-
-
-    let number =
-    phone.replace(/\D/g,"");
-
-    if(number.length===10)
-     number="91"+number;
-
-
-    const message =
-`Hello ${name},
-
-Your laboratory report from ARK Diagnostic Centre is ready.
-
-Test / Package: ${test}
-
-View / Download Report:
-${currentReportURL}
-
-Thank you for choosing ARK Diagnostic Centre.`;
-
-
-    window.open(
-     "https://wa.me/"+
-     number+
-     "?text="+
-     encodeURIComponent(message),
-     "_blank"
-    );
-
-   });
-
-
-  });
-
-
-  loading.style.display="none";
-
-  table.style.display="table";
-
-
- }catch(error){
-
-  console.error(error);
-
-  loading.textContent =
-  "Appointments could not be loaded.";
-
- }
+card.style.display="none";
 
 }
-
-
-/* FIRESTORE UPDATE */
-
-async function updateFirestoreFields(
- documentPath,
- fields,
- fieldPaths
-){
-
- const token =
- await auth.currentUser.getIdToken();
-
-
- const masks =
- fieldPaths
- .map(
-  field =>
-  "updateMask.fieldPaths="+
-  encodeURIComponent(field)
- )
- .join("&");
-
-
- const updateURL =
- "https://firestore.googleapis.com/v1/"+
- documentPath+
- "?"+masks;
-
-
- const response =
- await fetch(updateURL,{
-
-  method:"PATCH",
-
-  headers:{
-
-   "Content-Type":"application/json",
-
-   Authorization:
-   "Bearer "+token
-
-  },
-
-  body:JSON.stringify({
-   fields:fields
-  })
-
- });
-
-
- if(!response.ok){
-
-  throw new Error(
-   await response.text()
-  );
-
- }
-
-
- return response.json();
-
-}
-
-
-/* TODAY FILTER */
-
-document
-.getElementById("todayButton")
-.addEventListener("click",()=>{
-
- const today=new Date();
-
- const yyyy=today.getFullYear();
-
- const mm=
- String(today.getMonth()+1)
- .padStart(2,"0");
-
- const dd=
- String(today.getDate())
- .padStart(2,"0");
-
- const todayDate=
- `${yyyy}-${mm}-${dd}`;
-
-
- document
- .querySelectorAll("#appointmentList tr")
- .forEach(row=>{
-
-  const appointmentDate =
-  row.cells[3]?.textContent.trim();
-
-  row.style.display =
-  appointmentDate===todayDate ?
-  "" :
-  "none";
-
- });
 
 });
 
 
-/* SHOW ALL */
+const oldMessage =
+document.querySelector(".no-results");
+
+if(oldMessage){
+oldMessage.remove();
+}
+
+
+if(found===0 && searchValue!==""){
+
+const message =
+document.createElement("div");
+
+message.className="no-results";
+
+message.innerHTML =
+'No test found for "<strong>' +
+searchValue +
+'</strong>"';
+
 
 document
-.getElementById("allButton")
-.addEventListener("click",()=>{
+.getElementById("priceGrid")
+.appendChild(message);
 
- document
- .querySelectorAll("#appointmentList tr")
- .forEach(row=>{
-
-  row.style.display="";
-
- });
-
- document
- .getElementById("searchInput")
- .value="";
+}
 
 });
 
 
-/* SEARCH */
+/* =========================================================
+   MULTIPLE TEST SELECTION
+========================================================= */
 
-document
-.getElementById("searchInput")
-.addEventListener("input",function(){
+const testCheckboxes =
+document.querySelectorAll(
+'.test-check input[type="checkbox"]'
+);
 
- const searchValue =
- this.value.toLowerCase().trim();
+const patientTestInput =
+document.getElementById("patientTest");
 
+const selectedTestsText =
+document.getElementById("selectedTestsText");
 
- document
- .querySelectorAll("#appointmentList tr")
- .forEach(row=>{
-
-  const patientName =
-  row.cells[0]?.textContent
-  .toLowerCase() || "";
-
-  const mobileNumber =
-  row.cells[1]?.textContent
-  .toLowerCase() || "";
+const clearTestsButton =
+document.getElementById("clearTests");
 
 
-  row.style.display =
-  patientName.includes(searchValue) ||
-  mobileNumber.includes(searchValue)
-  ? ""
-  : "none";
+function updateSelectedTests(){
 
- });
+const selectedTests=[];
+
+
+testCheckboxes.forEach(function(checkbox){
+
+if(checkbox.checked){
+
+selectedTests.push(
+checkbox.value
+);
+
+}
 
 });
 
 
-/* BASIC HTML SAFETY */
+/*
+ IMPORTANT:
 
-function escapeHTML(value){
+Existing script.js reads:
 
- return String(value)
- .replaceAll("&","&amp;")
- .replaceAll("<","&lt;")
- .replaceAll(">","&gt;")
- .replaceAll('"',"&quot;")
- .replaceAll("'","&#039;");
+document.getElementById("patientTest").value
+
+So all selected tests are stored here.
+*/
+
+patientTestInput.value =
+selectedTests.join(", ");
+
+
+if(selectedTests.length===0){
+
+selectedTestsText.textContent =
+"No tests selected";
+
+}else{
+
+selectedTestsText.textContent =
+selectedTests.join(", ");
 
 }
 
-function escapeAttribute(value){
+}
 
- return escapeHTML(value);
+
+testCheckboxes.forEach(function(checkbox){
+
+checkbox.addEventListener(
+"change",
+updateSelectedTests
+);
+
+});
+
+
+clearTestsButton.addEventListener(
+"click",
+function(){
+
+testCheckboxes.forEach(function(checkbox){
+
+checkbox.checked=false;
+
+});
+
+updateSelectedTests();
+
+});
+
+
+/* =========================================================
+   MOBILE NUMBER
+========================================================= */
+
+const phoneInput =
+document.getElementById("patientPhone");
+
+
+phoneInput.addEventListener(
+"input",
+function(){
+
+this.value =
+this.value
+.replace(/\D/g,"")
+.slice(0,10);
+
+});
+
+
+/* =========================================================
+   MINIMUM APPOINTMENT DATE
+========================================================= */
+
+const dateInput =
+document.getElementById("appointmentDate");
+
+
+const today =
+new Date();
+
+
+const yyyy =
+today.getFullYear();
+
+
+const mm =
+String(today.getMonth()+1)
+.padStart(2,"0");
+
+
+const dd =
+String(today.getDate())
+.padStart(2,"0");
+
+
+dateInput.min =
+yyyy+"-"+mm+"-"+dd;
+
+
+/* =========================================================
+   BEFORE BOOKING VALIDATION
+========================================================= */
+
+/*
+This wrapper does NOT replace your existing
+bookAppointment() function.
+
+It only makes sure at least one test is selected.
+*/
+
+const originalBookAppointment =
+window.bookAppointment;
+
+
+window.bookAppointment =
+async function(){
+
+const selected =
+patientTestInput.value.trim();
+
+
+if(!selected){
+
+alert(
+"Please select at least one Test / Package."
+);
+
+return;
 
 }
+
+
+/*
+Use the existing function from script.js.
+*/
+
+if(typeof originalBookAppointment === "function"){
+
+return originalBookAppointment();
+
+}
+
+alert(
+"Appointment system is loading. Please try again."
+);
+
+};
 
 </script>
+
+
+<!-- =========================================================
+     YOUR EXISTING SCRIPT.JS
+========================================================= -->
+
+<script src="script.js"></script>
+
 
 </body>
 </html>
