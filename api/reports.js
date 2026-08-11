@@ -10,13 +10,17 @@ function getFirebaseAdmin() {
 
     if (!projectId || !clientEmail || !privateKey) {
 
-      throw new Error(
-        "Firebase environment variables are missing."
-      );
+  const missing = [];
 
-    }
+  if (!projectId) missing.push("FIREBASE_PROJECT_ID");
+  if (!clientEmail) missing.push("FIREBASE_CLIENT_EMAIL");
+  if (!privateKey) missing.push("FIREBASE_PRIVATE_KEY");
 
-    admin.initializeApp({
+  throw new Error(
+    "Missing Firebase variable(s): " + missing.join(", ")
+  );
+
+}
 
       credential: admin.credential.cert({
 
