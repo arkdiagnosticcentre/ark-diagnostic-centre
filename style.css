@@ -334,3 +334,343 @@ padding:50px 20px;
 footer h2{
 margin-bottom:20px;
 }
+/* =========================================================
+   OUR LAB PROFESSIONAL
+========================================================= */
+
+.lab-professional {
+    padding: 80px 20px;
+    background: #f8fbff;
+}
+
+.lab-professional-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   LEFT DETAILS
+========================================================= */
+
+.lab-professional-content {
+    flex: 1 1 60%;
+    padding: 45px;
+}
+
+.section-subtitle {
+    color: #1565c0;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+
+    color: #0d1b2a;
+
+    margin: 0 0 12px;
+}
+
+.section-description {
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   EXPERT INFORMATION
+========================================================= */
+
+.expert-name {
+    font-size: 30px;
+
+    color: #1565c0;
+
+    margin: 0 0 5px;
+}
+
+.expert-qualification {
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #222;
+
+    margin: 0 0 5px;
+}
+
+.expert-role {
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #1565c0;
+
+    margin: 0 0 5px;
+}
+
+.expert-place {
+    color: #555;
+
+    font-size: 14px;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.experience-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #e3f2fd;
+
+    border-radius: 10px;
+}
+
+.exp-icon {
+    font-size: 30px;
+}
+
+.exp-content h4 {
+    margin: 0;
+
+    color: #1565c0;
+
+    font-size: 18px;
+}
+
+.exp-content p {
+    margin: 4px 0 0;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote-box {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    background: #f0f7ff;
+
+    border-left: 4px solid #1565c0;
+
+    border-radius: 8px;
+}
+
+.quote-icon {
+    font-size: 35px;
+
+    color: #1565c0;
+
+    line-height: 1;
+}
+
+.quote-box p {
+    margin: 0;
+
+    color: #444;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.expert-features {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.feature-item {
+    flex: 1 1 120px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 5px;
+}
+
+.feature-icon {
+    font-size: 24px;
+}
+
+.feature-item span {
+    color: #333;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   RIGHT SIDE PHOTO
+========================================================= */
+
+.lab-professional-image {
+    flex: 1 1 40%;
+
+    height: 100%;
+
+    min-height: 500px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.profile-img {
+    width: 100%;
+
+    height: 100%;
+
+    min-height: 500px;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.02);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .lab-professional-container {
+        flex-direction: column-reverse;
+    }
+
+    .lab-professional-content {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 35px 25px;
+    }
+
+    .lab-professional-image {
+        width: 100%;
+
+        min-height: auto;
+    }
+
+    .profile-img {
+        min-height: 450px;
+
+        max-height: 600px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .lab-professional {
+        padding: 50px 15px;
+    }
+
+    .lab-professional-content {
+        padding: 30px 20px;
+    }
+
+    .section-title {
+        font-size: 27px;
+    }
+
+    .expert-name {
+        font-size: 26px;
+    }
+
+    .expert-features {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+    }
+
+    .feature-item {
+        padding: 8px 2px;
+    }
+
+    .profile-img {
+        min-height: 400px;
+    }
+
+}
