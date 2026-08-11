@@ -674,3 +674,437 @@ margin-bottom:20px;
     }
 
 }
+/* =========================================================
+   ARK DIAGNOSTIC CENTRE
+   MOBILE RESPONSIVE DESIGN
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ================= HEADER ================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        padding: 15px 18px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .header nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .header nav a {
+        font-size: 13px;
+        padding: 7px 9px;
+    }
+
+
+    /* ================= HERO ================= */
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 18px;
+        gap: 30px;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: 32px;
+        line-height: 1.25;
+    }
+
+    .hero-text p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-height: 420px;
+        object-fit: cover;
+        border-radius: 18px;
+    }
+
+
+    /* ================= BUTTONS ================= */
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .buttons .btn {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+
+
+    /* ================= STATS ================= */
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 25px 15px;
+    }
+
+    .stats .card {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    .stats .card h2 {
+        font-size: 25px;
+    }
+
+    .stats .card p {
+        font-size: 13px;
+    }
+
+
+    /* ================= GENERAL SECTIONS ================= */
+
+    .about,
+    .why,
+    .services,
+    .packages,
+    .pricing,
+    .appointment,
+    .reviews,
+    .gallery,
+    .faq {
+        padding: 45px 15px;
+    }
+
+    .section-title {
+        font-size: 25px;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+
+    /* ================= ABOUT ================= */
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .about-image,
+    .about-content {
+        width: 100%;
+    }
+
+    .about-image img {
+        width: 100%;
+        border-radius: 18px;
+    }
+
+    .about-content h2 {
+        font-size: 25px;
+    }
+
+    .about-content p,
+    .about-content li {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* ================= WHY ================= */
+
+    .why-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .why-card {
+        padding: 20px;
+    }
+
+
+    /* ================= SERVICES ================= */
+
+    .service-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+
+    /* ================= PACKAGES ================= */
+
+    .package-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px;
+    }
+
+    .package-card {
+        width: 100%;
+        padding: 25px 20px;
+    }
+
+
+    /* ================= TEST PRICES ================= */
+
+    .pricing {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    #searchBox {
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .price-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px;
+    }
+
+    .price-card {
+        width: 100%;
+        padding: 18px;
+    }
+
+
+    /* ================= MULTIPLE TESTS ================= */
+
+    .multi-test-box {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .test-checkbox-grid {
+        grid-template-columns: 1fr !important;
+        max-height: 400px;
+    }
+
+    .test-check label {
+        font-size: 14px;
+        padding: 13px;
+    }
+
+
+    /* ================= APPOINTMENT ================= */
+
+    .appointment-form {
+        width: 100%;
+    }
+
+    .appointment-form input,
+    .appointment-form select,
+    .appointment-form textarea {
+        width: 100%;
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    #appointmentDate {
+        width: 100%;
+        min-height: 50px;
+        font-size: 16px;
+        display: block;
+    }
+
+    .appointment-form button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+
+    /* ================= PATIENT REPORT ================= */
+
+    .patient-report-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 18px;
+    }
+
+    .report-content h2 {
+        font-size: 23px;
+    }
+
+    .report-content p {
+        font-size: 14px;
+    }
+
+    .report-button {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* ================= REVIEWS ================= */
+
+    .review-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .review-card {
+        padding: 20px;
+    }
+
+
+    /* ================= GALLERY ================= */
+
+    .gallery-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .gallery-grid img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+    }
+
+
+    /* ================= PATIENT REVIEW ================= */
+
+    .give-review-card {
+        width: 100%;
+        padding: 25px 18px;
+    }
+
+    .give-review-card input,
+    .give-review-card textarea {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .star-rating {
+        gap: 3px;
+    }
+
+    .star-rating button {
+        font-size: 36px;
+    }
+
+    .submit-review-btn {
+        width: 100%;
+    }
+
+
+    /* ================= PROFILE ================= */
+
+    .profile-section {
+        flex-direction: column !important;
+        text-align: center;
+        padding: 45px 15px;
+    }
+
+    .profile-content,
+    .profile-image {
+        width: 100% !important;
+    }
+
+    .profile-image img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin: auto;
+    }
+
+
+    /* ================= FLOATING WHATSAPP ================= */
+
+    .floating-whatsapp {
+        width: 55px !important;
+        height: 55px !important;
+        right: 15px !important;
+        bottom: 15px !important;
+        font-size: 26px !important;
+    }
+
+}
+
+
+/* ================= SMALL PHONES ================= */
+
+@media (max-width: 480px) {
+
+    .hero-text h1 {
+        font-size: 27px;
+    }
+
+    .hero-text p {
+        font-size: 14px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .stats .card {
+        padding: 15px 5px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .package-card h2 {
+        font-size: 26px;
+    }
+
+    .price-card h3 {
+        font-size: 18px;
+    }
+
+    .price-card p {
+        font-size: 13px;
+    }
+
+    .star-rating button {
+        font-size: 32px;
+    }
+
+}
