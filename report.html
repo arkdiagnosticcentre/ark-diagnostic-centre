@@ -497,7 +497,228 @@
 
     }
 
-  </script>
+ <script>
 
-</body>
-</html>
+const mobileInput = document.getElementById("mobileNumber");
+const searchButton = document.getElementById("searchButton");
+const message = document.getElementById("message");
+const reportsContainer = document.getElementById("reports");
+
+
+// Allow numbers only
+mobileInput.addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "").slice(0, 10);
+});
+
+
+// Enter key
+mobileInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    searchReport();
+  }
+});
+
+
+// Search button
+searchButton.addEventListener("click", function () {
+  searchReport();
+});
+
+
+async function searchReport() {
+
+  const mobile = mobileInput.value.replace(/\D/g, "").trim();
+
+  message.textContent = "";
+  reportsContainer.innerHTML = "";
+
+
+  // Validate mobile number
+  if (!/^\d{10}$/.test(mobile)) {
+
+    message.style.color = "#d32f2f";
+    message.textContent =
+      "Please enter a valid 10-digit mobile number.";
+
+    return;
+  }
+
+
+  searchButton.disabled = true;
+  searchButton.textContent = "Searching...";
+
+  message.style.color = "#1565c0";
+  message.textContent = "Searching reports...";
+
+
+  try {
+
+    const response = await fetch(
+      "/api/reports?phone=" + encodeURIComponent(mobile),
+      {
+        method: "GET",
+        headers: {
+          "Accept": "application/json"
+        },
+        cache: "no-store"
+      }
+    );
+
+
+    const data = await response.json();
+
+
+    console.log("API Response:", data);
+
+
+    if (!response.ok) {
+
+      let errorMessage = "Unable to load reports.";
+
+      if (data && data.error) {
+        errorMessage = data.error;
+      }
+
+      throw new Error(errorMessage);
+    }
+
+
+    if (!data.reports || !Array.isArray(data.reports)) {
+
+      throw new Error(
+        "Invalid reports data received from server."
+      );
+    }
+
+
+    if (data.reports.length === 0) {
+
+      message.style.color = "#d32f2f";
+      message.textContent =
+        "No report found for this mobile number.";
+
+      return;
+    }
+
+
+    message.style.color = "#2e7d32";
+
+    message.textContent =
+      data.reports.length +
+      (data.reports.length === 1
+        ? " report found."
+        : " reports found.");
+
+
+    data.reports.forEach(function (report) {
+
+      const card = document.createElement("div");
+
+      card.className = "report-card";
+
+
+      const patientRow = document.createElement("div");
+
+      patientRow.className = "report-row";
+
+      patientRow.innerHTML =
+        "<strong>Patient:</strong> " +
+        escapeHtml(report.name || "Patient");
+
+
+      const testRow = document.createElement("div");
+
+      testRow.className = "report-row";
+
+      testRow.innerHTML =
+        "<strong>Test:</strong> " +
+        escapeHtml(report.test || "-");
+
+
+      const dateRow = document.createElement("div");
+
+      dateRow.className = "report-row";
+
+      dateRow.innerHTML =
+        "<strong>Date:</strong> " +
+        escapeHtml(report.date || "-");
+
+
+      card.appendChild(patientRow);
+      card.appendChild(testRow);
+      card.appendChild(dateRow);
+
+
+      if (report.reportURL) {
+
+        const reportLink =
+          document.createElement("a");
+
+        reportLink.className = "view-report";
+
+        reportLink.textContent = "View Report";
+
+        reportLink.href = report.reportURL;
+
+        reportLink.target = "_blank";
+
+        reportLink.rel =
+          "noopener noreferrer";
+
+        card.appendChild(reportLink);
+
+      } else {
+
+        const unavailable =
+          document.createElement("div");
+
+        unavailable.style.color = "#d32f2f";
+
+        unavailable.style.marginTop = "12px";
+
+        unavailable.textContent =
+          "Report not uploaded yet.";
+
+        card.appendChild(unavailable);
+      }
+
+
+      reportsContainer.appendChild(card);
+
+    });
+
+
+  } catch (error) {
+
+    console.error("REPORT SEARCH ERROR:", error);
+
+    message.style.color = "#d32f2f";
+
+    message.textContent =
+      error.message ||
+      "Unable to load reports.";
+
+  } finally {
+
+    searchButton.disabled = false;
+
+    searchButton.textContent =
+      "Search Reports";
+
+  }
+
+}
+
+
+// Safe text helper
+function escapeHtml(value) {
+
+  const div = document.createElement("div");
+
+  div.textContent = value;
+
+  return div.innerHTML;
+
+}
+
+</script>
